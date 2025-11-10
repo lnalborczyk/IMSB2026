@@ -1,0 +1,78 @@
+BEGIN:VCALENDAR
+PRODID:-//ATFutures/ical //EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ical-5d354211-4294-492e-93c5-b7361e539ae8
+DTSTART:20260119T140000
+DTEND:20260119T170000
+SUMMARY:IMSB cours n°01 : Introduction à l'inférence bayésienne
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-37170371-4ea1-4d8d-bf60-d734be800d5e
+DTSTART:20260120T090000
+DTEND:20260120T120000
+SUMMARY:IMSB cours n°02 : Modèle Beta-Binomial
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-22526dc4-29a8-4bc5-8bfb-e5c8cd536ea7
+DTSTART:20260120T140000
+DTEND:20260120T170000
+SUMMARY:IMSB cours n°03 : Introduction à brms, modèle linéaire
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-09773f55-b584-4737-8c95-eff90e22e8c9
+DTSTART:20260121T090000
+DTEND:20260121T120000
+SUMMARY:IMSB cours n°04 : Modèle de régression linéaire (suite)
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-5a9a3615-578c-4712-a1d6-65b996fbb4a3
+DTSTART:20260121T140000
+DTEND:20260121T170000
+SUMMARY:IMSB cours n°05 : Markov Chain Monte Carlo
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-a2f4928d-b45a-45d3-af1f-11751910f4a0
+DTSTART:20260122T090000
+DTEND:20260122T120000
+SUMMARY:IMSB cours n°06 : Modèle linéaire généralisé
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-8f840e8f-7148-4cfd-a573-8e2d612a6267
+DTSTART:20260122T140000
+DTEND:20260122T170000
+SUMMARY:IMSB cours n°07 : Comparaison de modèles
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-a2d24997-b0b1-4839-b3d9-5c98383040ec
+DTSTART:20260123T090000
+DTEND:20260123T120000
+SUMMARY:IMSB cours n°08 : Modèles multi-niveaux (généralisés)
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+BEGIN:VEVENT
+UID:ical-846f4c7d-3ed8-4056-b32c-9fd08f8cd4f0
+DTSTART:20260123T140000
+DTEND:20260123T170000
+SUMMARY:IMSB cours n°09 : Examen final
+DESCRIPTION:Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes
+LOCATION:Université Grenoble Alpes
+END:VEVENT
+END:VCALENDAR

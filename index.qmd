@@ -1,0 +1,70 @@
+---
+title: "Introduction à la modélisation statistique bayésienne"
+subtitle: "Un cours en R et Stan avec brms"
+fontsize: 1em
+linkcolor: "#1c5253"
+lang: fr
+details: |
+  Formation interdisciplinaire de sciences cognitives, M2R, Université Grenoble-Alpes.
+sidebar: false
+toc: false
+page-layout: full
+format:
+  html:
+    template-partials:
+      - html/home/title-block.html
+course-logo: "files/cover.png"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+    fig.align = "center",
+    dev = "png",
+    collapse = TRUE
+    )
+```
+
+::: {.home}
+
+::: {.grid .course-details}
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+
+### Enseignant
+
+- {{< fa user >}} &nbsp; [{{< var instructor.name >}}]({{< var instructor.url >}})
+<!--- {{< fa envelope >}} &nbsp; <a href="mailto:{{< var instructor.email >}}">{{< var instructor.email >}}</a>-->
+- {{< fa envelope >}} &nbsp; [{{< var instructor.email >}}]({{< var instructor.email >}})
+- {{< fa brands twitter >}} &nbsp; [{{< var instructor.bluesky >}}](https://bsky.app/profile/lnalborczyk.bsky.social)
+
+<!--
+- {{< fa calendar-check >}} &nbsp; [Prendre un RDV]({{< var instructor.appointment_url >}})
+-->
+
+:::
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+
+### Informations pratiques
+
+<!--
+- {{< fa calendar >}} &nbsp; {{< var course.days >}}
+- {{< fa clock >}} &nbsp; {{< var course.time >}}
+-->
+
+- {{< fa calendar-alt >}} &nbsp; {{< var course.dates >}}
+- {{< fa location-dot >}} &nbsp; {{< var course.location >}}
+
+:::
+
+::: {.g-col-12 .g-col-md-4 .contact-policy}
+
+### Contact
+
+{{< var instructor.contact_policy >}}
+
+:::
+
+:::
+
+:::

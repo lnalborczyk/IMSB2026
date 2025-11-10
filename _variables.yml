@@ -1,0 +1,23 @@
+author: Ladislas Nalborczyk
+
+instructor:
+  name: Ladislas Nalborczyk
+  name_no_title: Ladislas Nalborczyk
+  email: ladislas.nalborczyk@cnrs.fr
+  url: https://lnalborczyk.github.io
+  bluesky: lnalborczyk
+  github: lnalborczyk
+  contact_policy: >-
+    Le plus efficace est de me contacter par e-mail, je répond généralement sous 24-48h.
+  appointment_url: https://calendly.com/ladislas-nalborczyk
+
+course:
+  number: "IMSB2026"
+  semester: "Début 2026"
+  # days: "Mardi et Jeudi"
+  # time: "14h-16h"
+  location: "TBD"
+  dates: "19 janvier - 23 janvier 2026"
+  github: "https://www.github.com/lnalborczyk/IMSB2026"
+  url: "https://lnalborczyk.github.io/IMSB2026/"
+  copyright_year: "2026"
