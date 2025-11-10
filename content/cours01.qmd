@@ -1,7 +1,7 @@
 ---
 title: "Cours n°01"
 subtitle: "Introduction à l'inférence bayésienne"
-date: 2022-10-11
+date: 2026-01-19
 toc: false
 lang: fr
 ---
@@ -26,4 +26,4 @@ Voir toutes les commandes de `revealjs` en appuyant sur <kbd>m</kbd> puis <kbd>h
 ## Pour aller plus loin
 
 - Hájek, A. (2019). Interpretations of probability. In E. N. Zalta (Ed.), The stanford encyclopedia of philosophy (Fall 2019). Metaphysics Research Lab, Stanford University. <https://plato.stanford.edu/archives/fall2019/entries/probability-interpret/>
-- 3Blue1Brown (Director). (2019, December 22). Bayes theorem, the geometry of changing beliefs. <https://www.youtube.com/watch?v=HZGCoVF3YvM>
+- 3Blue1Brown (2019, December 22). Bayes theorem, the geometry of changing beliefs. <https://www.youtube.com/watch?v=HZGCoVF3YvM>

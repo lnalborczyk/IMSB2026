@@ -1,7 +1,7 @@
 ---
 title: Introduction à la modélisation statistique bayésienne
 subtitle: Un cours en R et Stan avec brms
-author: Ladislas Nalborczyk (LPC, LNC, CNRS, Aix-Marseille Univ)
+author: Ladislas Nalborczyk (CNRS, LPL, Aix-Marseille Univ)
 from: markdown+emoji
 format:
   revealjs:
@@ -17,7 +17,7 @@ format:
     csl: ../../files/bib/apa7.csl
     incremental: false
     logo: ../../files/cover.png
-    footer: "Ladislas Nalborczyk - IMSB2022"
+    footer: "Ladislas Nalborczyk - IMSB2026"
     # width: 1200 # defaults to 1050
     # height: 900 # default to 700
     margin: 0.15 # defaults to 0.1

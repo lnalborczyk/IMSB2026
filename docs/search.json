@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "\n            Introduction à la modélisation statistique bayésienne\n        ",
     "section": "",
-    "text": "Introduction à la modélisation statistique bayésienne\n        \n        \n            Un cours en R et Stan avec brms\n        \n        \n            Formation interdisciplinaire de sciences cognitives, M2R, Université Grenoble-Alpes.\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEnseignant\n\n   Ladislas Nalborczyk \n   ladislas.nalborczyk@cnrs.fr\n   lnalborczyk\n\n\n\n\nInformations pratiques\n\n\n   19 janvier - 23 janvier 2026\n   TBD\n\n\n\nContact\nLe plus efficace est de me contacter par e-mail, je répond généralement sous 24-48h."
+    "text": "Introduction à la modélisation statistique bayésienne\n        \n        \n            Un cours en R et Stan avec brms\n        \n        \n            Formation interdisciplinaire de sciences cognitives, M2R, Université Grenoble-Alpes.\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEnseignant\n\n   Ladislas Nalborczyk\n   Envoyer un email\n\n\n\nInformations pratiques\n\n   19 janvier - 23 janvier 2026\n   TBD\n\n\n\nContact\nLe plus efficace est de me contacter par e-mail, je répond généralement sous 24-48h."
   },
   {
     "objectID": "content/cours07.html",
@@ -171,7 +171,7 @@
     "href": "content/cours01.html#pour-aller-plus-loin",
     "title": "Cours n°01",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nHájek, A. (2019). Interpretations of probability. In E. N. Zalta (Ed.), The stanford encyclopedia of philosophy (Fall 2019). Metaphysics Research Lab, Stanford University. https://plato.stanford.edu/archives/fall2019/entries/probability-interpret/\n3Blue1Brown (Director). (2019, December 22). Bayes theorem, the geometry of changing beliefs. https://www.youtube.com/watch?v=HZGCoVF3YvM",
+    "text": "Pour aller plus loin\n\nHájek, A. (2019). Interpretations of probability. In E. N. Zalta (Ed.), The stanford encyclopedia of philosophy (Fall 2019). Metaphysics Research Lab, Stanford University. https://plato.stanford.edu/archives/fall2019/entries/probability-interpret/\n3Blue1Brown (2019, December 22). Bayes theorem, the geometry of changing beliefs. https://www.youtube.com/watch?v=HZGCoVF3YvM",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -560,14 +560,14 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Ladislas Nalborczyk \n   ladislas.nalborczyk@cnrs.fr\n   lnalborczyk\n\n\n\n\n\n\n   19 janvier - 23 janvier 2026 \n   TBD"
+    "text": "Ladislas Nalborczyk\n   Envoyer un email\n\n\n\n\n\n   19 janvier - 23 janvier 2026\n   TBD"
   },
   {
     "objectID": "syllabus.html#quest-ce-que-la-modélisation-statistique-bayésienne",
     "href": "syllabus.html#quest-ce-que-la-modélisation-statistique-bayésienne",
     "title": "Syllabus",
     "section": "Qu’est-ce que la modélisation statistique bayésienne ?",
-    "text": "Qu’est-ce que la modélisation statistique bayésienne ?\nL’approche bayésienne consiste à traiter chaque entité (e.g., variables observées, paramètres du modèle, données manquantes) comme des variables aléatoires caractérisées par des distributions de probabilité. Dans une analyse bayésienne, chaque entité inconnue se voit assignée une distribution a priori qui représente un état de connaissance avant d’observer les données. Une fois les données observées, le théorème de Bayes est utilisé pour mettre à jour la distribution a priori en une distribution a posteriori. La distribution a posteriori est le but d’une analyse bayésienne et peut être résumée par des valeurs ponctuelles ou des intervalles, et interprétée directement dans un cadre probabiliste cohérent.\nCette approche se différencie –à la fois philosophiquement et en pratique– de l’approche traditionnelle fréquentiste, qui constitue la majorité des formations proposées. Un des avantages de l’approche bayésienne est qu’elle permet à l’analyste de résoudre des problèmes difficiles voire impossibles à résoudre pour l’approche fréquentiste traditionnelle.\nAu fil des exemples proposés, nous réaliserons que même dans des situations de modélisation simples, l’approche bayésienne permet un raisonnement probabiliste plus naturel et plus flexible que la machinerie inférentielle de l’approche fréquentiste. La modélisation statistique bayésienne représente une alternative attirante aux approches fréquentistes en ce qu’elle offre un cadre cohérent à la modélisation statistique. L’approche bayésienne permet de construire et de fitter des modèles complexes tout en offrant des conclusions relativement intuitives et qui incorporent toute l’incertitude intrinsèque au processus inférentiel."
+    "text": "Qu’est-ce que la modélisation statistique bayésienne ?\nL’approche bayésienne consiste à traiter chaque entité (e.g., paramètres d’un modèle, données manquantes) comme des variables aléatoires caractérisées par des distributions de probabilité. Dans une analyse bayésienne, chaque entité inconnue se voit assignée une distribution a priori qui représente un état de connaissance avant d’observer les données. Une fois les données observées, le théorème de Bayes est utilisé pour mettre à jour la distribution a priori en une distribution a posteriori. La distribution a posteriori est le but d’une analyse bayésienne et peut être résumée par des valeurs ponctuelles ou des intervalles, et interprétée directement dans un cadre probabiliste cohérent.\nCette approche se différencie –à la fois philosophiquement et en pratique– de l’approche traditionnelle fréquentiste, qui constitue la majorité des formations proposées. Un des avantages de l’approche bayésienne est qu’elle permet à l’analyste de résoudre des problèmes difficiles voire impossibles à résoudre pour l’approche fréquentiste traditionnelle. Au fil des exemples proposés, nous réaliserons que même dans des situations de modélisation simples, l’approche bayésienne permet un raisonnement probabiliste plus naturel et plus flexible que l’approche fréquentiste, tout en incorporant l’incertitude intrinsèque au processus inférentiel."
   },
   {
     "objectID": "syllabus.html#objectifs-de-la-formation",
@@ -588,6 +588,6 @@
     "href": "syllabus.html#contenu-de-la-formation",
     "title": "Syllabus",
     "section": "Contenu de la formation",
-    "text": "Contenu de la formation\nCette formation est composée de dix séances de deux heures durant lesquelles seront dispensées connaissances théoriques et travaux pratiques en R, dans l’environnement RStudio."
+    "text": "Contenu de la formation\nCette formation est composée de huit séances de trois heures (+ examen final) durant lesquelles seront dispensées connaissances théoriques et travaux pratiques en R, dans l’environnement RStudio."
   }
 ]
