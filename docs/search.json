@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "\n            Introduction à la modélisation statistique bayésienne\n        ",
     "section": "",
-    "text": "Introduction à la modélisation statistique bayésienne\n        \n        \n            Un cours en R et Stan avec brms\n        \n        \n            Formation interdisciplinaire de sciences cognitives, M2R, Université Grenoble-Alpes.\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEnseignant\n\n   Ladislas Nalborczyk\n   Envoyer un email\n\n\n\nInformations pratiques\n\n   19 janvier - 23 janvier 2026\n   TBD\n\n\n\nContact\nLe plus efficace est de me contacter par e-mail, je répond généralement sous 24-48h."
+    "text": "Introduction à la modélisation statistique bayésienne\n        \n        \n            Un cours en R et Stan avec brms\n        \n        \n            Formation interdisciplinaire en sciences cognitives (TransCoG) Université Grenoble-Alpes\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEnseignant\n\n   Ladislas Nalborczyk\n   Envoyer un email\n\n\n\nInformations pratiques\n\n   19 janvier - 23 janvier 2026\n   TBD\n\n\n\nContact\nLe plus efficace est de me contacter par e-mail, je répond généralement sous 24-48h."
   },
   {
     "objectID": "content/cours07.html",
@@ -131,51 +131,142 @@
     ]
   },
   {
-    "objectID": "content/cours01.html",
-    "href": "content/cours01.html",
-    "title": "Cours n°01",
+    "objectID": "content/cours03.html",
+    "href": "content/cours03.html",
+    "title": "Cours n°03",
     "section": "",
-    "text": "Installer les paquets R : voir page installation.\n(optionnel) Lire le premier chapitre de  Statistical Rethinking.",
+    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 4 de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Introduction à l'inférence bayésienne"
+      "Modèle de régression linéaire, intro brms"
     ]
   },
   {
-    "objectID": "content/cours01.html#en-préparation-du-cours",
-    "href": "content/cours01.html#en-préparation-du-cours",
-    "title": "Cours n°01",
+    "objectID": "content/cours03.html#en-préparation-du-cours",
+    "href": "content/cours03.html#en-préparation-du-cours",
+    "title": "Cours n°03",
     "section": "",
-    "text": "Installer les paquets R : voir page installation.\n(optionnel) Lire le premier chapitre de  Statistical Rethinking.",
+    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 4 de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Introduction à l'inférence bayésienne"
+      "Modèle de régression linéaire, intro brms"
     ]
   },
   {
-    "objectID": "content/cours01.html#slides",
-    "href": "content/cours01.html#slides",
-    "title": "Cours n°01",
+    "objectID": "content/cours03.html#slides",
+    "href": "content/cours03.html#slides",
+    "title": "Cours n°03",
     "section": "Slides",
     "text": "Slides\nLes slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Introduction à l'inférence bayésienne"
+      "Modèle de régression linéaire, intro brms"
     ]
   },
   {
-    "objectID": "content/cours01.html#pour-aller-plus-loin",
-    "href": "content/cours01.html#pour-aller-plus-loin",
-    "title": "Cours n°01",
+    "objectID": "content/cours03.html#pour-aller-plus-loin",
+    "href": "content/cours03.html#pour-aller-plus-loin",
+    "title": "Cours n°03",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nHájek, A. (2019). Interpretations of probability. In E. N. Zalta (Ed.), The stanford encyclopedia of philosophy (Fall 2019). Metaphysics Research Lab, Stanford University. https://plato.stanford.edu/archives/fall2019/entries/probability-interpret/\n3Blue1Brown (2019, December 22). Bayes theorem, the geometry of changing beliefs. https://www.youtube.com/watch?v=HZGCoVF3YvM",
+    "text": "Pour aller plus loin\n\nHeiss, A. (2022). Visualizing the differences between Bayesian posterior predictions, linear predictions, and the expectation of posterior predictions. Blogpost available at https://www.andrewheiss.com/blog/2022/09/26/guide-visualizing-types-posteriors/.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Introduction à l'inférence bayésienne"
+      "Modèle de régression linéaire, intro brms"
+    ]
+  },
+  {
+    "objectID": "content/index.html",
+    "href": "content/index.html",
+    "title": "Contenu",
+    "section": "",
+    "text": "Sur la page de chaque cours, vous trouverez trois boutons comme ceux ci-dessous pour i) ouvrir les slides dans un nouvel onglet et les consulter en ligne, ii) télécharger une version PDF des slides, et iii) télécharger le code R du cours.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\nLes slides sont aussi affichées sur la page de chaque cours. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez m vous verrez apparaître un ensemble de commandes spécifiques à la lecture des ces slides (e.g., f pour passer en plein écran).",
+    "crumbs": [
+      "Contenu",
+      "Vue d'ensemble",
+      "Contenu"
+    ]
+  },
+  {
+    "objectID": "content/cours08.html",
+    "href": "content/cours08.html",
+    "title": "Cours n°08",
+    "section": "",
+    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 à 17 de  Statistical Rethinking.",
+    "crumbs": [
+      "Contenu",
+      "Planning détaillé",
+      "Modèles multi-niveaux (généralisés)"
+    ]
+  },
+  {
+    "objectID": "content/cours08.html#en-préparation-du-cours",
+    "href": "content/cours08.html#en-préparation-du-cours",
+    "title": "Cours n°08",
+    "section": "",
+    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 à 17 de  Statistical Rethinking.",
+    "crumbs": [
+      "Contenu",
+      "Planning détaillé",
+      "Modèles multi-niveaux (généralisés)"
+    ]
+  },
+  {
+    "objectID": "content/cours08.html#slides",
+    "href": "content/cours08.html#slides",
+    "title": "Cours n°08",
+    "section": "Slides",
+    "text": "Slides\nLes slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
+    "crumbs": [
+      "Contenu",
+      "Planning détaillé",
+      "Modèles multi-niveaux (généralisés)"
+    ]
+  },
+  {
+    "objectID": "content/cours08.html#pour-aller-plus-loin",
+    "href": "content/cours08.html#pour-aller-plus-loin",
+    "title": "Cours n°08",
+    "section": "Pour aller plus loin",
+    "text": "Pour aller plus loin\n\nBürkner, P.-C., & Vuorre, M. (2019). Ordinal Regression Models in Psychology: A Tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77–101. https://doi.org/10.1177/2515245918823199\nGelman, A., Vehtari, A., Simpson, D., Margossian, C. C., Carpenter, B., Yao, Y., Kennedy, L., Gabry, J., Bürkner, P.-C., & Modrák, M. (2020). Bayesian Workflow. ArXiv:2011.01808 [Stat]. https://arxiv.org/abs/2011.01808\nNalborczyk, L., Batailler, C., Lœvenbruck, H., Vilain, A., & Bürkner, P.-C. (2019). An introduction to Bayesian multilevel models using brms: A case study of gender effects on vowel variability in standard indonesian. Journal of Speech Language and Hearing Research, 62(5), 1225–1242. https://doi.org/10.1044/2018_JSLHR-S-18-0006. Preprint: https://psyarxiv.com/guhsa/.\nWinter, B., & Bürkner, P. (2021). Poisson regression for linguists: A tutorial introduction to modelling count data with brms. Language and Linguistics Compass, 15(11). https://doi.org/10.1111/lnc3.12439",
+    "crumbs": [
+      "Contenu",
+      "Planning détaillé",
+      "Modèles multi-niveaux (généralisés)"
+    ]
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2022 Andrew Heiss and Meng Ye\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
+    "objectID": "content/cours09.html",
+    "href": "content/cours09.html",
+    "title": "Cours n°09",
+    "section": "",
+    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
+    "crumbs": [
+      "Contenu",
+      "Planning détaillé",
+      "Examen final"
+    ]
+  },
+  {
+    "objectID": "content/cours09.html#slides",
+    "href": "content/cours09.html#slides",
+    "title": "Cours n°09",
+    "section": "",
+    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
+    "crumbs": [
+      "Contenu",
+      "Planning détaillé",
+      "Examen final"
     ]
   },
   {
@@ -227,195 +318,52 @@
     ]
   },
   {
-    "objectID": "content/cours09.html",
-    "href": "content/cours09.html",
-    "title": "Cours n°09",
+    "objectID": "content/cours01.html",
+    "href": "content/cours01.html",
+    "title": "Cours n°01",
     "section": "",
-    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
+    "text": "Installer les paquets R : voir page installation.\n(optionnel) Lire le premier chapitre de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Examen final"
+      "Introduction à l'inférence bayésienne"
     ]
   },
   {
-    "objectID": "content/cours09.html#en-préparation-du-cours",
-    "href": "content/cours09.html#en-préparation-du-cours",
-    "title": "Cours n°09",
+    "objectID": "content/cours01.html#en-préparation-du-cours",
+    "href": "content/cours01.html#en-préparation-du-cours",
+    "title": "Cours n°01",
     "section": "",
-    "text": "Relire les cours précédents.",
+    "text": "Installer les paquets R : voir page installation.\n(optionnel) Lire le premier chapitre de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Examen final"
+      "Introduction à l'inférence bayésienne"
     ]
   },
   {
-    "objectID": "content/cours09.html#slides",
-    "href": "content/cours09.html#slides",
-    "title": "Cours n°09",
-    "section": "",
-    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Examen final"
-    ]
-  },
-  {
-    "objectID": "content/cours09.html#pour-aller-plus-loin",
-    "href": "content/cours09.html#pour-aller-plus-loin",
-    "title": "Cours n°09",
-    "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nBürkner, P.-C., & Vuorre, M. (2019). Ordinal Regression Models in Psychology: A Tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77–101. https://doi.org/10.1177/2515245918823199\nWinter, B., & Bürkner, P. (2021). Poisson regression for linguists: A tutorial introduction to modelling count data with brms. Language and Linguistics Compass, 15(11). https://doi.org/10.1111/lnc3.12439",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Examen final"
-    ]
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2022 Andrew Heiss and Meng Ye\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-  },
-  {
-    "objectID": "content/cours08.html",
-    "href": "content/cours08.html",
-    "title": "Cours n°08",
-    "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 à 17 de  Statistical Rethinking.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Modèles multi-niveaux (généralisés)"
-    ]
-  },
-  {
-    "objectID": "content/cours08.html#en-préparation-du-cours",
-    "href": "content/cours08.html#en-préparation-du-cours",
-    "title": "Cours n°08",
-    "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 à 17 de  Statistical Rethinking.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Modèles multi-niveaux (généralisés)"
-    ]
-  },
-  {
-    "objectID": "content/cours08.html#slides",
-    "href": "content/cours08.html#slides",
-    "title": "Cours n°08",
+    "objectID": "content/cours01.html#slides",
+    "href": "content/cours01.html#slides",
+    "title": "Cours n°01",
     "section": "Slides",
     "text": "Slides\nLes slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Modèles multi-niveaux (généralisés)"
+      "Introduction à l'inférence bayésienne"
     ]
   },
   {
-    "objectID": "content/cours08.html#pour-aller-plus-loin",
-    "href": "content/cours08.html#pour-aller-plus-loin",
-    "title": "Cours n°08",
+    "objectID": "content/cours01.html#pour-aller-plus-loin",
+    "href": "content/cours01.html#pour-aller-plus-loin",
+    "title": "Cours n°01",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nBürkner, P.-C., & Vuorre, M. (2019). Ordinal Regression Models in Psychology: A Tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77–101. https://doi.org/10.1177/2515245918823199\nGelman, A., Vehtari, A., Simpson, D., Margossian, C. C., Carpenter, B., Yao, Y., Kennedy, L., Gabry, J., Bürkner, P.-C., & Modrák, M. (2020). Bayesian Workflow. ArXiv:2011.01808 [Stat]. https://arxiv.org/abs/2011.01808\nNalborczyk, L., Batailler, C., Lœvenbruck, H., Vilain, A., & Bürkner, P.-C. (2019). An introduction to Bayesian multilevel models using brms: A case study of gender effects on vowel variability in standard indonesian. Journal of Speech Language and Hearing Research, 62(5), 1225–1242. https://doi.org/10.1044/2018_JSLHR-S-18-0006. Preprint: https://psyarxiv.com/guhsa/.\nWinter, B., & Bürkner, P. (2021). Poisson regression for linguists: A tutorial introduction to modelling count data with brms. Language and Linguistics Compass, 15(11). https://doi.org/10.1111/lnc3.12439",
+    "text": "Pour aller plus loin\n\nHájek, A. (2019). Interpretations of probability. In E. N. Zalta (Ed.), The stanford encyclopedia of philosophy (Fall 2019). Metaphysics Research Lab, Stanford University. https://plato.stanford.edu/archives/fall2019/entries/probability-interpret/\n3Blue1Brown (2019, December 22). Bayes theorem, the geometry of changing beliefs. https://www.youtube.com/watch?v=HZGCoVF3YvM",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
-      "Modèles multi-niveaux (généralisés)"
+      "Introduction à l'inférence bayésienne"
     ]
-  },
-  {
-    "objectID": "content/index.html",
-    "href": "content/index.html",
-    "title": "Contenu",
-    "section": "",
-    "text": "Sur la page de chaque cours, vous trouverez trois boutons comme ceux ci-dessous pour i) ouvrir les slides dans un nouvel onglet et les consulter en ligne, ii) télécharger une version PDF des slides, et iii) télécharger le code R du cours.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\nLes slides sont aussi affichées sur la page de chaque cours. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez m vous verrez apparaître un ensemble de commandes spécifiques à la lecture des ces slides (e.g., f pour passer en plein écran).",
-    "crumbs": [
-      "Contenu",
-      "Vue d'ensemble",
-      "Contenu"
-    ]
-  },
-  {
-    "objectID": "content/cours03.html",
-    "href": "content/cours03.html",
-    "title": "Cours n°03",
-    "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 4 de  Statistical Rethinking.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Modèle de régression linéaire, intro brms"
-    ]
-  },
-  {
-    "objectID": "content/cours03.html#en-préparation-du-cours",
-    "href": "content/cours03.html#en-préparation-du-cours",
-    "title": "Cours n°03",
-    "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 4 de  Statistical Rethinking.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Modèle de régression linéaire, intro brms"
-    ]
-  },
-  {
-    "objectID": "content/cours03.html#slides",
-    "href": "content/cours03.html#slides",
-    "title": "Cours n°03",
-    "section": "Slides",
-    "text": "Slides\nLes slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Modèle de régression linéaire, intro brms"
-    ]
-  },
-  {
-    "objectID": "content/cours03.html#pour-aller-plus-loin",
-    "href": "content/cours03.html#pour-aller-plus-loin",
-    "title": "Cours n°03",
-    "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nHeiss, A. (2022). Visualizing the differences between Bayesian posterior predictions, linear predictions, and the expectation of posterior predictions. Blogpost available at https://www.andrewheiss.com/blog/2022/09/26/guide-visualizing-types-posteriors/.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Modèle de régression linéaire, intro brms"
-    ]
-  },
-  {
-    "objectID": "content/cours10.html",
-    "href": "content/cours10.html",
-    "title": "Cours n°10",
-    "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 17 de  Statistical Rethinking."
-  },
-  {
-    "objectID": "content/cours10.html#en-préparation-du-cours",
-    "href": "content/cours10.html#en-préparation-du-cours",
-    "title": "Cours n°10",
-    "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 17 de  Statistical Rethinking."
-  },
-  {
-    "objectID": "content/cours10.html#slides",
-    "href": "content/cours10.html#slides",
-    "title": "Cours n°10",
-    "section": "Slides",
-    "text": "Slides\nLes slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h."
-  },
-  {
-    "objectID": "content/cours10.html#pour-aller-plus-loin",
-    "href": "content/cours10.html#pour-aller-plus-loin",
-    "title": "Cours n°10",
-    "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nGelman, A., Vehtari, A., Simpson, D., Margossian, C. C., Carpenter, B., Yao, Y., Kennedy, L., Gabry, J., Bürkner, P.-C., & Modrák, M. (2020). Bayesian Workflow. ArXiv:2011.01808 [Stat]. https://arxiv.org/abs/2011.01808"
   },
   {
     "objectID": "content/cours05.html",
@@ -589,17 +537,5 @@
     "title": "Syllabus",
     "section": "Contenu de la formation",
     "text": "Contenu de la formation\nCette formation est composée de huit séances de trois heures (+ examen final) durant lesquelles seront dispensées connaissances théoriques et travaux pratiques en R, dans l’environnement RStudio."
-  },
-  {
-    "objectID": "content/cours09.html#en-préparation",
-    "href": "content/cours09.html#en-préparation",
-    "title": "Cours n°09",
-    "section": "",
-    "text": "Relire les cours précédents.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Examen final"
-    ]
   }
 ]

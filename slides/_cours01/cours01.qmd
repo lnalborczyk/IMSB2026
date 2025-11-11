@@ -72,23 +72,23 @@ Ce cours est grandement inspiré des livres suivants :
 
 - Nicenboim, B., Schad, D., & Vasishth, S. (2021). *An Introduction to Bayesian Data Analysis for Cognitive Science*. Available [online](https://vasishth.github.io/bayescogsci/book/).
 
-Les slides seront disponibles juste avant chaque séance sur le site de la formation : <https://lnalborczyk.github.io/IMSB2026/>.
+Le code et les slides seront disponibles juste avant chaque séance sur le site de la formation : <https://lnalborczyk.github.io/IMSB2026/>.
 
 ## Objectifs
 
 Objectifs généraux :
 
 ::: incremental
--   Comprendre les concepts fondamentaux de la statistique bayésienne.
--   Être capable de comprendre des articles décrivant des analyses bayésiennes.
--   Bonus : Réaliser que l'approche bayésienne est plus intuitive que l'approche fréquentiste.
+- Comprendre les concepts fondamentaux de la statistique bayésienne.
+- Être capable de comprendre des articles décrivant des analyses bayésiennes.
+- Bonus : Réaliser que l'approche bayésienne est plus intuitive que l'approche fréquentiste.
 :::
 
 . . .
 
 Objectifs pratiques :
 
--   Être capable de réaliser une analyse complète (i.e., identification du modèle approprié, écriture du modèle mathématique, implémentation en `R`, interprétation et report des résultats) d'un jeu de données simple.
+- Être capable de réaliser une analyse complète (i.e., identification du modèle approprié, écriture du modèle mathématique, implémentation en `R`, interprétation et report des résultats) d'un jeu de données simple.
 
 ::: notes
 Speaker notes go here...
@@ -96,25 +96,9 @@ Speaker notes go here...
 
 ## Planning
 
-**Cours n°01 : Introduction à l'inférence bayésienne** <br> Cours n°02 : Modèle Beta-Binomial <br> Cours n°03 : Introduction à brms, modèle de régression linéaire <br> Cours n°04 : Modèle de régression linéaire (suite) <br> Cours n°05 : Markov Chain Monte Carlo <br> Cours n°06 : Modèle linéaire généralisé <br> Cours n°07 : Comparaison de modèles <br> Cours n°08 : Modèles multi-niveaux <br> Cours n°09 : Modèles multi-niveaux généralisés <br> Cours n°10 : Data Hackathon <br>
+**Cours n°01 : Introduction à l'inférence bayésienne** <br> Cours n°02 : Modèle Beta-Binomial <br> Cours n°03 : Introduction à brms, modèle de régression linéaire <br> Cours n°04 : Modèle de régression linéaire (suite) <br> Cours n°05 : Markov Chain Monte Carlo <br> Cours n°06 : Modèle linéaire généralisé <br> Cours n°07 : Comparaison de modèles <br> Cours n°08 : Modèles multi-niveaux (généralisés) <br> Cours n°09 : Examen final <br>
 
 $$\newcommand\given[1][]{\:#1\vert\:}$$
-
-## Axiomes des probabilités [@kolmogorov1933]
-
-Une probabilité est une valeur numérique assignée à un événement $A$, compris comme une possibilité appartenant à l'univers $\Omega$ (l'ensemble de toutes les issues possibles).
-
-. . .
-
-Les probabilités se conforment aux axiomes suivants :
-
--   Non-negativité : $\Pr(A) \geq 0$
--   Normalisation : $\Pr(\Omega) = 1$
--   Additivité (pour des événements incompatibles) : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2})$
-
-. . .
-
-Le dernier axiome est également connu comme la **règle de la somme**, et peut se généraliser à des événements non mutuellement exclusifs : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})$.
 
 ## Interprétations probabilistes
 
@@ -281,195 +265,152 @@ Les probabilités dépendent d'un état du monde, de caractéristiques physiques
 
 ##  {background-image="figures/pill3.jpg"}
 
-## Un peu de logique
+## Axiomes des probabilités [@kolmogorov1933]
 
-![](figures/penguins.png){fig-align="center" width="50%"}
-
-## Un peu de logique, quelques syllogismes
-
-**Exemple 1**
-
--   Si un suspect ment, il transpire. (On observe que) Ce suspect transpire.
--   Par conséquent, ce suspect ment.
+Une probabilité est une valeur numérique assignée à un événement $A$, compris comme une possibilité appartenant à l'univers $\Omega$ (l'ensemble de toutes les issues possibles).
 
 . . .
 
-**Exemple 2**
+Les probabilités se conforment aux axiomes suivants :
 
--   Si un suspect transpire, il ment. (On observe que) Ce suspect ne transpire pas.
--   Par conséquent, ce suspect ne ment pas.
-
-. . .
-
-**Exemple 3**
-
--   Tous les menteurs transpirent. (On observe que) Ce suspect ne transpire pas.
--   Par conséquent, ce suspect n'est pas un menteur.
-
-## Arguments invalides
-
--   Affirmation du conséquent : $\dfrac{A \Rightarrow B, \ B}{A}$
-
--   Si il a plu, alors le sol est mouillé (A implique B). Le sol est mouillé (B). Donc il a plu (A).
+-   Non-négativité : $\Pr(A) \geq 0$
+-   Normalisation : $\Pr(\Omega) = 1$
+-   Additivité (pour des événements incompatibles) : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2})$
 
 . . .
 
--   Négation de l'antécédent : $\dfrac{A \Rightarrow B, \ \neg A}{\neg B}$
+Le dernier axiome est également connu comme la **règle de la somme**, et peut se généraliser à des événements non mutuellement exclusifs : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})$.
 
--   Si il a plu, alors le sol est mouillé (A implique B). Il n'a pas plus (non A). Donc le sol n'est pas mouillé (non B).
+## Règle de la somme et règle du produit
 
-. . .
+**Règle de la somme** (pour deux événements mutuellement exclusifs) : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})$.
 
-![](figures/trump.gif){fig-align="center" width="50%"}
-
-## Arguments valides
-
--   Modus ponens : $\dfrac{A \Rightarrow B, \ A}{B}$
-
--   Si on est lundi, alors John ira au travail (A implique B). On est lundi (A). Donc John ira au travail (B).
+Pensez à la probabilité d'obtenir un nombre impair lors d'un lancer de dé. Nous pouvons l'écrire sous la forme $\Pr(x = 1) + \Pr(x = 3) + \Pr(x = 5) = \frac{3}{6}$.
 
 . . .
 
--   Modus tollens : $\dfrac{A \Rightarrow B, \ \neg B}{\neg A}$
+**Règle du produit** (pour deux événements indépendants) : $\Pr(A_{1} \cap A_{2}) = \Pr(A_{1}) \times \Pr(A_{2})$.
 
--   Si mon chien détecte un intru, alors il aboie (A implique B). Mon chien n'a pas aboyé (non B). Donc il n'a pas détecté d'intrus (non A).
-
-. . .
-
-![](figures/good.gif){fig-align="center" width="50%"}
-
-## Logique, fréquentisme, et raisonnement probabiliste
-
-Le **modus tollens** est un des raisonnements logiques les plus importants et les plus performants. Dans le cadre de l'inférence statistique, il s'applique parfaitement au cas suivant : "Si $\mathcal{H}_{0}$ est vraie, alors $x$ ne devrait pas se produire. On observe $x$. Alors $\mathcal{H}_{0}$ est fausse".
+Pensez à la probabilité d'obtenir deux 6 consécutifs lors de deux lancers de dé. On peut l'écrire sous la forme $\Pr(x = 6, y = 6) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}$.
 
 . . .
 
-Mais nous avons le plus souvent affaire à des hypothèses "continues" (probabilistes).
+Si vous comprenez et retenez ces deux règles, vous maîtrisez déjà les statistiques bayésiennes !
 
-. . .
+## Probabilité conjointe
 
-L'inférence fréquentiste (fishérienne) est elle aussi probabiliste, de la forme "Si $\mathcal{H}_{0}$ est vraie, alors $x$ est peu probable. On observe $x$. Alors $\mathcal{H}_{0}$ est peu probable."
+Lords du lancer de 2 dés, la probabilité que le dé $x$ soit égal à 2 et que le dé $y$ soit égal à 3 est : $\Pr(x = 2, y = 3) = \Pr(y = 3, x = 2) = \frac{1}{36}$.
 
-. . .
-
-Or cet argument est invalide, le modus tollens ne s'applique pas au monde probabiliste [e.g., @pollard1987; @rouder2016].
-
-. . .
-
-Par exemple : *Si un individu est un homme (man), alors il est peu probable qu'il soit pape. François est pape. François n'est donc certainement pas un homme...*
-
-## L'échec de la falsification
-
-**Poppérisme naïf** : la science progresse par falsification logique, donc la statistique devrait viser la falsification. Mais...
-
--   Les hypothèses théoriques ne sont pas les modèles (hypothèses statistiques).
-
-. . .
-
-> Models are devices that connect theories to data. A model is an instanciation of a theory as a set of probabilistic statements [@rouder2016a].
-
-. . .
-
--   Nos hypothèses sont souvent probabilistes.
-
-. . .
-
--   Erreurs de mesure (e.g., [faster-than-light neutrino anomaly](https://en.wikipedia.org/wiki/Faster-than-light_neutrino_anomaly)).
-
-. . .
-
--   La falsification concerne le problème de la démarcation, pas celui de la méthode.
-
-. . .
-
--   La science est une technologie sociale, la falsification est **consensuelle**, et non pas logique.
-
-## Comparaison de modèles
-
-On s'intéresse au lien entre deux variables aléatoires continues, $x$ et $y$.
-
-```{r message = FALSE, echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
-set.seed(1111)
-
-x <- sort(runif(10, -2, 2) )
-y <- 3 * x^3 + 5 * x^2 + 0.5 * x + 20 + rnorm(10, sd = 3)
-
-data.frame(x, y) %>%
-        ggplot(aes(x = x, y = y) ) +
-        geom_point(size = 3)
-
-nterm <- c(1, 2, 3, 9)
-
-PAL <- colorRampPalette(c("black", "chartreuse3", "gold", "dodgerblue") )
-COLS <- PAL(length(nterm) )
+```{r joint-prob-plot}
+#| echo: FALSE
+#| fig-width: 6
+#| fig-height: 6
+crossing(X = 1:6, Y = 1:6) %>%
+    mutate(Z = ifelse(X == 2 & Y == 3, 1, 0) ) %>%
+    ggplot(aes(X, Y, fill = Z) ) +
+    geom_tile(colour = "white", show.legend = FALSE) +
+    scale_x_continuous(expand = c(0, 0), n.breaks = 6) +
+    scale_y_continuous(expand = c(0, 0), n.breaks = 6) +
+    theme_bw(base_size = 16, base_family = "Open Sans") +
+    labs(x = "x", y = "y")
 ```
 
-## Comparaison de modèles
+## De la règle de la somme à la marginalisation
 
-L'hypothèse de modélisation la plus simple est de postuler une relation linéaire.
+Avec plusieurs variables, la règle de la somme nous indique comment en ignorer une. Par exemple, la probabilité que le premier dé affiche 1 est : $\Pr(x = 1) = \Pr(x = 1, y \in \{1, 2, 3, 4, 5, 6\}) = \frac{6}{36}$. On parle alors de **probabilité marginale**, car on peut écrire la probabilité cumulative dans la **marge** d'un tableau de probabilités conjointes.
 
-```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
-data.frame(x, y) %>%
-        ggplot(aes(x = x, y = y) ) +
-        geom_point(size = 3) +
-        geom_smooth(method = "lm", se = FALSE, col = COLS[1])
+```{r marginalisation-plot1}
+#| echo: FALSE
+#| fig-width: 6
+#| fig-height: 6
+crossing(X = 1:6, Y = 1:6) %>%
+    mutate(Z = ifelse(X == 1, 1, 0) ) %>%
+    ggplot(aes(X, Y, fill = Z) ) +
+    geom_tile(colour = "white", show.legend = FALSE) +
+    scale_x_continuous(expand = c(0, 0), n.breaks = 6) +
+    scale_y_continuous(expand = c(0, 0), n.breaks = 6) +
+    theme_bw(base_size = 16, base_family = "Open Sans") +
+    labs(x = "x", y = "y")
 ```
 
-## Comparaison de modèles
+## De la règle de la somme à la marginalisation
 
-Cette description peut-être améliorée pour mieux prendre en compte les données qui s'écartent de la prédiction linéaire.
+La probabilité que deux dés totalisent 4 est : $\Pr(x + y = 4) = \frac{3}{36}$.
 
-```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
-data.frame(x, y) %>%
-        ggplot(aes(x = x, y = y) ) +
-        geom_point(size = 3) +
-        geom_smooth(method = "lm", se = FALSE, col = COLS[1]) +
-        stat_smooth(
-                method = "lm", se = FALSE,
-                formula = y ~ poly(x, 2),
-                col = COLS[2]
-                )
+```{r marginalisation-plot2}
+#| echo: FALSE
+#| fig-width: 6
+#| fig-height: 6
+crossing(X = 1:6, Y = 1:6) %>%
+    mutate(Z = ifelse(X + Y == 4, 1, 0) ) %>%
+    ggplot(aes(X, Y, fill = Z) ) +
+    geom_tile(colour = "white", show.legend = FALSE) +
+    scale_x_continuous(expand = c(0, 0), n.breaks = 6) +
+    scale_y_continuous(expand = c(0, 0), n.breaks = 6) +
+    theme_bw(base_size = 16, base_family = "Open Sans") +
+    labs(x = "x", y = "y")
 ```
 
-## Comparaison de modèles
+## Probabilité conditionnelle
 
-Un ensemble de $N$ points peut être *exhaustivement* (i.e., sans erreur) décrit par une fonction polynomiale d'ordre $N-1$. Augmenter la complexité du modèle améliore donc la précision de notre description des données mais réduit la généralisabilité de ses prédictions (*bias-variance tradeoff*).
+Quelle est la probabilité que le dé $x$ ait une certaine valeur **sachant que** le total est égal à 4 ? Par exemple, la probabilité que le dé $x$ soit égal à 2 (sachant que le total est 4) : $\Pr(x = 2 \given x + y = 4) = \frac{1}{3}$.
 
-```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
-data.frame(x, y) %>%
-        ggplot(aes(x = x, y = y) ) +
-        geom_point(size = 3) +
-        geom_smooth(method = "lm", se = FALSE, col = COLS[1]) +
-        stat_smooth(
-                method = "lm", se = FALSE,
-                formula = y ~ poly(x, 2),
-                col = COLS[2]) +
-        stat_smooth(
-                method = "lm", se = FALSE,
-                formula = y ~ poly(x, 3),
-                col = COLS[3]) +
-        stat_smooth(
-                method = "lm", se = FALSE,
-                formula = y ~ poly(x, 9),
-                col = COLS[4]
-                )
+```{r marginalisation-plot3}
+#| echo: FALSE
+#| fig-width: 6
+#| fig-height: 6
+crossing(X = 1:6, Y = 1:6) %>%
+    mutate(
+        Z = case_when(
+            X == 2 & X + Y == 4 ~ 1,
+            X + Y == 4 ~ 0,
+            .default = NA
+            )
+        ) %>%
+    ggplot(aes(X, Y, fill = Z) ) +
+    geom_tile(colour = "white", show.legend = FALSE) +
+    scale_x_continuous(expand = c(0, 0), n.breaks = 6) +
+    scale_y_continuous(expand = c(0, 0), n.breaks = 6) +
+    theme_bw(base_size = 16, base_family = "Open Sans") +
+    labs(x = "x", y = "y")
 ```
 
-Nous avons besoin d'outils qui prennent en compte le rapport *qualité de la description* / *complexité*, c'est à dire la **parcimonie** des modèles (e.g., AIC, WAIC).
+## Probabilité conditionnelle
 
-## Notre stratégie
-
-Besoin d'un cadre pour développer des modèles cohérents. Nos outils :
-
--   **Bayesian data analysis** : utiliser les probabilités pour décrire l'incertitude.
+Cette probabilité conditionnelle peut être réécrite : $\Pr(x = 2 \given x + y = 4) = \frac{\Pr(x = 2, x + y = 4) }{\Pr(x + y = 4) } = \frac{1/36}{3/36} = \frac{1}{3}$. Notez que $\Pr(x \given y)$ **n'est pas nécessairement égal** (et n'est généralement pas égal) à $\Pr(y \given x)$.
 
 . . .
 
--   **Multilevel modelling** : des modèles à multiples niveaux d'incertitude.
+Par exemple : la probabilité de mourir en sachant que vous avez été attaqué par un requin n'est pas la même que la probabilité d'avoir été attaqué par un requin en sachant que vous êtes mort ([confusion de l'inverse](https://en.wikipedia.org/wiki/Confusion_of_the_inverse)). De la même manière, $p(\text{données} \given \mathcal{H}_{0}) \neq p(\mathcal{H}_{0} \given \text{données})$.
+
+## Dérivation du théorème de Bayes
+
+À partir des axiomes de Kolmogorov, et des définitions des probabilités conjointes, marginales, et conditionnelles, découle la **règle du produit** (version générale) :
+
+$$p(x,y) = p(x \given y) p(y) = p(y \given x) p(x)$$
 
 . . .
 
--   Approche par **comparaison de modèles** : au lieu d'essayer de falsifier un "null model", on va comparer des modèles intéressants (AIC, WAIC).
+$$p(y \given x) p(x) = p(x \given y) p(y)$$
+
+. . .
+
+Puis en divisant chaque côté par $p(x)$ :
+
+$$p(y \given x) = \dfrac{p(x \given y) p(y)}{p(x)}$$
+
+. . .
+
+$$p(x \given y) = \dfrac{p(y \given x) p(x)}{p(y)}$$
+
+. . .
+
+Si on remplace $x$ par $\text{hypothèse}$ et $y$ par $\text{données}$ :
+
+$$
+\Pr(\text{hypothèse} \given \text{données}) = \frac{\Pr(\text{données} \given \text{hypothèse}) \times \Pr(\text{hypothèse})}{\text{somme des produits}}
+$$
+
 
 ## Exercice - Problème du sac de billes [@mcelreath2020b]
 
@@ -808,6 +749,197 @@ Dans ce cadre, pour chaque problème, nous allons suivre 3 étapes :
 
 > Bayesian inference is really just counting and comparing of possibilities \[...\] in order to make good inference about what actually happened, it helps to consider everything that could have happened [@mcelreath2016].
 
+
+## Un peu de logique
+
+![](figures/penguins.png){fig-align="center" width="50%"}
+
+## Un peu de logique, quelques syllogismes
+
+**Exemple 1**
+
+-   Si un suspect ment, il transpire. (On observe que) Ce suspect transpire.
+-   Par conséquent, ce suspect ment.
+
+. . .
+
+**Exemple 2**
+
+-   Si un suspect transpire, il ment. (On observe que) Ce suspect ne transpire pas.
+-   Par conséquent, ce suspect ne ment pas.
+
+. . .
+
+**Exemple 3**
+
+-   Tous les menteurs transpirent. (On observe que) Ce suspect ne transpire pas.
+-   Par conséquent, ce suspect n'est pas un menteur.
+
+## Arguments invalides
+
+-   Affirmation du conséquent : $\dfrac{A \Rightarrow B, \ B}{A}$
+
+-   Si il a plu, alors le sol est mouillé (A implique B). Le sol est mouillé (B). Donc il a plu (A).
+
+. . .
+
+-   Négation de l'antécédent : $\dfrac{A \Rightarrow B, \ \neg A}{\neg B}$
+
+-   Si il a plu, alors le sol est mouillé (A implique B). Il n'a pas plus (non A). Donc le sol n'est pas mouillé (non B).
+
+. . .
+
+![](figures/trump.gif){fig-align="center" width="50%"}
+
+## Arguments valides
+
+-   Modus ponens : $\dfrac{A \Rightarrow B, \ A}{B}$
+
+-   Si on est lundi, alors John ira au travail (A implique B). On est lundi (A). Donc John ira au travail (B).
+
+. . .
+
+-   Modus tollens : $\dfrac{A \Rightarrow B, \ \neg B}{\neg A}$
+
+-   Si mon chien détecte un intru, alors il aboie (A implique B). Mon chien n'a pas aboyé (non B). Donc il n'a pas détecté d'intrus (non A).
+
+. . .
+
+![](figures/good.gif){fig-align="center" width="50%"}
+
+## Logique, fréquentisme, et raisonnement probabiliste
+
+Le **modus tollens** est un des raisonnements logiques les plus importants et les plus performants. Dans le cadre de l'inférence statistique, il s'applique parfaitement au cas suivant : "Si $\mathcal{H}_{0}$ est vraie, alors $x$ ne devrait pas se produire. On observe $x$. Alors $\mathcal{H}_{0}$ est fausse".
+
+. . .
+
+Mais nous avons le plus souvent affaire à des hypothèses "continues" (probabilistes).
+
+. . .
+
+L'inférence fréquentiste (fishérienne) est elle aussi probabiliste, de la forme "Si $\mathcal{H}_{0}$ est vraie, alors $x$ est peu probable. On observe $x$. Alors $\mathcal{H}_{0}$ est peu probable."
+
+. . .
+
+Or cet argument est invalide, le modus tollens ne s'applique pas au monde probabiliste [e.g., @pollard1987; @rouder2016].
+
+. . .
+
+Par exemple : *Si un individu est un homme (man), alors il est peu probable qu'il soit pape. François est pape. François n'est donc certainement pas un homme...*
+
+## L'échec de la falsification
+
+**Poppérisme naïf** : la science progresse par falsification logique, donc la statistique devrait viser la falsification. Mais...
+
+-   Les hypothèses théoriques ne sont pas les modèles (hypothèses statistiques).
+
+. . .
+
+> Models are devices that connect theories to data. A model is an instanciation of a theory as a set of probabilistic statements [@rouder2016a].
+
+. . .
+
+-   Nos hypothèses sont souvent probabilistes.
+
+. . .
+
+-   Erreurs de mesure (e.g., [faster-than-light neutrino anomaly](https://en.wikipedia.org/wiki/Faster-than-light_neutrino_anomaly)).
+
+. . .
+
+-   La falsification concerne le problème de la démarcation, pas celui de la méthode.
+
+. . .
+
+-   La science est une technologie sociale, la falsification est **consensuelle**, et non pas logique.
+
+## Comparaison de modèles
+
+On s'intéresse au lien entre deux variables aléatoires continues, $x$ et $y$.
+
+```{r message = FALSE, echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
+set.seed(1111)
+
+x <- sort(runif(10, -2, 2) )
+y <- 3 * x^3 + 5 * x^2 + 0.5 * x + 20 + rnorm(10, sd = 3)
+
+data.frame(x, y) %>%
+        ggplot(aes(x = x, y = y) ) +
+        geom_point(size = 3)
+
+nterm <- c(1, 2, 3, 9)
+
+PAL <- colorRampPalette(c("black", "chartreuse3", "gold", "dodgerblue") )
+COLS <- PAL(length(nterm) )
+```
+
+## Comparaison de modèles
+
+L'hypothèse de modélisation la plus simple est de postuler une relation linéaire.
+
+```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
+data.frame(x, y) %>%
+        ggplot(aes(x = x, y = y) ) +
+        geom_point(size = 3) +
+        geom_smooth(method = "lm", se = FALSE, col = COLS[1])
+```
+
+## Comparaison de modèles
+
+Cette description peut-être améliorée pour mieux prendre en compte les données qui s'écartent de la prédiction linéaire.
+
+```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
+data.frame(x, y) %>%
+        ggplot(aes(x = x, y = y) ) +
+        geom_point(size = 3) +
+        geom_smooth(method = "lm", se = FALSE, col = COLS[1]) +
+        stat_smooth(
+                method = "lm", se = FALSE,
+                formula = y ~ poly(x, 2),
+                col = COLS[2]
+                )
+```
+
+## Comparaison de modèles
+
+Un ensemble de $N$ points peut être *exhaustivement* (i.e., sans erreur) décrit par une fonction polynomiale d'ordre $N-1$. Augmenter la complexité du modèle améliore donc la précision de notre description des données mais réduit la généralisabilité de ses prédictions (*bias-variance tradeoff*).
+
+```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
+data.frame(x, y) %>%
+        ggplot(aes(x = x, y = y) ) +
+        geom_point(size = 3) +
+        geom_smooth(method = "lm", se = FALSE, col = COLS[1]) +
+        stat_smooth(
+                method = "lm", se = FALSE,
+                formula = y ~ poly(x, 2),
+                col = COLS[2]) +
+        stat_smooth(
+                method = "lm", se = FALSE,
+                formula = y ~ poly(x, 3),
+                col = COLS[3]) +
+        stat_smooth(
+                method = "lm", se = FALSE,
+                formula = y ~ poly(x, 9),
+                col = COLS[4]
+                )
+```
+
+Nous avons besoin d'outils qui prennent en compte le rapport *qualité de la description* / *complexité*, c'est à dire la **parcimonie** des modèles (e.g., AIC, WAIC).
+
+## Notre stratégie
+
+Besoin d'un cadre pour développer des modèles cohérents. Nos outils :
+
+-   **Bayesian data analysis** : utiliser les probabilités pour décrire l'incertitude.
+
+. . .
+
+-   **Multilevel modelling** : des modèles à multiples niveaux d'incertitude.
+
+. . .
+
+-   Approche par **comparaison de modèles** : au lieu d'essayer de falsifier un "null model", on va comparer des modèles intéressants (AIC, WAIC).
+
 # Rappels : Théorie des probabilités
 
 ## Loi de probabilité, cas discret
@@ -943,7 +1075,9 @@ cont3["Blue", "Blond"] / cont3["Blue", "marginal_eye"]
 
 . . .
 
-On remarque que $\Pr(\text{cheveux = blonds} \given \text{yeux = bleus})$ **n'est pas nécessairement égal** (et n'est généralement pas égal) à $\Pr(\text{yeux = bleus} \given \text{cheveux = blonds})$.
+On remarque à nouveau que $\Pr(\text{cheveux = blonds} \given \text{yeux = bleus})$ **n'est pas nécessairement égal** (et n'est généralement pas égal) à $\Pr(\text{yeux = bleus} \given \text{cheveux = blonds})$.
+
+<!--
 
 ## Probabilité conditionnelle
 
@@ -952,35 +1086,9 @@ Autre exemple : la probabilité de mourir sachant qu'on a été attaqué par un 
 <center><iframe border="0" frameborder="0" height="500" width="500" src="https://twitframe.com/show?url=https://twitter.com/BillGates/status/1118196606975787008">
 </iframe></center>
 
-## Dérivation du théorème de Bayes
+-->
 
-À partir des axiomes de Kolmogorov (cf. début du cours), et des définitions précédentes des probabilités conjointes, marginales, et conditionnelles, découle la **règle du produit** :
-
-$$p(x,y) = p(x \given y) p(y) = p(y \given x) p(x)$$
-
-. . .
-
-$$p(y \given x) p(x) = p(x \given y) p(y)$$
-
-. . .
-
-Puis en divisant chaque côté par $p(x)$ :
-
-$$p(y \given x) = \dfrac{p(x \given y) p(y)}{p(x)}$$
-
-. . .
-
-$$p(x \given y) = \dfrac{p(y \given x) p(x)}{p(y)}$$
-
-. . .
-
-Si on remplace $x$ par $\text{hypothèse}$ et $y$ par $\text{données}$ :
-
-$$
-\Pr(\text{hypothèse} \given \text{données}) = \frac{\Pr(\text{données} \given \text{hypothèse}) \times \Pr(\text{hypothèse})}{\text{somme des produits}}
-$$
-
-# Exemple d'application
+# Exemple d'application n°1
 
 ## Diagnostique médical [@gigerenzer2007]
 
@@ -1118,6 +1226,8 @@ Avant de passer le mammogramme, la probabilité qu'une femme tirée au sort ait 
 . . .
 
 > A Bayesianly justifiable analysis is one that treats known values as observed values of random variables, treats unknown values as unobserved random variables, and calculates the conditional distribution of unknowns given knowns and model specifications using Bayes' theorem [@rubin1984].
+
+# Exemple d'application n°2
 
 ## Monty Hall
 
