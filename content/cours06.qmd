@@ -1,7 +1,7 @@
 ---
 title: "Cours n°06"
 subtitle: "Modèle linéaire généralisé"
-date: 2022-10-27
+date: 2026-01-22
 toc: false
 lang: fr
 ---

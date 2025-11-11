@@ -72,7 +72,7 @@ Ce cours est grandement inspiré des livres suivants :
 
 - Nicenboim, B., Schad, D., & Vasishth, S. (2021). *An Introduction to Bayesian Data Analysis for Cognitive Science*. Available [online](https://vasishth.github.io/bayescogsci/book/).
 
-Les slides seront disponibles juste avant chaque séance sur le site de la formation : <https://www.barelysignificant.com/IMSB2022/>.
+Les slides seront disponibles juste avant chaque séance sur le site de la formation : <https://lnalborczyk.github.io/IMSB2026/>.
 
 ## Objectifs
 

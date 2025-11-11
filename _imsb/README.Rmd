@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -14,14 +16,9 @@ knitr::opts_chunk$set(
   )
 ```
 
-# IMSB: Introduction à la modélisation statistique bayésienne
+# IMSB : Introduction à la modélisation statistique bayésienne
 
-<!-- badges: start -->
-`r badger::badge_custom("version", badger::ver_devel(), color = "FFA70B")`
-[![GitHub last commit](https://img.shields.io/github/last-commit/lnalborczyk/IMSB2022?color=orange&logo=github)](https://github.com/lnalborczyk/IMSB2022)
-<!-- badges: end -->
-
-The goal of the `imsb` package is to provide all the materials (e.g., data, utility functions) needed for the [IMSB course](https://www.barelysignificant.com/IMSB2022/).
+The goal of the `imsb` package is to provide all the materials (e.g., data, utility functions) needed for the [IMSB course](https://www.barelysignificant.com/IMSB2026/).
 
 ## Installation
 
@@ -29,7 +26,7 @@ You can install the development version of `imsb` from GitHub with:
 
 ```{r, eval = FALSE}
 install.packages("remotes")
-remotes::install_github(repo = "lnalborczyk/IMSB2022/_imsb", dependencies = TRUE)
+remotes::install_github(repo = "lnalborczyk/IMSB2026/_imsb", dependencies = TRUE)
 ```
 
 ## Usage

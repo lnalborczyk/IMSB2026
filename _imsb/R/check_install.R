@@ -19,7 +19,7 @@ check_install <- function (...) {
 
     # checking R version
     r_version <- paste0(version$major, ".", version$minor)
-    if (r_version != "4.2.1") warning ("Please install R version 4.2.1 (for macOS and Linux) or R version 4.1.3 (for Windows).")
+    if (r_version != "4.5.2") warning ("Please install R version 4.5.2.")
 
     # checking brms install
     if (!requireNamespace(package = "brms", quietly = TRUE) ) stop ("Please install the brms package: install.packages('brms').")

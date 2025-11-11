@@ -1,7 +1,7 @@
 ---
 title: "Cours n°04"
 subtitle: "Modèle de régression linéaire (suite)"
-date: 2022-10-20
+date: 2026-01-21
 toc: false
 lang: fr
 ---

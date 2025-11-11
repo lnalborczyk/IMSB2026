@@ -35,7 +35,8 @@
 #'   compval = 1, rope = c(0.8, 1.2), showcurve = FALSE
 #'   ) +
 #'   # the resulting plot is a ggplot than can be customised
-#'   labs(x = expression(theta) )
+#'   labs(x = expression(theta)
+#'   )
 #' }
 
 posterior_plot <- function (

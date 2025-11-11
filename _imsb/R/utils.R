@@ -1,8 +1,8 @@
 #' Open slides in browser
 #'
-#' Opening the slides of the corresponding course (from 01 to 10) in browser.
+#' Opening the slides of the corresponding course (from 01 to 09) in browser.
 #'
-#' @param cours Course number, from 01 to 10.
+#' @param cours Course number, from 01 to 09.
 #'
 #' @return Returns nothing but opens the slides in browser.
 #' @export
@@ -16,15 +16,15 @@ open_slides <- function (cours) {
 
     num <- stringr::str_pad(string = cours, width = 2, pad = "0")
 
-    if (as.numeric(num) > 0 & num < 11) {
+    if (as.numeric(num) > 0 & num < 10) {
 
         utils::browseURL(
-            url = paste0("https://www.barelysignificant.com/IMSB2022/slides/html/cours", num)
+            url = paste0("https://lnalborczyk.github.io/IMSB2026/slides/html/cours", num)
             )
 
     } else {
 
-        stop ("I am sorry, I am not aware of this course... I only know Courses 01 to 10.")
+        stop ("I am sorry, I am not aware of this course... I only know Courses 01 to 09.")
 
     }
 }
@@ -91,8 +91,7 @@ find_mode <- function (samples, ...) {
 
 fd_nbins <- function (samples) {
 
-    nbins <- diff(range(samples) ) /
-        (2 * stats::IQR(samples) / length(samples)^(1 / 3) )
+    nbins <- diff(range(samples) ) / (2 * stats::IQR(samples) / length(samples)^(1 / 3) )
 
     return (round(nbins) )
 

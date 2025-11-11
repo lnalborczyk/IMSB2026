@@ -25,7 +25,7 @@
     "href": "planning.html",
     "title": "Planning",
     "section": "",
-    "text": "Astuce\n\n\n\nVous pouvez télécharger directement le planning dans votre calendrier Outlook, Google Calendar, ou Apple en cliquant sur le lien suivant :\n\n\n\n Télécharger \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCours\nDate\nSujet\nDétails\nSlides\nRethinking\n\n\n\n\n\n01\n19.01.2026\nIntroduction à l’inférence bayésienne\n\n\n1\n\n\n\n02\n20.01.2026\nModèle Beta-Binomial\n\n\n2-3\n\n\n\n03\n20.01.2026\nIntroduction à brms, modèle de régression linéaire\n\n\n4\n\n\n\n04\n21.01.2026\nModèle de régression linéaire (suite)\n\n\n5-6\n\n\n\n05\n21.01.2026\nMarkov Chain Monte Carlo\n\n\n9\n\n\n\n06\n22.01.2026\nModèle linéaire généralisé\n\n\n10-11\n\n\n\n07\n22.01.2026\nComparaison de modèles\n\n\n7\n\n\n\n08\n23.01.2026\nModèles multi-niveaux (généralisés)\n\n\n13, 14-16\n\n\n\n09\n23.01.2026\nExamen final\n–\n–\n–"
+    "text": "Astuce\n\n\n\nVous pouvez télécharger directement le planning dans votre calendrier Outlook, Google Calendar, ou Apple en cliquant sur le lien suivant :\n\n\n\n Télécharger \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCours\nDate\nSujet\nDétails\nSlides\nRethinking\n\n\n\n\n\n01\n19.01.2026\nIntroduction à l’inférence bayésienne\n\n\n1\n\n\n\n02\n20.01.2026\nModèle Beta-Binomial\n\n\n2-3\n\n\n\n03\n20.01.2026\nIntroduction à brms, modèle de régression linéaire\n\n\n4\n\n\n\n04\n21.01.2026\nModèle de régression linéaire (suite)\n\n\n5-6\n\n\n\n05\n21.01.2026\nMarkov Chain Monte Carlo\n\n\n9\n\n\n\n06\n22.01.2026\nModèle linéaire généralisé\n\n\n10-11\n\n\n\n07\n22.01.2026\nComparaison de modèles\n\n\n7\n\n\n\n08\n23.01.2026\nModèles multi-niveaux (généralisés)\n\n\n13, 14-16\n\n\n\n09\n23.01.2026\nExamen final\n\n\n–"
   },
   {
     "objectID": "index.html",
@@ -183,7 +183,7 @@
     "href": "content/cours02.html",
     "title": "Cours n°02",
     "section": "",
-    "text": "Vérifier l’installation des paquets R avec imsb::check_install().\nRelire les cours précédents.\n(optionnel) Lire les chapitres 2 et 3 de  Statistical Rethinking.",
+    "text": "Vérifier l’installation des paquets R avec imsb::check_install().\nRelire le cours n°01.\n(optionnel) Lire les chapitres 2 et 3 de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -195,7 +195,7 @@
     "href": "content/cours02.html#en-préparation-du-cours",
     "title": "Cours n°02",
     "section": "",
-    "text": "Vérifier l’installation des paquets R avec imsb::check_install().\nRelire les cours précédents.\n(optionnel) Lire les chapitres 2 et 3 de  Statistical Rethinking.",
+    "text": "Vérifier l’installation des paquets R avec imsb::check_install().\nRelire le cours n°01.\n(optionnel) Lire les chapitres 2 et 3 de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -219,7 +219,7 @@
     "href": "content/cours02.html#pour-aller-plus-loin",
     "title": "Cours n°02",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\n3Blue1Brown (Director). (2020, March 15). Binomial distributions | Probabilities of probabilities, part 1. https://www.youtube.com/watch?v=8idr1WZ1A7Q\n3Blue1Brown (Director). (2020, April 12). Why “probability of 0” does not mean “impossible” | Probabilities of probabilities, part 2. https://www.youtube.com/watch?v=ZA4JkHKZM50",
+    "text": "Pour aller plus loin\n\n3Blue1Brown (2020, March 15). Binomial distributions | Probabilities of probabilities, part 1. https://www.youtube.com/watch?v=8idr1WZ1A7Q\n3Blue1Brown (2020, April 12). Why “probability of 0” does not mean “impossible” | Probabilities of probabilities, part 2. https://www.youtube.com/watch?v=ZA4JkHKZM50",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -231,7 +231,7 @@
     "href": "content/cours09.html",
     "title": "Cours n°09",
     "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire les chapitres 14, 15, et 16 de  Statistical Rethinking.",
+    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -243,7 +243,7 @@
     "href": "content/cours09.html#en-préparation-du-cours",
     "title": "Cours n°09",
     "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire les chapitres 14, 15, et 16 de  Statistical Rethinking.",
+    "text": "Relire les cours précédents.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -254,8 +254,8 @@
     "objectID": "content/cours09.html#slides",
     "href": "content/cours09.html#slides",
     "title": "Cours n°09",
-    "section": "Slides",
-    "text": "Slides\nLes slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
+    "section": "",
+    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -286,7 +286,7 @@
     "href": "content/cours08.html",
     "title": "Cours n°08",
     "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 de  Statistical Rethinking.",
+    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 à 17 de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -298,7 +298,7 @@
     "href": "content/cours08.html#en-préparation-du-cours",
     "title": "Cours n°08",
     "section": "",
-    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 de  Statistical Rethinking.",
+    "text": "Relire les cours précédents.\n(optionnel) Lire le chapitre 13 à 17 de  Statistical Rethinking.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -322,7 +322,7 @@
     "href": "content/cours08.html#pour-aller-plus-loin",
     "title": "Cours n°08",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nBürkner, P.-C., & Vuorre, M. (2019). Ordinal Regression Models in Psychology: A Tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77–101. https://doi.org/10.1177/2515245918823199\nNalborczyk, L., Batailler, C., Lœvenbruck, H., Vilain, A., & Bürkner, P.-C. (2019). An introduction to Bayesian multilevel models using brms: A case study of gender effects on vowel variability in standard indonesian. Journal of Speech Language and Hearing Research, 62(5), 1225–1242. https://doi.org/10.1044/2018_JSLHR-S-18-0006. Preprint: https://psyarxiv.com/guhsa/.\nWinter, B., & Bürkner, P. (2021). Poisson regression for linguists: A tutorial introduction to modelling count data with brms. Language and Linguistics Compass, 15(11). https://doi.org/10.1111/lnc3.12439",
+    "text": "Pour aller plus loin\n\nBürkner, P.-C., & Vuorre, M. (2019). Ordinal Regression Models in Psychology: A Tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77–101. https://doi.org/10.1177/2515245918823199\nGelman, A., Vehtari, A., Simpson, D., Margossian, C. C., Carpenter, B., Yao, Y., Kennedy, L., Gabry, J., Bürkner, P.-C., & Modrák, M. (2020). Bayesian Workflow. ArXiv:2011.01808 [Stat]. https://arxiv.org/abs/2011.01808\nNalborczyk, L., Batailler, C., Lœvenbruck, H., Vilain, A., & Bürkner, P.-C. (2019). An introduction to Bayesian multilevel models using brms: A case study of gender effects on vowel variability in standard indonesian. Journal of Speech Language and Hearing Research, 62(5), 1225–1242. https://doi.org/10.1044/2018_JSLHR-S-18-0006. Preprint: https://psyarxiv.com/guhsa/.\nWinter, B., & Bürkner, P. (2021). Poisson regression for linguists: A tutorial introduction to modelling count data with brms. Language and Linguistics Compass, 15(11). https://doi.org/10.1111/lnc3.12439",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -518,14 +518,14 @@
     "href": "install.html",
     "title": "Installation",
     "section": "",
-    "text": "Pour cette formation, vous pourrez utiliser votre propre ordinateur sur lequel vous aurez installé ou mis à jour R (version &gt; 4.4) ainsi que l’interface utilisateur RStudio : https://www.rstudio.com/products/rstudio/."
+    "text": "Pour cette formation, vous pourrez utiliser votre propre ordinateur sur lequel vous aurez installé ou mis à jour R (version 4.5.2 recommandée) ainsi que l’interface utilisateur RStudio : https://www.rstudio.com/products/rstudio/."
   },
   {
     "objectID": "install.html#installer-r-et-rstudio",
     "href": "install.html#installer-r-et-rstudio",
     "title": "Installation",
     "section": "",
-    "text": "Pour cette formation, vous pourrez utiliser votre propre ordinateur sur lequel vous aurez installé ou mis à jour R (version &gt; 4.4) ainsi que l’interface utilisateur RStudio : https://www.rstudio.com/products/rstudio/."
+    "text": "Pour cette formation, vous pourrez utiliser votre propre ordinateur sur lequel vous aurez installé ou mis à jour R (version 4.5.2 recommandée) ainsi que l’interface utilisateur RStudio : https://www.rstudio.com/products/rstudio/."
   },
   {
     "objectID": "install.html#installer-brms-et-rstan",
@@ -589,5 +589,17 @@
     "title": "Syllabus",
     "section": "Contenu de la formation",
     "text": "Contenu de la formation\nCette formation est composée de huit séances de trois heures (+ examen final) durant lesquelles seront dispensées connaissances théoriques et travaux pratiques en R, dans l’environnement RStudio."
+  },
+  {
+    "objectID": "content/cours09.html#en-préparation",
+    "href": "content/cours09.html#en-préparation",
+    "title": "Cours n°09",
+    "section": "",
+    "text": "Relire les cours précédents.",
+    "crumbs": [
+      "Contenu",
+      "Planning détaillé",
+      "Examen final"
+    ]
   }
 ]

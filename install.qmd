@@ -7,7 +7,7 @@ lang: fr
 
 ## Installer `R` et `RStudio`
 
-Pour cette formation, vous pourrez utiliser votre propre ordinateur sur lequel vous aurez [installé ou mis à jour](https://pbil.univ-lyon1.fr/CRAN/) `R` (version > 4.4) ainsi que l'interface utilisateur `RStudio` : <https://www.rstudio.com/products/rstudio/>. 
+Pour cette formation, vous pourrez utiliser votre propre ordinateur sur lequel vous aurez [installé ou mis à jour](https://pbil.univ-lyon1.fr/CRAN/) `R` (version 4.5.2 recommandée) ainsi que l'interface utilisateur `RStudio` : <https://www.rstudio.com/products/rstudio/>. 
 
 ## Installer `brms` et `rstan`
 

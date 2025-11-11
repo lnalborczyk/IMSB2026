@@ -1,7 +1,7 @@
 ---
 title: "Cours n°02"
 subtitle: "Modèle Beta-Binomial"
-date: 2022-10-13
+date: 2026-01-20
 toc: false
 lang: fr
 ---
@@ -9,7 +9,7 @@ lang: fr
 ## En préparation du cours
 
 - Vérifier l'installation des paquets `R` avec `imsb::check_install()`.
-- Relire les cours précédents.
+- Relire le cours n°01.
 - (*optionnel*) Lire les chapitres 2 et 3 de {{< fa book >}} *Statistical Rethinking*.
 
 ## Slides
@@ -26,5 +26,5 @@ Voir toutes les commandes de `revealjs` en appuyant sur <kbd>m</kbd> puis <kbd>h
 
 ## Pour aller plus loin
 
-- 3Blue1Brown (Director). (2020, March 15). Binomial distributions | Probabilities of probabilities, part 1. <https://www.youtube.com/watch?v=8idr1WZ1A7Q>
-- 3Blue1Brown (Director). (2020, April 12). Why "probability of 0" does not mean "impossible" | Probabilities of probabilities, part 2. <https://www.youtube.com/watch?v=ZA4JkHKZM50>
+- 3Blue1Brown (2020, March 15). Binomial distributions | Probabilities of probabilities, part 1. <https://www.youtube.com/watch?v=8idr1WZ1A7Q>
+- 3Blue1Brown (2020, April 12). Why "probability of 0" does not mean "impossible" | Probabilities of probabilities, part 2. <https://www.youtube.com/watch?v=ZA4JkHKZM50>

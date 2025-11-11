@@ -1,7 +1,7 @@
 ---
 title: "Cours n°05"
 subtitle: "Markov Chain Monte Carlo"
-date: 2022-10-25
+date: 2026-01-21
 toc: false
 lang: fr
 ---
