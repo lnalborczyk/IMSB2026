@@ -40,4 +40,4 @@ open_data(robot)
 
 ## Rappel concernant les pré-requis
 
-Bien qu'une bonne connaissance de `R` soit un **pré-requis à l'inscription**, vous trouverez [ici](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf) une courte introduction aux bases du langage, qui seront nécessaires afin de bien comprendre les exemples traités lors de la formation.
+Bien qu'une bonne connaissance de `R` soit un **pré-requis à l'inscription**, vous trouverez [ici](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf) une courte introduction aux bases du langage, qui seront nécessaires afin de bien comprendre les exemples traités lors de la formation. Une introduction plus détaillée est disponible via cette application interactive en ligne : <https://r-primers.andrewheiss.com>.

@@ -7,7 +7,7 @@
 
 ## Objectifs de la formation
 
-L'objectif de cette formation est de vous faire découvrir la modélisation statistique bayésienne. Les concepts et outils qui seront introduits tout au long de la formation seront illustrés par des cas concrets d'analyse de données. Ce cours est construit autour du langage `R` et de l'utilisation du paquet `brms`, une interface au langage probabiliste `Stan`. Par conséquent, il est **indispensable** d'avoir quelques connaissances élémentaires du langage `R` (pour une introduction, voir [ce document](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)).
+L'objectif de cette formation est de vous faire découvrir la modélisation statistique bayésienne. Les concepts et outils qui seront introduits tout au long de la formation seront illustrés par des cas concrets d'analyse de données. Ce cours est construit autour du langage `R` et de l'utilisation du paquet `brms`, une interface au langage probabiliste `Stan`. Par conséquent, il est **indispensable** d'avoir quelques connaissances élémentaires du langage `R` (pour une introduction, voir [cette application](https://r-primers.andrewheiss.com) ou [ce document](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)).
 
 ## Planning
 

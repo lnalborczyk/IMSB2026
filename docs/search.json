@@ -470,7 +470,7 @@
     "href": "install.html#rappel-concernant-les-pré-requis",
     "title": "Installation",
     "section": "Rappel concernant les pré-requis",
-    "text": "Rappel concernant les pré-requis\nBien qu’une bonne connaissance de R soit un pré-requis à l’inscription, vous trouverez ici une courte introduction aux bases du langage, qui seront nécessaires afin de bien comprendre les exemples traités lors de la formation."
+    "text": "Rappel concernant les pré-requis\nBien qu’une bonne connaissance de R soit un pré-requis à l’inscription, vous trouverez ici une courte introduction aux bases du langage, qui seront nécessaires afin de bien comprendre les exemples traités lors de la formation. Une introduction plus détaillée est disponible via cette application interactive en ligne : https://r-primers.andrewheiss.com."
   },
   {
     "objectID": "syllabus.html",
