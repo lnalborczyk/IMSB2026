@@ -1,0 +1,15 @@
+{
+  "hash": "7688d5746af513ad4e0bf0ba0401497b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "Question\n========\nUnder the assumptions of the Gauss-Markov theorem the errors\nof a linear regression model need to be:\n\nAnswerlist\n----------\n* independent\n* uncorrelated\n* normally distributed\n* identically distributed\n* homoscedastic\n* zero\n\n\nSolution\n========\nUnder the assumptions of the Gauss-Markov theorem the errors of a linear\nregression model need to be uncorrelated, homoscedastic, and with mean zero.\n\nAnswerlist\n----------\n* False. Independence is not assumed, only lack of correlation.\n* True. The errors need to be uncorrelated.\n* False. No distribution assumption is needed.\n* False. No distribution assumption is needed.\n* True. The errors need to be homoscedastic with finite variance.\n* False. Only their conditional expectation needs to be zero.\n\n\nMeta-information\n================\nexname: Gauss-Markov assumptions\nextype: mchoice\nexsolution: 010010\nexshuffle: 5\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

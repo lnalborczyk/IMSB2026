@@ -34,6 +34,6 @@ Vous pouvez télécharger directement le planning dans votre calendrier Outlook,
 | 06 | 22.01.2026 | **Modèle linéaire généralisé** | [{{< fa book >}}](./content/cours06.qmd) | [{{< fa display >}}](./slides/html/cours06.html) | 10-11 |
 | 07 | 22.01.2026 | **Comparaison de modèles** | [{{< fa book >}}](./content/cours07.qmd) | [{{< fa display >}}](./slides/html/cours07.html) | 7 |
 | 08 | 23.01.2026 | **Modèles multi-niveaux (généralisés)** | [{{< fa book >}}](./content/cours08.qmd) | [{{< fa display >}}](./slides/html/cours08.html) | 13, 14-16 |
-| 09 | 23.01.2026 | **Examen final** | [{{< fa book >}}](./content/cours09.qmd) | [{{< fa display >}}](./slides/html/cours09.html)  | -- |
+| 09 | 23.01.2026 | **Examen final** | -- | -- | -- |
 
 : {tbl-colwidths="\[10,10,50,10,10,10\]"}

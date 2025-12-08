@@ -133,8 +133,13 @@ $presentation-h3-font-size: 1.5em !default;
 
 // formatting the references slide (i.e., the last slide)
 .reveal .refs {
-    //font-size: 50% !important;
+    font-size: 80% !important;
     line-height: 1.5em !important;
+    text-align: left;
+    text-indent: 0 !important;
+    // removing indentation
+    // padding-left: 0 !important;
+    // margin-left: 0 !important;
 }
 
 // https://www.emilhvitfeldt.com/post/slidecraft-code-output/
@@ -160,6 +165,29 @@ $presentation-h3-font-size: 1.5em !default;
 
 // changing the colour of inline R code
 .reveal code {
-  color: $link-color;
-  font-family: $font-family-monospace;
+    color: $link-color;
+    font-family: $font-family-monospace;
+}
+
+/* fixing truncated footnote numbers in RevealJS slides --- */
+/* avoiding clipping at bottom of slide */
+.reveal .slides section {
+    // padding-bottom: 2em !important;
+    overflow: visible !important;
+}
+
+/* raising footnotes slightly above bottom edge */
+.reveal .footnotes,
+.reveal .footnotes p {
+  margin-bottom: 1.5em !important; // increase space below text
+  padding-bottom: 0.5em !important;
+}
+
+/* making sure superscript numbers are fully visible */
+.reveal sup,
+.reveal .footnote-ref {
+  line-height: 1 !important;
+  vertical-align: super !important;
+  position: relative;
+  top: -0.1em; // adjust if needed (try -0.2em, -0.05em, etc.)
 }

@@ -1,10 +1,10 @@
-##############################################################################
-# Generating pdf and extracting R code from quarto (revealjs) slides
-# -----------------------------------------------------------------------
-# Written by Ladislas Nalborczyk
-# E-mail: ladislas.nalborczyk@gmail.com
-# Last updated on November 16, 2022
-#######################################################################
+######################################################################
+# Generating pdf and extracting R code from quarto (revealjs) slides #
+# ------------------------------------------------------------------ #
+# Written by Ladislas Nalborczyk                                     #
+# E-mail: ladislas.nalborczyk@cnrs.fr                                #
+# Last updated on November 13, 2025                                  #
+######################################################################
 
 library(renderthis)
 library(pagedown)
@@ -28,27 +28,35 @@ for (input in slides) { # for each course
     course <- str_extract_all(string = input, pattern = "(?<=html/).+(?=.html)")[[1]]
     output <- paste0("pdf/", course, ".pdf")
     
-    if (course == "cours01") {
-        
-        # printing it using renderthis
-        renderthis::to_pdf(
-            # from = input,
-            from = paste0("_", course, "/", course, ".qmd"),
-            # to = output
-            complex_slides = FALSE
-            )
-        
-    } else {
-        
-        # printing it using pagedown
-        pagedown::chrome_print(
-            input = input,
-            output = output,
-            format = "pdf",
-            timeout = 60
-            )
-        
-    }
+    # if (course == "cours01") {
+    #     
+    #     # printing it using renderthis
+    #     renderthis::to_pdf(
+    #         # from = input,
+    #         from = paste0("_", course, "/", course, ".qmd"),
+    #         # to = output
+    #         complex_slides = FALSE
+    #         )
+    #     
+    # } else {
+    #     
+    #     # printing it using pagedown
+    #     pagedown::chrome_print(
+    #         input = input,
+    #         output = output,
+    #         format = "pdf",
+    #         timeout = 60
+    #         )
+    #     
+    # }
+    
+    # printing it using pagedown
+    pagedown::chrome_print(
+        input = input,
+        output = output,
+        format = "pdf",
+        timeout = 60
+        )
     
     # extracting the R code from slides
     knitr::purl(

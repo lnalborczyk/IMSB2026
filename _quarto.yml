@@ -55,8 +55,8 @@ website:
               file: content/cours07.qmd
             - text: "Modèles multi-niveaux (généralisés)"
               file: content/cours08.qmd
-            - text: "Examen final"
-              file: content/cours09.qmd
+            #- text: "Examen final"
+            #  file: content/cours09.qmd
               
   page-footer:
     left: |

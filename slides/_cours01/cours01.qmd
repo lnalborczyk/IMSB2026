@@ -295,7 +295,7 @@ Pensez à la probabilité d'obtenir deux 6 consécutifs lors de deux lancers de 
 
 . . .
 
-Si vous comprenez et retenez ces deux règles, vous maîtrisez déjà les statistiques bayésiennes !
+Si vous comprenez et retenez ces deux règles, vous maîtrisez déjà la statistique bayésienne !
 
 ## Probabilité conjointe
 

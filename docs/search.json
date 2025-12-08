@@ -25,14 +25,14 @@
     "href": "planning.html",
     "title": "Planning",
     "section": "",
-    "text": "Astuce\n\n\n\nVous pouvez télécharger directement le planning dans votre calendrier Outlook, Google Calendar, ou Apple en cliquant sur le lien suivant :\n\n\n\n Télécharger \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCours\nDate\nSujet\nDétails\nSlides\nRethinking\n\n\n\n\n\n01\n19.01.2026\nIntroduction à l’inférence bayésienne\n\n\n1\n\n\n\n02\n20.01.2026\nModèle Beta-Binomial\n\n\n2-3\n\n\n\n03\n20.01.2026\nIntroduction à brms, modèle de régression linéaire\n\n\n4\n\n\n\n04\n21.01.2026\nModèle de régression linéaire (suite)\n\n\n5-6\n\n\n\n05\n21.01.2026\nMarkov Chain Monte Carlo\n\n\n9\n\n\n\n06\n22.01.2026\nModèle linéaire généralisé\n\n\n10-11\n\n\n\n07\n22.01.2026\nComparaison de modèles\n\n\n7\n\n\n\n08\n23.01.2026\nModèles multi-niveaux (généralisés)\n\n\n13, 14-16\n\n\n\n09\n23.01.2026\nExamen final\n\n\n–"
+    "text": "Astuce\n\n\n\nVous pouvez télécharger directement le planning dans votre calendrier Outlook, Google Calendar, ou Apple en cliquant sur le lien suivant :\n\n\n\n Télécharger \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCours\nDate\nSujet\nDétails\nSlides\nRethinking\n\n\n\n\n\n01\n19.01.2026\nIntroduction à l’inférence bayésienne\n\n\n1\n\n\n\n02\n20.01.2026\nModèle Beta-Binomial\n\n\n2-3\n\n\n\n03\n20.01.2026\nIntroduction à brms, modèle de régression linéaire\n\n\n4\n\n\n\n04\n21.01.2026\nModèle de régression linéaire (suite)\n\n\n5-6\n\n\n\n05\n21.01.2026\nMarkov Chain Monte Carlo\n\n\n9\n\n\n\n06\n22.01.2026\nModèle linéaire généralisé\n\n\n10-11\n\n\n\n07\n22.01.2026\nComparaison de modèles\n\n\n7\n\n\n\n08\n23.01.2026\nModèles multi-niveaux (généralisés)\n\n\n13, 14-16\n\n\n\n09\n23.01.2026\nExamen final\n–\n–\n–"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "\n            Introduction à la modélisation statistique bayésienne\n        ",
     "section": "",
-    "text": "Introduction à la modélisation statistique bayésienne\n        \n        \n            Un cours en R et Stan avec brms\n        \n        \n            Formation interdisciplinaire en sciences cognitives (TransCoG) Université Grenoble-Alpes\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEnseignant\n\n   Ladislas Nalborczyk\n   Envoyer un email\n\n\n\nInformations pratiques\n\n   19 janvier - 23 janvier 2026\n   TBD\n\n\n\nContact\nLe plus efficace est de me contacter par e-mail, je répond généralement sous 24-48h."
+    "text": "Introduction à la modélisation statistique bayésienne\n        \n        \n            Un cours en R et Stan avec brms\n        \n        \n            Formation interdisciplinaire en sciences cognitives (TransCoG) Université Grenoble-Alpes\n        \n    \n    \n      \n        \n        \n        \n      \n    \n\n\n\n\n\n\nEnseignant\n\n   Ladislas Nalborczyk\n   Envoyer un email\n\n\n\nInformations pratiques\n\n   19 janvier - 23 janvier 2026\n   Bâtiment Michel Dubois, salle B206\n\n\n\nContact\nLe plus efficace est de me contacter par e-mail, je répond généralement sous 24-48h."
   },
   {
     "objectID": "content/cours07.html",
@@ -191,6 +191,13 @@
     ]
   },
   {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2022 Andrew Heiss and Meng Ye\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
     "objectID": "content/cours08.html",
     "href": "content/cours08.html",
     "title": "Cours n°08",
@@ -236,37 +243,6 @@
       "Contenu",
       "Planning détaillé",
       "Modèles multi-niveaux (généralisés)"
-    ]
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2022 Andrew Heiss and Meng Ye\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-  },
-  {
-    "objectID": "content/cours09.html",
-    "href": "content/cours09.html",
-    "title": "Cours n°09",
-    "section": "",
-    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Examen final"
-    ]
-  },
-  {
-    "objectID": "content/cours09.html#slides",
-    "href": "content/cours09.html#slides",
-    "title": "Cours n°09",
-    "section": "",
-    "text": "Les slides de ce cours sont disponibles ci-dessous. Vous pouvez naviguer dans ces slides avec ← et →. Si vous tapez h vous verrez apparaître un ensemble de commandes spécifiques à la lecture de ces slides (e.g., f pour passer en plein écran). Vous pouvez aussi télécharger une version PDF des slides ou le code du cours en cliquant sur un des boutons ci-dessous.\n\n Voir les slides en ligne   Télécharger la version PDF   Télécharger le code \n\n\n\n\n\n\n\n\n\n\nAstuce\n\n\n\nVoir toutes les commandes de revealjs en appuyant sur m puis h.",
-    "crumbs": [
-      "Contenu",
-      "Planning détaillé",
-      "Examen final"
     ]
   },
   {
@@ -480,14 +456,14 @@
     "href": "install.html#installer-brms-et-rstan",
     "title": "Installation",
     "section": "Installer brms et rstan",
-    "text": "Installer brms et rstan\nNous utiliserons également Stan via les paquets brms et rstan. Vous trouverez toutes les infos pour installer brms selon votre plateforme ici : https://learnb4ss.github.io/learnB4SS/articles/install-brms.html.1\nAttention, cette étape peut être assez longue complexe selon votre plateforme (surtout sur Windows), il faudra veiller à ne pas la réaliser au dernier moment et à ce que tout fonctionne au début de la formation."
+    "text": "Installer brms et rstan\nNous utiliserons également Stan via les paquets brms et rstan. Vous trouverez toutes les infos pour installer brms selon votre plateforme ici : https://learnb4ss.github.io/learnB4SS/articles/install-brms.html. En cas de problème, voir aussi : https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started.\nAttention, cette étape peut être assez longue complexe selon votre plateforme (surtout sur Windows). Il faudra veiller à ne pas la réaliser au dernier moment, afin que tout fonctionne au début de la formation."
   },
   {
     "objectID": "install.html#installer-imsb",
     "href": "install.html#installer-imsb",
     "title": "Installation",
     "section": "Installer imsb",
-    "text": "Installer imsb\nLe reste des paquets ainsi que les données utilisées dans les exercices, et quelques fonctions utiles, peuvent être installées ensemble sous la forme d’un paquet “compagnon” de la formation, le paquet imsb. Pour l’installer, vous devez d’abord installer le paquet remotes (et tidyverse au passage), puis installer imsb depuis Github.\n\ninstall.packages(pkgs = c(\"remotes\", \"tidyverse\") )\noptions(timeout = 240) # on laisse un peu plus de temps à R pour installer imsb\nremotes::install_github(repo = \"lnalborczyk/IMSB2026/_imsb\", dependencies = TRUE)\n\nAu cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours 01 au cours 10) en ligne via la fonction open_slides().\n\nlibrary(imsb)\nopen_slides(01)\n\nLes jeux de données utilisés dans les différents exercices sont également contenus dans ce paquet. Vous pouvez les importer via la fonction open_data().\n\nopen_data(robot)"
+    "text": "Installer imsb\nLe reste des paquets ainsi que les données utilisées dans les exercices, et quelques fonctions utiles, peuvent être installées ensemble sous la forme d’un paquet “compagnon” de la formation, le paquet imsb. Pour l’installer, vous devez d’abord installer le paquet remotes (et tidyverse au passage), puis installer imsb depuis Github.\n\ninstall.packages(pkgs = c(\"remotes\", \"tidyverse\") )\noptions(timeout = 240) # on laisse un peu plus de temps à R pour installer imsb\nremotes::install_github(repo = \"lnalborczyk/IMSB2026/_imsb\", dependencies = TRUE)\n\nAu cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours 01 au cours 09) en ligne via la fonction open_slides().\n\nlibrary(imsb)\nopen_slides(01)\n\nLes jeux de données utilisés dans les différents exercices sont également contenus dans ce paquet. Vous pouvez les importer via la fonction open_data().\n\nopen_data(robot)"
   },
   {
     "objectID": "install.html#rappel-concernant-les-pré-requis",
@@ -497,18 +473,11 @@
     "text": "Rappel concernant les pré-requis\nBien qu’une bonne connaissance de R soit un pré-requis à l’inscription, vous trouverez ici une courte introduction aux bases du langage, qui seront nécessaires afin de bien comprendre les exemples traités lors de la formation."
   },
   {
-    "objectID": "install.html#footnotes",
-    "href": "install.html#footnotes",
-    "title": "Installation",
-    "section": "Notes de bas de page",
-    "text": "Notes de bas de page\n\n\nEn cas de problème, voir aussi : https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started.↩︎"
-  },
-  {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Ladislas Nalborczyk\n   Envoyer un email\n\n\n\n\n\n   19 janvier - 23 janvier 2026\n   TBD"
+    "text": "Ladislas Nalborczyk\n   Envoyer un email\n\n\n\n\n\n   19 janvier - 23 janvier 2026\n   Bâtiment Michel Dubois, salle B206"
   },
   {
     "objectID": "syllabus.html#quest-ce-que-la-modélisation-statistique-bayésienne",

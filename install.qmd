@@ -11,9 +11,9 @@ Pour cette formation, vous pourrez utiliser votre propre ordinateur sur lequel v
 
 ## Installer `brms` et `rstan`
 
-Nous utiliserons également `Stan` via les paquets `brms` et `rstan`. Vous trouverez toutes les infos pour installer `brms` selon votre plateforme ici : <https://learnb4ss.github.io/learnB4SS/articles/install-brms.html>.^[En cas de problème, voir aussi : <https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started>.]
+Nous utiliserons également `Stan` via les paquets `brms` et `rstan`. Vous trouverez toutes les infos pour installer `brms` selon votre plateforme ici : <https://learnb4ss.github.io/learnB4SS/articles/install-brms.html>. En cas de problème, voir aussi : <https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started>.
 
-Attention, cette étape peut être assez longue complexe selon votre plateforme (surtout sur Windows), il faudra veiller à ne pas la réaliser au dernier moment et à ce que tout fonctionne au début de la formation.
+Attention, cette étape peut être assez longue complexe selon votre plateforme (surtout sur Windows). Il faudra veiller à ne pas la réaliser au dernier moment, afin que tout fonctionne au début de la formation.
 
 ## Installer `imsb`
 
@@ -25,7 +25,7 @@ options(timeout = 240) # on laisse un peu plus de temps à R pour installer imsb
 remotes::install_github(repo = "lnalborczyk/IMSB2026/_imsb", dependencies = TRUE)
 ```
 
-Au cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours `01` au cours `10`) en ligne via la fonction `open_slides()`.
+Au cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours `01` au cours `09`) en ligne via la fonction `open_slides()`.
 
 ```{r, eval = FALSE, echo = TRUE}
 library(imsb)

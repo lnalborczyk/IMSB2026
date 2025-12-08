@@ -1,7 +1,7 @@
 ---
 title: Introduction à la modélisation statistique bayésienne
 subtitle: Un cours en R et Stan avec brms
-author: Ladislas Nalborczyk (LPC, LNC, CNRS, Aix-Marseille Univ)
+author: Ladislas Nalborczyk (CNRS, LPL, Aix-Marseille Univ)
 from: markdown+emoji
 format:
   revealjs:
@@ -17,7 +17,7 @@ format:
     # chalkboard: true
     csl: ../../files/bib/apa7.csl
     logo: ../../files/cover.png
-    footer: "Ladislas Nalborczyk - IMSB2022"
+    footer: "Ladislas Nalborczyk - IMSB2026"
     # width: 1200 # defaults to 1050
     # height: 900 # default to 700
     margin: 0.15 # defaults to 0.1
@@ -55,13 +55,7 @@ knitr::opts_chunk$set(
 theme_set(theme_bw(base_size = 16, base_family = "Open Sans") )
 ```
 
-Cours n°01 : Introduction à l'inférence bayésienne <br> Cours n°02 :
-Modèle Beta-Binomial <br> Cours n°03 : Introduction à brms, modèle de
-régression linéaire <br> Cours n°04 : Modèle de régression linéaire
-(suite) <br> Cours n°05 : Markov Chain Monte Carlo <br> Cours n°06 :
-Modèle linéaire généralisé <br> Cours n°07 : Comparaison de modèles <br>
-**Cours n°08 : Modèles multi-niveaux** <br> Cours n°09 : Modèles
-multi-niveaux généralisés <br> Cours n°10 : Data Hackathon <br>
+Cours n°01 : Introduction à l'inférence bayésienne <br> Cours n°02 : Modèle Beta-Binomial <br> Cours n°03 : Introduction à brms, modèle de régression linéaire <br> Cours n°04 : Modèle de régression linéaire (suite) <br> Cours n°05 : Markov Chain Monte Carlo <br> Cours n°06 : Modèle linéaire généralisé <br> Cours n°07 : Comparaison de modèles <br> **Cours n°08 : Modèles multi-niveaux (généralisés)** <br> Cours n°09 : Examen final <br>
 
 $$\newcommand\given[1][]{\:#1\vert\:}$$
 

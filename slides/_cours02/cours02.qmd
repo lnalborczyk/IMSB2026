@@ -59,13 +59,7 @@ knitr::opts_chunk$set(
 theme_set(theme_bw(base_size = 16, base_family = "Open Sans") )
 ```
 
-Cours n°01 : Introduction à l'inférence bayésienne <br> **Cours n°02 :
-Modèle Beta-Binomial** <br> Cours n°03 : Introduction à brms, modèle de
-régression linéaire <br> Cours n°04 : Modèle de régression linéaire
-(suite) <br> Cours n°05 : Markov Chain Monte Carlo <br> Cours n°06 :
-Modèle linéaire généralisé <br> Cours n°07 : Comparaison de modèles <br>
-Cours n°08 : Modèles multi-niveaux <br> Cours n°09 : Modèles
-multi-niveaux généralisés <br> Cours n°10 : Data Hackathon <br>
+Cours n°01 : Introduction à l'inférence bayésienne <br> **Cours n°02 : Modèle Beta-Binomial** <br> Cours n°03 : Introduction à brms, modèle de régression linéaire <br> Cours n°04 : Modèle de régression linéaire (suite) <br> Cours n°05 : Markov Chain Monte Carlo <br> Cours n°06 : Modèle linéaire généralisé <br> Cours n°07 : Comparaison de modèles <br> Cours n°08 : Modèles multi-niveaux (généralisés) <br> Cours n°09 : Examen final <br>
 
 $$\newcommand\given[1][]{\:#1\vert\:}$$
 
@@ -550,7 +544,7 @@ $p(\theta) = \mathrm{Beta}(\theta \given 15.95, 9.05)$. <br> Si
 $\omega = 0.65$ et $\kappa = 10$ alors
 $p(\theta) = \mathrm{Beta}(\theta \given 6.2, 3.8)$.
 
-```{r beta4, echo = FALSE, fig.width = 12, fig.height = 5}
+```{r beta4, echo = FALSE, fig.width = 12, fig.height = 5, out.width = "80%"}
 p <- seq(0, 1, length = 100)
 
 W <- 0.65
@@ -624,6 +618,7 @@ $$
 &\propto \color{purple}{\theta}^{\color{orangered}{y} + \color{steelblue}{a - 1}}\color{purple}{(1 - \theta)}^{\color{orangered}{n - y} + \color{steelblue}{b - 1}} &&\mbox{En regroupant les puissances des termes identiques} \\
 \end{align}
 $$
+
 . . .
 
 Ici, on a ignoré les constantes qui ne dépendent pas de $\theta$ (i.e., le nombre de combinaisons dans la fonction de vraisemblance binomiale et la fonction Beta $B(a, b)$ dans le prior Beta).^[Pour la dérivation complète, voir par exemple [ce chapitre](https://www.bayesrulesbook.com/chapter-3.html).] En les prenant en compte, on obtient en effet une distribution a posteriori Beta de la forme suivante :

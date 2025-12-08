@@ -1,0 +1,25 @@
+Question
+========
+
+```{r, echo = FALSE}
+pts <- 1
+pts_string <- if (exams::match_exams_call() == "exams2pdf") {
+  sprintf("\\emph{(%s point%s)} ", pts, if (pts > 1) "s" else "")
+} else {
+  ""
+}
+```
+
+`r pts_string`Dans le modèle ci-dessus, combien y a-t-il de paramètres dans la distribution a posteriori ?
+
+Solution
+========
+
+Il y a 3 paramètres : l'intercept $\alpha$, la pente $\beta$, et l'écart-type des résidus $\sigma$.
+
+Meta-information
+================
+exname: Posterior parameters (numeric)
+extype: string
+exsolution: 3
+expoints: 1
