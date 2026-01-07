@@ -7,13 +7,13 @@
 open_slides(cours)
 }
 \arguments{
-\item{cours}{Course number, from 01 to 10.}
+\item{cours}{Course number, from 01 to 09.}
 }
 \value{
 Returns nothing but opens the slides in browser.
 }
 \description{
-Opening the slides of the corresponding course (from 01 to 10) in browser.
+Opening the slides of the corresponding course (from 01 to 09) in browser.
 }
 \examples{
 \dontrun{

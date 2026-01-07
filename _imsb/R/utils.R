@@ -16,7 +16,7 @@ open_slides <- function (cours) {
 
     num <- stringr::str_pad(string = cours, width = 2, pad = "0")
 
-    if (as.numeric(num) > 0 & num < 10) {
+    if (as.numeric(num) > 0 & as.numeric(num) < 9) {
 
         utils::browseURL(
             url = paste0("https://lnalborczyk.github.io/IMSB2026/slides/html/cours", num)
@@ -24,7 +24,7 @@ open_slides <- function (cours) {
 
     } else {
 
-        stop ("I am sorry, I am not aware of this course... I only know Courses 01 to 09.")
+        stop ("I am sorry, I am not aware of this course... I only know Courses 01 to 08.")
 
     }
 }
@@ -91,7 +91,7 @@ find_mode <- function (samples, ...) {
 
 fd_nbins <- function (samples) {
 
-    nbins <- diff(range(samples) ) / (2 * stats::IQR(samples) / length(samples)^(1 / 3) )
+    nbins <- diff(range(samples) ) / (2 * stats::IQR(x = samples) / length(x = samples)^(1 / 3) )
 
     return (round(nbins) )
 

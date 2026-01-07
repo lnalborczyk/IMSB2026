@@ -343,8 +343,6 @@ str(df1)
 
 On cherche à savoir si la présence d'un singe partenaire incite le chimpanzé à appuyer sur le levier prosocial, c'est à dire l'option qui donne de la nourriture aux deux individus. Autrement dit, est-ce qu'il existe une interaction entre l'effet de la latéralité et l'effet de la présence d'un autre chimpanzé sur la probabilité d'actionner le levier gauche.
 
-. . .
-
 ### Les variables
 
 + Observations (`pulled_left`) : Ce sont des variables de Bernoulli. Elles prennent comme valeur 0/1. 

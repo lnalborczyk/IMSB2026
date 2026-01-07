@@ -25,7 +25,7 @@ options(timeout = 240) # on laisse un peu plus de temps à R pour installer imsb
 remotes::install_github(repo = "lnalborczyk/IMSB2026/_imsb", dependencies = TRUE)
 ```
 
-Au cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours `01` au cours `09`) en ligne via la fonction `open_slides()`.
+Au cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours `01` au cours `08`) en ligne via la fonction `open_slides()`.
 
 ```{r, eval = FALSE, echo = TRUE}
 library(imsb)

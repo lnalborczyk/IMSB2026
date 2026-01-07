@@ -4,8 +4,8 @@
 #'
 #' @param samples Numeric, samples from some distribution.
 #' @param credmass Numeric, credibility mass (default to 0.91).
-#' @param usemode Logical, indicating whether we should use the using the mean
-#'   (default) or the mode?
+#' @param usemode Logical, indicating whether we should use the using the mode
+#'   instead of the median (default).
 #' @param compval Numeric, to what value comparing the posterior?
 #' @param rope Numeric, defining the region of practical equivalence
 #'   (such as c(-0.1, 0.1) ).
@@ -27,7 +27,7 @@
 #' @examples
 #' \dontrun{
 #' # getting samples for a normal distribution
-#' samples <- rnorm(n = 1e3, mean = 0, sd = 1)
+#' samples <- rnorm(n = 1e4, mean = 0, sd = 1)
 #'
 #' # plotting it
 #' posterior_plot(
@@ -80,10 +80,10 @@ posterior_plot <- function (
     # issuing a warning when the number of samples is low
     if (length(samples) < 1e2) {
 
-        warning ("
-        The number of posterior samples is low. Beware that the estimation
-        of the HDI bounds or the % of samples in ROPE may be unreliable.
-                 ")
+        warning (
+        "The number of posterior samples is low. Beware that the estimation
+        of the HDI bounds or the % of samples in ROPE may be unreliable."
+        )
 
     }
 
@@ -93,13 +93,13 @@ posterior_plot <- function (
 
         if (nbins < 5 | nbins > 100) {
 
-            warning ("
-            The number of bins does not sound sensible, you should probably
+            warning (
+            "The number of bins does not sound sensible, you should probably
             define a better number of bins. A good rule of thumbs is to use
-            Freedman-Diaconis' rule (the default).
-                     ")
+            Freedman-Diaconis' rule (the default)."
+            )
 
-            }
+        }
 
     }
 
@@ -113,9 +113,9 @@ posterior_plot <- function (
     # computing the density to scale the position of elements
     densCurve <- stats::density(x = samples, adjust = 2, n = 2048)
 
-    # computing the posterior central tendency (mean or mode)
+    # computing the posterior central tendency (median or mode)
     if (usemode) central_tendency <- imsb::find_mode(samples)
-    if (!usemode) central_tendency <- mean(samples)
+    if (!usemode) central_tendency <- stats::median(samples)
 
     # if a comparison value is specified
     if (!is.null(compval) ) {
@@ -146,22 +146,24 @@ posterior_plot <- function (
     # plotting it
     samples |>
         data.frame() |>
-        ggplot2::ggplot(ggplot2::aes(x = .data$samples, y = .data$..density..) ) +
+        ggplot2::ggplot(ggplot2::aes(x = .data$samples, y = ggplot2::after_stat(.data$..density..) ) ) +
         {if (!showcurve) ggplot2::geom_histogram(
             bins = nbins,
             alpha = 0.4,
-            colour = "white", fill = maincolour
+            colour = "white",
+            fill = maincolour
             )} +
         {if (showcurve) ggplot2::geom_density(
-            alpha = 0.4, size = 2, colour = maincolour
+            alpha = 0.2, linewidth = 1, colour = maincolour, fill = maincolour
             )} +
         ggplot2::geom_errorbarh(
             data = hdis,
             ggplot2::aes(xmin = .data$CI_low, xmax = .data$CI_high, y = 0),
-            height = 0, size = 2,
+            width = 0,
+            linewidth = 2,
             inherit.aes = FALSE, show.legend = FALSE
             ) +
-        ggplot2::geom_text(
+        ggplot2::geom_label(
             data = hdi_text,
             ggplot2::aes(
                 x = .data$value, y = 0,
@@ -171,70 +173,66 @@ posterior_plot <- function (
             size = textsize,
             inherit.aes = FALSE, show.legend = FALSE
             ) +
-        ggplot2::geom_text(
-            ggplot2::aes(
-                x = mean(c(hdis$CI_low, hdis$CI_high) ), y = 0,
-                label = paste0(100 * credmass, "% HDI")
-                ),
-            nudge_y = 0.1 * max(densCurve$y),
-            size = textsize,
-            inherit.aes = FALSE, show.legend = FALSE
+        ggplot2::annotate(
+            geom = "label",
+            x = mean(c(hdis$CI_low, hdis$CI_high) ),
+            y = 0.05 * max(densCurve$y),
+            label = paste0(100 * credmass, "% HDI"),
+            size = textsize
             ) +
-        ggplot2::geom_text(
-            ggplot2::aes(
-                x = central_tendency, y = 0.9 * max(densCurve$y),
-                label = ifelse(
-                    test = usemode,
-                    yes = paste("mode =", round(x = central_tendency, digits = 2) ),
-                    no = paste("mean =", round(x = central_tendency, digits = 2) )
-                    )
+        ggplot2::annotate(
+            geom = "label",
+            x = central_tendency,
+            y = 0.9 * max(densCurve$y),
+            label = ifelse(
+                test = usemode,
+                yes = paste("mode =", round(x = central_tendency, digits = 3) ),
+                no = paste("median =", round(x = central_tendency, digits = 3) )
                 ),
-            size = textsize,
-            inherit.aes = FALSE, show.legend = FALSE
+            size = textsize * 1.1
             ) +
-        {if (!is.null(compval) ) ggplot2::geom_segment(
-            ggplot2::aes(
-                x = compval, xend = compval,
-                y = 0, yend = 0.7 * max(densCurve$y)
-                ),
+        {if (!is.null(compval) ) ggplot2::annotate(
+            geom = "segment",
+            x = compval,
+            xend = compval,
+            y = 0,
+            yend = 0.75 * max(densCurve$y),
             linetype = 2,
             colour = compvalcolour
             )} +
-        {if (!is.null(compval) ) ggplot2::geom_text(
-            ggplot2::aes(
-                x = compval, y = 0.7 * max(densCurve$y),
-                label = compval_text
-                ),
+        {if (!is.null(compval) ) ggplot2::annotate(
+            geom = "label",
+            x = compval,
+            y = 0.75 * max(densCurve$y),
+            label = compval_text,
             colour = compvalcolour,
-            size = textsize,
-            nudge_y = 0.05 * max(densCurve$y),
-            inherit.aes = FALSE, show.legend = FALSE
+            size = textsize
             )} +
-        {if (!is.null(rope) ) ggplot2::geom_segment(
-            ggplot2::aes(
-                x = min(rope), xend = min(rope),
-                y = 0, yend = 0.55 * max(densCurve$y)
-                ),
-            linetype = 3,
+        {if (!is.null(rope) ) ggplot2::annotate(
+            geom = "segment",
+            x = min(rope),
+            xend = min(rope),
+            y = 0,
+            yend = 0.6 * max(densCurve$y),
+            linetype = 2,
             colour = ROPEcolour
             )} +
-        {if (!is.null(rope) ) ggplot2::geom_segment(
-            ggplot2::aes(
-                x = max(rope), xend = max(rope),
-                y = 0, yend = 0.55 * max(densCurve$y)
-                ),
-            linetype = 3,
+        {if (!is.null(rope) ) ggplot2::annotate(
+            geom = "segment",
+            x = max(rope),
+            xend = max(rope),
+            y = 0,
+            yend = 0.6 * max(densCurve$y),
+            linetype = 2,
             colour = ROPEcolour
             )} +
-        {if (!is.null(rope) ) ggplot2::geom_text(
-            ggplot2::aes(
-                x = mean(range(rope) ), y = 0.55 * max(densCurve$y),
-                label = paste0(pc_rope, "% in ROPE")
-                ),
+        {if (!is.null(rope) ) ggplot2::annotate(
+            geom = "label",
+            x = mean(range(rope) ),
+            y = 0.6 * max(densCurve$y),
+            label = paste0(pc_rope, "% in ROPE"),
             colour = ROPEcolour,
-            size = textsize,
-            nudge_y = 0.05 * max(densCurve$y),
-            inherit.aes = FALSE, show.legend = FALSE
+            size = textsize
             )} +
         ggplot2::labs(y = "") +
         ggplot2::theme_classic(base_size = 12) +

@@ -34,12 +34,15 @@ format:
 title-slide-attributes:
     data-background-color: "#1c5253"
 bibliography: ../../files/bib/references.bib
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Planning
 
 ```{r setup, eval = TRUE, include = FALSE, cache = FALSE}
 library(tidyverse)
+library(patchwork)
 library(brms)
 library(imsb)
 
@@ -387,8 +390,6 @@ Considérons un exemple simple : Soit un paramètre $\theta$ avec 7
 valeurs possibles et la fonction de répartition suivante, où $p(\theta) = \theta$.
 
 ```{r distribution_theta1, echo = FALSE, fig.width = 12, fig.height = 6, out.width = "75%"}
-# knitr::include_graphics("figures/distributionTheta1-7.png")
-
 theta <- c(1, 2, 3, 4, 5, 6, 7)
 
 theta %>%
@@ -716,15 +717,12 @@ $\longrightarrow~$ La position calculée devient la nouvelle position
 
 ## Algorithme Metropolis
 
-```{r eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 8}
-# source("code/DBDA2E-utilities.R")
-
+```{r eval = TRUE, echo = FALSE, fig.width = 12, fig.height = 9, out.width = "100%"}
 # specifies the data to be used in the likelihood function
 myData <- c(rep(0, 6), rep(1, 14) )
 
 # defines the Bernoulli likelihood function p(D|theta)
 # the argument theta could be a vector, not just a scalar
-
 likelihood <- function (theta, data) {
   
   z <- sum(data)
@@ -742,7 +740,6 @@ likelihood <- function (theta, data) {
 }
 
 # defines the prior density function
-
 prior_prob <- function (theta) {
   
   pTheta <- dbeta(theta, 1, 1)
@@ -760,7 +757,6 @@ prior_prob <- function (theta) {
 # defines the relative probability of the target distribution, 
 # as a function of vector theta. For our application, this
 # target distribution is the unnormalized posterior distribution.
-
 targetRelProb <- function (theta, data) {
   
   targetRelProb <- likelihood(theta, data) * prior_prob(theta)
@@ -770,7 +766,8 @@ targetRelProb <- function (theta, data) {
 }
 
 # specifies the length of the trajectory, that is, the number of jumps to try
-trajLength <- 50000 # arbitrary large number
+# arbitrary large number
+trajLength <- 1e4
 
 # initialises the vector that will store the results:
 trajectory <- rep(0, trajLength)
@@ -832,68 +829,103 @@ for (t in 1:(trajLength - 1) ) {
 # extracts the post-burnIn portion of the trajectory
 acceptedTraj <- trajectory[ (burnIn+1) : length(trajectory) ]
 
-##########################################
-# Display the chain
-###################################
+######################
+# Displays the chain #
+######################
 
-# layout(matrix(1:3, nrow = 3) )
-# par(mar = c(3, 4, 2, 1), mgp = c(2, 0.7, 0) )
-
-# layout(matrix(c(1,3,2,3), 2, 2, byrow = TRUE) )
-layout(matrix(c(1, 2, 3, 3), 2, 2, byrow = TRUE) )
-
-# trajectory, a.k.a. trace plot, beginning of chain
-idxToPlot <- 1:100
-
-plot(
-  trajectory[idxToPlot], idxToPlot, main = "Beginning of Chain",
-  xlab = bquote(theta), xlim = c (0, 1), ylab = "Step in Chain",
-  type = "o", pch = 20, col = posterior_color, cex.lab = 1.5
-  )
-
-# indicates burn in limit (might not be visible if not in range)
-if (burnIn > 0) {
-  
-  abline(h = burnIn, lty = "dotted")
-  text(0.5, burnIn + 1, "Burn In", adj = c(0.5, 1.1) )
-  
-}
-
-# trajectory, a.k.a. trace plot, end of chain
-idxToPlot <- (trajLength - 100):trajLength
-
-plot(
-  trajectory[idxToPlot], idxToPlot, main = "End of Chain",
-  xlab = bquote(theta), xlim = c(0, 1), ylab = "Step in Chain",
-  type = "o", pch = 20, col = posterior_color, cex.lab = 1.5
-  )
-
-# displays proposal SD and acceptance ratio in the plot
-text(
-  0.0, trajLength, adj = c(0.0, 1.1), cex = 1.5,
-  labels = bquote(
-    frac(N[acc], N[pro]) == .(signif(nAccepted / length(acceptedTraj), 3) )
+# beginning of chain
+df_begin <- tibble(
+    step = 1:100,
+    theta = trajectory[1:100]
     )
-  )
 
-paramInfo <- BEST::plotPost(
-  paramSampleVec =acceptedTraj, xlim = c(0, 1), xlab = bquote(theta), 
-  cex = 2, cex.main = 1.5, col = posterior_color,
-  # main = paste0(
-  #     "Proposal SD = ", proposalSD,
-  #     ", ESS = ", round(coda::effectiveSize(acceptedTraj), 1)
-  #     )
-  )
+# end of chain
+df_end <- tibble(
+    step = (trajLength - 100):trajLength,
+    theta = trajectory[(trajLength - 100):trajLength]
+    )
 
-# displays proposal SD and acceptance ratio in the plot
-text(
-  x = 0.2, y = 1, # adj = c(0.0, 1.1),
-  cex = 1.5,
-  labels = paste0(
-      "Proposal SD = ", proposalSD,
-      "\nESS = ", round(coda::effectiveSize(acceptedTraj), 1)
-      )
-  )
+make_trace_plot <- function (df, title, burnIn = NULL, accept_ratio = NULL) {
+    
+    y_min <- min(df$step, na.rm = TRUE)
+    y_max <- max(df$step, na.rm = TRUE)
+    
+    p <- df %>%
+        ggplot(aes(x = theta, y = step) ) +
+        geom_path(color = posterior_color) +
+        geom_point(color = posterior_color, size = 2) +
+        scale_x_continuous(limits = c(0, 1) ) +
+        labs(
+          title = title,
+          x = expression(theta),
+          y = "Step in chain"
+          ) +
+        theme_bw(base_size = 14)
+    
+    # adds burn-in line + label only if visible in this panel
+    if (!is.null(burnIn) && burnIn > 0 && burnIn >= y_min && burnIn <= y_max) {
+        
+        p <- p +
+            geom_hline(yintercept = burnIn, linetype = "dotted") +
+            annotate(
+                "label",
+                x = 0.5,
+                y = burnIn + 1,
+                label = "Burn in",
+                vjust = 0
+                )
+        
+    }
+    
+    # adds acceptance_ratio in this panel
+    if (!is.null(accept_ratio) ) {
+        
+        p <- p +
+            # annotate(
+            #     geom = "label",
+            #     x = 0, y = 1,
+            #     label = bquote(frac(N[acc], N[pro]) == accept_ratio)
+            #     )
+            annotate(
+                "label",
+                x = 0.0,
+                y = trajLength,
+                hjust = 0.0,
+                vjust = 1.1,
+                size = 5,
+                # label = bquote(frac(N[acc], N[pro]) == .(signif(nAccepted / length(acceptedTraj), 3) ) ),
+                # label = bquote(frac(N[acc], N[pro]) == accept_ratio),
+                label = sprintf("frac(N[acc], N[pro])==%s", accept_ratio),
+                parse = TRUE
+                )
+        
+    }
+    
+    return (p)
+    
+    }
+
+# computes acceptance ratio
+accept_ratio <- round(x = nAccepted / length(acceptedTraj), digits = 3)
+
+# trace plots
+p_begin <- make_trace_plot(df = df_begin, title = "Beginning of chain", burnIn = burnIn)
+p_end <- make_trace_plot(df = df_end, title = "End of chain", burnIn = burnIn, accept_ratio = accept_ratio)
+
+# posterior plot
+post_plot <- imsb::posterior_plot(sample = acceptedTraj, maincolour = posterior_color) +
+    labs(x = bquote(theta) ) +
+    annotate(
+        geom = "label",
+        x = 0.2, y = 1,
+        label = paste0(
+            "Proposal SD = ", proposalSD,
+            "\nESS = ", round(coda::effectiveSize(acceptedTraj), 1)
+            )
+        )
+
+# combines plots
+(p_begin + p_end) / post_plot
 ```
 
 ## Algorithme Metropolis
@@ -908,15 +940,12 @@ qui ne sont pas corrélés avec les précédents)
 
 ## Algorithme Metropolis
 
-```{r eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 8}
-# source("code/DBDA2E-utilities.R")
-
+```{r eval = TRUE, echo = FALSE, fig.width = 12, fig.height = 9, out.width = "100%"}
 # specifies the data to be used in the likelihood function
 myData <- c(rep(0, 6), rep(1, 14) )
 
 # defines the Bernoulli likelihood function p(D|theta)
 # the argument theta could be a vector, not just a scalar
-
 likelihood <- function(theta, data) {
   
   z <- sum(data)
@@ -934,7 +963,6 @@ likelihood <- function(theta, data) {
 }
 
 # defines the prior density function
-
 prior_prob <- function(theta) {
   
   pTheta <- dbeta(theta, 1, 1)
@@ -952,7 +980,6 @@ prior_prob <- function(theta) {
 # defines the relative probability of the target distribution, 
 # as a function of vector theta. For our application, this
 # target distribution is the unnormalized posterior distribution.
-
 targetRelProb <- function(theta, data) {
   
   targetRelProb <- likelihood(theta, data) * prior_prob(theta)
@@ -962,7 +989,7 @@ targetRelProb <- function(theta, data) {
 }
 
 # specifies the length of the trajectory, that is, the number of jumps to try
-trajLength <- 50000 # arbitrary large number
+# trajLength <- 50000 # arbitrary large number
 
 # initialises the vector that will store the results:
 trajectory <- rep(0 , trajLength)
@@ -1025,69 +1052,43 @@ for (t in 1:(trajLength - 1) ) {
 # extracts the post-burnIn portion of the trajectory
 acceptedTraj <- trajectory[ (burnIn+1) : length(trajectory) ]
 
-##########################################
-# Display the chain
-###################################
+######################
+# Displays the chain #
+######################
 
-# layout(matrix(1:3, nrow = 3) )
-# par(mar = c(3, 4, 2, 1), mgp = c(2, 0.7, 0) )
-
-# layout(matrix(c(1,3,2,3), 2, 2, byrow = TRUE) )
-layout(matrix(c(1, 2, 3, 3), 2, 2, byrow = TRUE) )
-
-# trajectory, a.k.a. trace plot, beginning of chain
-idxToPlot <- 1:100
-
-plot(
-  trajectory[idxToPlot], idxToPlot, main = "Beginning of Chain",
-  xlab = bquote(theta), xlim = c (0, 1), ylab = "Step in Chain",
-  type = "o", pch = 20, col = posterior_color, cex.lab = 1.5
-  )
-
-# indicates burn in limit (might not be visible if not in range)
-if (burnIn > 0) {
-  
-  abline(h = burnIn, lty = "dotted")
-  text(0.5, burnIn + 1, "Burn In", adj = c(0.5, 1.1) )
-  
-}
-
-# trajectory, a.k.a. trace plot, end of chain
-idxToPlot <- (trajLength - 100):trajLength
-
-plot(
-  trajectory[idxToPlot], idxToPlot, main = "End of Chain",
-  xlab = bquote(theta), xlim = c(0, 1), ylab = "Step in Chain",
-  type = "o", pch = 20, col = posterior_color, cex.lab = 1.5
-  )
-
-# displays proposal SD and acceptance ratio in the plot
-text(
-  0.0, trajLength, adj = c(0.0, 1.1), cex = 1.5,
-  labels = bquote(
-    frac(N[acc], N[pro]) == .(signif(nAccepted / length(acceptedTraj), 3) )
+# beginning of chain
+df_begin <- tibble(
+    step = 1:100,
+    theta = trajectory[1:100]
     )
-  )
 
-# posterior histogram
-paramInfo <- BEST::plotPost(
-  acceptedTraj, xlim = c(0, 1), xlab = bquote(theta), 
-  cex = 2, cex.main = 1.5, col = posterior_color,
-  # main = bquote(list(
-  #   "Proposal SD" == .(proposalSD),
-  #   "ESS" == .(round(coda::effectiveSize(acceptedTraj), 1) )
-  #   ) )
-  )
+# end of chain
+df_end <- tibble(
+    step = (trajLength - 100):trajLength,
+    theta = trajectory[(trajLength - 100):trajLength]
+    )
 
-# displays proposal SD and acceptance ratio in the plot
-text(
-  x = 0.2, y = 1, # adj = c(0.0, 1.1),
-  cex = 1.5,
-  labels = paste0(
-      "Proposal SD = ", proposalSD,
-      "\nESS = ", round(coda::effectiveSize(acceptedTraj), 1)
-      )
-  )
+# computes acceptance ratio
+accept_ratio <- round(x = nAccepted / length(acceptedTraj), digits = 3)
+
+# trace plots
+p_begin <- make_trace_plot(df = df_begin, title = "Beginning of chain", burnIn = burnIn)
+p_end <- make_trace_plot(df = df_end, title = "End of chain", burnIn = burnIn, accept_ratio = accept_ratio)
+
+# posterior plot
+post_plot <- imsb::posterior_plot(sample = acceptedTraj, maincolour = posterior_color) +
+    labs(x = bquote(theta) ) +
+    annotate(
+        geom = "label",
+        x = 0.2, y = 1,
+        label = paste0(
+            "Proposal SD = ", proposalSD,
+            "\nESS = ", round(coda::effectiveSize(acceptedTraj), 1)
+            )
+        )
+
+# combines plots
+(p_begin + p_end) / post_plot
 ```
 
 ## Algorithme Metropolis
@@ -1103,16 +1104,12 @@ Il faut beaucoup d'itérations pour avoir un résultat satisfaisant...
 
 ## Algorithme Metropolis
 
-```{r eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 8}
-# source("code/DBDA2E-utilities.R")
-
+```{r eval = TRUE, echo = FALSE, fig.width = 12, fig.height = 9, out.width = "100%"}
 # specifies the data to be used in the likelihood function
 myData <- c(rep(0, 6), rep(1, 14) )
 
 # defines the Bernoulli likelihood function p(D|theta)
-# the argument theta could be a vector, not just a scalar
-
-likelihood <- function(theta, data) {
+likelihood <- function (theta, data) {
   
   z <- sum(data)
   N <- length(data)
@@ -1124,13 +1121,12 @@ likelihood <- function(theta, data) {
   
   pDataGivenTheta[theta > 1 | theta < 0] = 0
   
-  return(pDataGivenTheta)
+  return (pDataGivenTheta)
   
 }
 
 # defines the prior density function
-
-prior_prob <- function(theta) {
+prior_prob <- function (theta) {
   
   pTheta <- dbeta(theta, 1, 1)
   
@@ -1140,24 +1136,23 @@ prior_prob <- function(theta) {
   
   pTheta[theta > 1 | theta < 0] = 0
   
-  return(pTheta)
+  return (pTheta)
   
 }
 
 # defines the relative probability of the target distribution, 
 # as a function of vector theta. For our application, this
 # target distribution is the unnormalized posterior distribution.
-
-targetRelProb <- function(theta, data) {
+targetRelProb <- function (theta, data) {
   
   targetRelProb <- likelihood(theta, data) * prior_prob(theta)
   
-  return(targetRelProb)
+  return (targetRelProb)
   
 }
 
 # specifies the length of the trajectory, that is, the number of jumps to try
-trajLength <- 50000 # arbitrary large number
+# trajLength <- 50000 # arbitrary large number
 
 # initialises the vector that will store the results:
 trajectory <- rep(0 , trajLength)
@@ -1220,69 +1215,43 @@ for (t in 1:(trajLength - 1) ) {
 # extracts the post-burnIn portion of the trajectory
 acceptedTraj <- trajectory[ (burnIn+1) : length(trajectory) ]
 
-##########################################
-# Display the chain
-###################################
+#####################
+# Display the chain #
+#####################
 
-# layout(matrix(1:3, nrow = 3) )
-# par(mar = c(3, 4, 2, 1), mgp = c(2, 0.7, 0) )
-
-# layout(matrix(c(1,3,2,3), 2, 2, byrow = TRUE) )
-layout(matrix(c(1, 2, 3, 3), 2, 2, byrow = TRUE) )
-
-# trajectory, a.k.a. trace plot, beginning of chain
-idxToPlot <- 1:100
-
-plot(
-  trajectory[idxToPlot], idxToPlot, main = "Beginning of Chain",
-  xlab = bquote(theta), xlim = c (0, 1), ylab = "Step in Chain",
-  type = "o", pch = 20, col = posterior_color, cex.lab = 1.5
-  )
-
-# indicates burn in limit (might not be visible if not in range)
-if (burnIn > 0) {
-  
-  abline(h = burnIn, lty = "dotted")
-  text(0.5, burnIn + 1, "Burn In", adj = c(0.5, 1.1) )
-  
-}
-
-# trajectory, a.k.a. trace plot, end of chain
-idxToPlot <- (trajLength - 100):trajLength
-
-plot(
-  trajectory[idxToPlot], idxToPlot, main = "End of Chain",
-  xlab = bquote(theta), xlim = c(0, 1), ylab = "Step in Chain",
-  type = "o", pch = 20, col = posterior_color, cex.lab = 1.5
-  )
-
-# displays proposal SD and acceptance ratio in the plot
-text(
-  0.0, trajLength, adj = c(0.0, 1.1), cex = 1.5,
-  labels = bquote(
-    frac(N[acc], N[pro]) == .(signif(nAccepted / length(acceptedTraj), 3) )
+# beginning of chain
+df_begin <- tibble(
+    step = 1:100,
+    theta = trajectory[1:100]
     )
-  )
 
-# posterior histogram
-paramInfo <- BEST::plotPost(
-  acceptedTraj, xlim = c(0, 1), xlab = bquote(theta), 
-  cex = 2, cex.main = 1.5, col = posterior_color,
-  # main = bquote(list(
-  #   "Proposal SD" == .(proposalSD),
-  #   "ESS" == .(round(coda::effectiveSize(acceptedTraj), 1) )
-  #   ) )
-  )
+# end of chain
+df_end <- tibble(
+    step = (trajLength - 100):trajLength,
+    theta = trajectory[(trajLength - 100):trajLength]
+    )
 
-# displays proposal SD and acceptance ratio in the plot
-text(
-  x = 0.2, y = 1, # adj = c(0.0, 1.1),
-  cex = 1.5,
-  labels = paste0(
-      "Proposal SD = ", proposalSD,
-      "\nESS = ", round(coda::effectiveSize(acceptedTraj), 1)
-      )
-  )
+# computes acceptance ratio
+accept_ratio <- round(x = nAccepted / length(acceptedTraj), digits = 3)
+
+# trace plots
+p_begin <- make_trace_plot(df = df_begin, title = "Beginning of chain", burnIn = burnIn)
+p_end <- make_trace_plot(df = df_end, title = "End of chain", burnIn = burnIn, accept_ratio = accept_ratio)
+
+# posterior plot
+post_plot <- imsb::posterior_plot(sample = acceptedTraj, maincolour = posterior_color) +
+    labs(x = bquote(theta) ) +
+    annotate(
+        geom = "label",
+        x = 0.2, y = 1,
+        label = paste0(
+            "Proposal SD = ", proposalSD,
+            "\nESS = ", round(coda::effectiveSize(acceptedTraj), 1)
+            )
+        )
+
+# combines plots
+(p_begin + p_end) / post_plot
 ```
 
 ## Algorithme Metropolis
@@ -1354,274 +1323,6 @@ data.frame(z1 = z1, z2 = z2) %>%
 ```
 
 ## Algorithme Metropolis-Hastings {background-iframe="https://chi-feng.github.io/mcmc-demo/app.html?algorithm=RandomWalkMH&target=standard"}
-
-<!--
-
-## Algorithme Gibbs - Modèle bivarié
-
-L'algorithme Gibbs est utilisé pour évaluer la distribution postérieure
-de modèles composés d'au moins deux variables et diffère de l'algorithme
-de Metropolis-Hastings en ce qu'il accepte toutes les propositions de
-déplacements...
-
-. . .
-
-**Définition du modèle bivarié :** On considère une situation dans
-laquelle on dispose de deux pièces de monnaie. À chaque pièce on associe
-un paramètre ou biais $\theta_{1}$ et $\theta_{2}$ (la probabilité
-d'obtenir $\text{Face}$). On cherche à estimer les biais de ces deux
-pièces : $p(\theta_1, \theta_2~|~D)$. Nos variables $\theta_{1}$ et
-$\theta_{2}$ sont indépendantes et identiquement distribuées (iid).
-
-. . .
-
-**Définition du prior :** On considère que chacun des biais est décrit
-par une distribution Beta :
-$\theta_1 \sim \mathrm{Beta}(\theta_1~|~a_1,b_1)$ et
-$~\theta_2 \sim \mathrm{Beta}(\theta_2~|~a_2,b_2)$.
-
-## Algorithme Gibbs - Modèle bivarié
-
-On peut donc calculer la distribution a priori de
-$P(\theta_1, \theta_2)$ :
-
-$$
-\begin{align}
-p(\theta_1, \theta_2) &= p(\theta_1) p(\theta_2) \\
-&= \theta_1^{(a_1-1)}~(1-\theta_1)^{(b_1-1)}\theta_2^{(a_2-1)}~(1-\theta_2)^{(b_2-1)}
-\end{align}
-$$
-
-```{r bivariate_prior, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/BayesianInferenceBivariate_PRIOR.png")
-```
-
-## Algorithme Gibbs - Modèle bivarié
-
-### Description des données
-
-On dispose d'un ensemble de lancers pour les deux pièces. On appelle
-$~D_1$ les données issues de la première pièce, composé de $~z_1$ *Face*
-sur $~N_1$ lancers. On appelle $~D_2$ les données issues de la seconde
-pièce, composé de $~z_2$ *Face* sur $~N_2$ lancers. On note les données
-: $D = \{ z_1, N_1, z_2, N_2 \}$
-
-. . .
-
-### Définition de la fonction de vraisemblance
-
-$$
-\begin{align}
-P(D~|~\theta_{1}, \theta_{2}) &= \prod_{y_{1i} \in D_{1}} P(y_{1i}~|~\theta_{1},\theta_{2})~ \prod_{y_{2i} \in D_{2}} P(y_{2i}~|~\theta_{1},\theta_{2}) &&\mbox{Règle d'indépendance}\\
-&= \theta_1^{z_{1}}~(1 - \theta_{1})^{(N{1} - z_{1})}\theta_{2}^{z_2}~(1 - \theta_{2})^{(N_{2} - z_{2})}~ 
-\end{align}
-$$
-
-## Algorithme Gibbs - Modèle bivarié
-
-Résolution analytique :
-
-$$
-\begin{align}
-\color{purple}{p(\theta_1,\theta_2~|~D)} &= \color{orangered}{p(D~|~\theta_1,\theta_2)}~\color{steelBlue}{p(\theta_1,\theta_2)}/\color{green}{p(D)} \\
-&= \color{orangered}{\theta_1^{z_1}~(1-\theta_1)^{(N1-z_1)}\theta_2^{z_2}~(1-\theta_2)^{(N2-z_2)}}~\color{steelBlue}{p(\theta_1,\theta_2)}/\color{green}{p(D)} \\
-&= \frac{\theta_1^{(\color{orangered}{z_1}+\color{steelBlue}{a_1-1})}(1-\theta_1)^{(\color{orangered}{N_1-z_1}+\color{steelBlue}{b_1-1})}\theta_2^{(\color{orangered}{z_2}+\color{steelBlue}{a_2-1})}(1-\theta_2)^{(\color{orangered}{N_2-z_2}+\color{steelBlue}{b_2-1})}~}{\color{green}{p(D)}~\color{steelBlue}{B(a_1,b_1)~B(a_2,b_2)}} 
-\end{align}
-$$
-
-. . .
-
-Donc finalement :
-
-$$
-\begin{align}
-\color{purple}{p(\theta_1,\theta_2~|~D)} =& \ \color{purple}{\mathrm{Beta}(\theta_1~|~z_1+a_1,N_1-z_1+b_1)} \color{purple}{\mathrm{Beta}(\theta_2~|~z_2+a_2,N_2-z_2+b_2)}
-\end{align}
-$$
-
-On voit que lorsque le prior est le produit de deux distributions Beta
-indépendantes, alors la distribution postérieure est également le
-produit de deux distributions Beta indépendantes.
-
-## Algorithme Gibbs - Modèle bivarié
-
-```{r bivariate, echo = FALSE, out.width = "33%"}
-knitr::include_graphics("figures/BayesianInferenceBivariate.png")
-```
-
-## Modèle à deux variables - Algorithme Metropolis
-
-La proposition de saut repose sur une une loi normale bivariée.
-
-$\longrightarrow$ La position suivante peut-être n'importe où sur la
-grille.
-
-```{r metropolis-2d, echo = FALSE, out.width = "75%"}
-knitr::include_graphics("figures/MetroAlgo2Var.png")
-```
-
-## Algorithme Gibbs - Description
-
-On voit que l'efficacité de l'algorithme Metropolis repose sur la
-proposition de déplacement. Cette fonction peut-être difficile à
-calibrer : <br>
-
-$\longrightarrow~$ On voudrait que le SD soit petit dans les zones à
-forte densité <br> $\longrightarrow~$ Au contraire, on voudrait que le
-SD soit grand dans les zones à faible densité
-
-. . .
-
-L'algorithme Gibbs résout ce problème. L'algorithme de Gibbs parcourt
-l'espace des paramètres comme l'algorithme Metropolis, mais plutôt que
-de modifier tous les paramètres en même temps, il ne modifie qu'un
-paramètre après l'autre. La proposition de déplacement est donc basée
-sur la fonction de densité conditionnelle. Le déplacement est toujours
-accepté, mais l'algorithme requiert que l'on puisse calculer la densité
-postérieure conditionnelle...
-
-## Algorithme Gibbs - Description
-
-$\longrightarrow~$ Sélectionner un point de départ
-$(\theta_{1init},\theta_{2init})$<br> *On peut sélectionner n'importe
-quelle valeur*
-
-. . .
-
-$\longrightarrow~$ Sélectionner le premier paramètre par exemple
-$\theta_1$ <br>
-
-. . .
-
-$\longrightarrow~$ Générer une valeur aléatoire de $\theta_1$ <br>
-*Faire un tirage directement suivant la probabilité*
-$p(\theta_{1}~|~\theta_{2}, D)$
-
-. . .
-
-$\longrightarrow~$ Générer une valeur aléatoire de $\theta_2$ <br>
-*Faire un tirage suivant la probabilité* $p(\theta_{2}~|~\theta_{1}, D)$
-<br> *Avec pour valeur de* $\theta_{1}$ la valeur calculée précédemment
-
-. . .
-
-$\longrightarrow~$ On boucle sur les deux dernières étapes pour
-parcourir
-
-## Algorithme Gibbs - Description
-
-```{r gibbs1, echo = FALSE, out.width = "25%"}
-knitr::include_graphics("figures/MetroAlgoVarByVar.png")
-```
-
-## Algorithme Gibbs - Description
-
-```{r gibbs2, echo = FALSE, out.width = "75%"}
-knitr::include_graphics("figures/MetroAlgo2VarResults.png")
-```
-
-On voit que l'effective sample size est beaucoup plus grand que celui
-obtenu avec l'algorithme Metropolis...
-
-## Algorithme Gibbs - Implémentation
-
-On suppose que $Y \sim \mathrm{Normal}(\mu, \frac{1}{\tau})$. On
-souhaite approximer la distribution postérieure de $\mu$ et $\tau$ en
-utilisant l'algorithme Gibbs. On note que $\mu$ représente la moyenne
-dans la population, $\tau$ représente la précision (réciproque de la
-variance) dans la population, $n$ représente la taille d'échantillon,
-$\bar{y}$ représente la moyenne dans l'échantillon et $s^{2}$ la
-variance de l'échantillon. L'algorithme Gibbs peut être résumé de la
-manière suivante (from [Casella & Georges,
-1992](https://www.tandfonline.com/doi/abs/10.1080/00031305.1992.10475878))
-:
-
--   Échantillonner $\mu^{(i)}$ à partir de
-    $\ p(\mu \ | \ \tau^{(i - 1)}, \text{données})$
--   Échantillonner $\tau^{(i)}$ à partir de
-    $\ p(\tau \ | \ \mu^{(i)}, \text{données})$
-
-. . .
-
-On définit les priors suivants : $p(\mu, \tau) = p(\mu) \times p(\tau)$
-où $p(\mu) \propto 1$ et $p(\tau) \propto \tau^{-1}$.
-
-Dans cette configuration la distribution postérieure conditionnelle pour
-la moyenne, sachant la précision, est donnée par
-$(\mu \mid \tau, \text { data }) \sim \mathrm{Normal}\left(\bar{y}, \frac{1}{n \tau}\right)$.
-La distribution postérieure conditionnelle pour la précision, sachant la
-moyenne, est donnée par
-$(\tau \mid \mu, \text { data }) \sim \operatorname{Gamma}\left(\frac{n}{2}, \frac{2}{(n-1) s^{2}+n(\mu-\bar{y})^{2}}\right)$.
-
-## Algorithme Gibbs - Implémentation
-
-```{r gibbs2_code1, echo = TRUE}
-# code from https://stats.stackexchange.com/questions/266665/gibbs-sampler-examples-in-r
-n <- 30 # sample size
-ybar <- 15 # sample mean
-s2 <- 3 # sample variance
-
-mu <- rep(NA, 11000) # initialises mu vector
-tau <- rep(NA, 11000) # initialises tau vector
-
-burn <- 1000 # burnin period
-tau[1] <- 1 # initialisation value for tau
-
-# samples from the joint posterior (mu, tau | data)
-for(i in 2:11000) {
-  
-  mu[i]  <- rnorm(n = 1, mean = ybar, sd = sqrt(1 / (n * tau[i - 1]) ) )    
-  tau[i] <- rgamma(n = 1, shape = n / 2, scale = 2 / ((n - 1) * s2 + n * (mu[i] - ybar)^2) )
-  
-}
-
-mu  <- mu[-(1:burn)] # removes burnin
-tau <- tau[-(1:burn)] # removes burnin
-```
-
-## Algorithme Gibbs - Implémentation
-
-```{r gibbs2_code2, echo = TRUE, fig.width = 12, out.width = "66%"}
-data.frame(mu = mu, tau = tau) %>%
-  pivot_longer(cols = mu:tau) %>%
-  ggplot(aes(x = value) ) +
-  geom_histogram() +
-  facet_wrap(~name, scales = "free") +
-  labs(x = "Valeur du paramètre", y = "Nombre d'échantillons")
-```
-
-## Algorithme Gibbs {background-iframe="https://chi-feng.github.io/mcmc-demo/app.html?algorithm=GibbsSampling&target=standard"}
-
-## Algorithme Gibbs - Conclusions
-
--   L'algorithme Gibbs est particulièrement utile lorsque la
-    distribution jointe $p(\{\theta_i\} | \text{data})$ n'est pas
-    calculable ou n'est pas facile à échantillonner, mais que les
-    densités conditionnelles
-    $p(\theta_i | \{\theta_{j \ne i}\}, \text{data})$ le sont.
-
--   L'algorithme Gibbs peut être vu comme un cas particulier de
-    l'algorithme Metropolis pour lequel la proposition de saut dépend de
-    la position dans l'espace des paramètres et du paramètre
-    sélectionné.
-
--   En général, l'algorithme Gibbs améliore les performances de
-    l'algorithme Metropolis.
-
-## Algorithme Hamiltonian Monte Carlo
-
-On a vu que l'algoritme Gibbs améliore les performances de convergence
-de l'algorithme Metropolis. Mais il nécessite de pouvoir calculer les
-densités conditionnelles $p(\theta_i | \theta_{j \ne i}, \text{data})$.
-L'algorithme est performant lorsqu'il y a indépendance des paramètres
-$p(\theta_i | \theta_{j \ne i}, \text{data}) = p(\theta_i | \text{data})$...
-mais ce n'est pas le cas en général !
-
-```{r gibbs_error, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/Gibbs Error.png")
-```
-
--->
 
 ## Algorithme Hamiltonian Monte Carlo
 

@@ -121,7 +121,7 @@ On observe un lien positif entre le nombre de "waffle houses" et le taux de divo
 ```{r waffle-divorce, eval = TRUE, echo = TRUE, fig.width = 10, fig.height = 5}
 df1 %>%
   ggplot(aes(x = WaffleHouses, y = Divorce) ) +
-  geom_text(aes(label = Loc) ) +
+  geom_text(aes(label = Loc), size = 4) +
   geom_smooth(method = "lm", color = "black", se = TRUE) +
   labs(x = "Nombre de 'Waffle Houses' (par million d'habitants)", y = "Taux de divorce")
 ```
@@ -545,6 +545,7 @@ y_{i} &\sim \mathrm{Normal}(\mu_{i}, \sigma) \\
 \mu_{i} &= \alpha + (\beta_{1} + \beta_{2}) x_{i}
 \end{aligned}
 $$
+
 . . .
 
 ```{r plotpost-legs, eval = TRUE, echo = TRUE, dev = "png", dpi = 200}

@@ -789,7 +789,7 @@ Dans ce cadre, pour chaque problème, nous allons suivre 3 étapes :
 
 . . .
 
-![](figures/trump.gif){fig-align="center" width="50%"}
+![](figures/wrong.gif){fig-align="center" width="50%"}
 
 ## Arguments valides
 
@@ -1231,6 +1231,10 @@ Avant de passer le mammogramme, la probabilité qu'une femme tirée au sort ait 
 
 ## Monty Hall
 
+<!--
+
+{{< video figures/montyhall.mp4 width="1200" height="600" >}}
+
 <div align="center">
 
 <video width="1200" height="600" controls="controls">
@@ -1240,6 +1244,12 @@ Avant de passer le mammogramme, la probabilité qu'une femme tirée au sort ait 
 </video>
 
 <div>
+
+-->
+
+<video width="1200" height="600" controls>
+  <source src="figures/montyhall.mp4" type="video/mp4">
+</video>
 
 ## Monty Hall
 
@@ -1282,7 +1292,5 @@ knitr::include_graphics("figures/monty2.png")
 ## Take-home message
 
 Nos intuitions probabilistes sont, dans la grande majorité des cas, très mauvaises. Au lieu de compter sur elles, il est plus sage de se reposer sur des règles logiques (e.g., modus ponens et modus tollens) et probabilistes simples (e.g., règle du produit, règle de la somme, théorème de Bayes), nous assurant de réaliser l'inférence logique la plus juste. Autrement dit, "don't be clever" [@mcelreath2020b].
-
-![](figures/morale.gif){fig-align="center" width="50%"}
 
 ## Références {.refs}

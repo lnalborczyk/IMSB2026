@@ -77,7 +77,39 @@ women <- rnorm(100, 170, 10) # 100 tailles de femmes
 t.test(men, women) # test de student pour différence de moyenne
 ```
 
+<!--
+
 ## {background-iframe="https://embed.polleverywhere.com/multiple_choice_polls/ok3TmpBIp0fmbxGJDS7rr?controls=none&short_poll=true"}
+
+## Poll {background-iframe="https://embed.polleverywhere.com/multiple_choice_polls/ok3TmpBIp0fmbxGJDS7rr?controls=none&short_poll=true"}
+
+## Slide Title {background-iframe="https://example.com"}
+
+## {background-iframe="https://embed.polleverywhere.com/multiple_choice_polls/ok3TmpBIp0fmbxGJDS7rr?controls=none&short_poll=true"}
+
+## {background-iframe="https://embed.polleverywhere.com/multiple_choice_polls/ok3TmpBIp0fmbxGJDS7rr?controls=none&short_poll=true" background-interactive="true"}
+
+<iframe src="https://pollev-embeds.com/ladislasnalborczyk962" width="800px" height="600px"></iframe>
+
+## Sondage
+
+```{=html}
+<iframe
+  src="https://embed.polleverywhere.com/multiple_choice_polls/ok3TmpBIp0fmbxGJDS7rr?controls=none&short_poll=true"
+  width="100%"
+  height="650"
+  style="border:0;"
+  allow="fullscreen"
+></iframe>
+```
+
+## {background-iframe="https://pollev-embeds.com/ladislasnalborczyk962" background-interactive="true"}
+
+-->
+
+## Sondage
+
+Click here: <https://embed.polleverywhere.com/multiple_choice_polls/ok3TmpBIp0fmbxGJDS7rr?controls=none&short_poll=true>.
 
 ## Null Hypothesis Significance Testing (NHST)
 
@@ -237,7 +269,13 @@ particulier a une probabilité de 95% de contenir la "vraie" valeur de
 $\theta$... soit ce dernier contient la vraie valeur de $\theta$, soit
 il ne la contient pas.
 
+<!--
+
 ## {background-iframe="https://rpsychologist.com/d3/CI/"}
+
+-->
+
+## {background-iframe="https://rpsychologist.com/d3/CI/" background-interactive="true"}
 
 ## Facteur de Bayes
 
@@ -384,11 +422,11 @@ Dans le cadre bayésien, le terme de **prior** peut faire référence soit :
 
 -   À la probabilité a priori ou a posteriori d'un modèle (par
     rapport à un autre modèle), c'est à dire $\Pr(\mathcal{M}_{i})$. Voir ce
-    [blogpost](http://www.nicebread.de/two-meanings-of-priors-1/).
+    [blogpost](https://legacy.nicebread.de/two-meanings-of-priors-1/).
 
 -   Aux priors qu'on définit sur les paramètres d'un modèle, par exemple
     $\beta \sim \mathrm{Normal}(0, 1)$. Voir ce
-    [blogpost](http://www.nicebread.de/two-meanings-of-priors-2/).
+    [blogpost](https://legacy.nicebread.de/two-meanings-of-priors-2/).
 
 . . .
 

@@ -23,8 +23,8 @@ posterior_plot(
 
 \item{credmass}{Numeric, credibility mass (default to 0.91).}
 
-\item{usemode}{Logical, indicating whether we should use the using the mean
-(default) or the mode?}
+\item{usemode}{Logical, indicating whether we should use the using the mode
+instead of the median (default).}
 
 \item{compval}{Numeric, to what value comparing the posterior?}
 
@@ -55,7 +55,7 @@ Plotting posterior samples in the style of the \code{BEST} package.
 \examples{
 \dontrun{
 # getting samples for a normal distribution
-samples <- rnorm(n = 1e3, mean = 0, sd = 1)
+samples <- rnorm(n = 1e4, mean = 0, sd = 1)
 
 # plotting it
 posterior_plot(
@@ -63,6 +63,7 @@ posterior_plot(
   compval = 1, rope = c(0.8, 1.2), showcurve = FALSE
   ) +
   # the resulting plot is a ggplot than can be customised
-  labs(x = expression(theta) )
+  labs(x = expression(theta)
+  )
 }
 }
