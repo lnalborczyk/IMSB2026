@@ -69,5 +69,6 @@ format:
     theme:
       - minty
       - custom.scss
+    code-bg: blue
     toc: true
     highlight-style: zenburn

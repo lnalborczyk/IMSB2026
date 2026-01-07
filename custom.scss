@@ -5,6 +5,17 @@
 $font-family-sans-serif: Montserrat, sans-serif !default;
 $font-family-serif: Montserrat, serif !default;
 $monokai-bg: #2e3440;
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #ddd !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
 
 // Home page stuff
 .title-block {
@@ -22,6 +33,11 @@ $monokai-bg: #2e3440;
 .nav-footer-right {
   text-align: right;
 }
+
+// Inline code
+// See https://github.com/andrewheiss/datavizf25.classes.andrewheiss.com/blob/4a2c0a37ace8c2c200d6a15fa5a4a46fbef234ba/html/custom.scss#L4
+$code-bg: $gray-200 !default;
+$code-color: $gray-900 !default;
 
 ////////////////////////////////////////
 // Code stuff
