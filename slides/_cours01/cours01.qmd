@@ -389,13 +389,43 @@ Par exemple : la probabilité de mourir en sachant que vous avez été attaqué 
 
 $$p(x,y) = p(x \given y) p(y) = p(y \given x) p(x)$$
 
+$$p(y \given x) p(x) = p(x \given y) p(y)$$
+
 . . .
+
+Par exemple, $\Pr(x = 2, y = \text{pair}) = \dfrac{\frac{3}{36}}{\frac{18}{36}} \times \frac{18}{36} = \dfrac{\frac{3}{36}}{\frac{3}{36}} \times \frac{3}{36} = \frac{3}{36} \approx  0.0833$.
+
+```{r marginalisation-plot4, out.width = "35%"}
+#| echo: FALSE
+#| fig-width: 6
+#| fig-height: 6
+crossing(X = 1:6, Y = 1:6) %>%
+    mutate(
+        Z = case_when(
+            X == 2 & Y %% 2 == 0 ~ 1,
+            Y %% 2 == 0 ~ 0,
+            .default = NA
+            )
+        ) %>%
+    ggplot(aes(X, Y, fill = Z) ) +
+    geom_tile(colour = "white", show.legend = FALSE) +
+    scale_x_continuous(expand = c(0, 0), n.breaks = 6) +
+    scale_y_continuous(expand = c(0, 0), n.breaks = 6) +
+    theme_bw(base_size = 16, base_family = "Open Sans") +
+    labs(x = "x", y = "y")
+```
+
+## Dérivation du théorème de Bayes
+
+À partir des axiomes de Kolmogorov, et des définitions des probabilités conjointes, marginales, et conditionnelles, découle la **règle du produit** (version générale) :
+
+$$p(x,y) = p(x \given y) p(y) = p(y \given x) p(x)$$
 
 $$p(y \given x) p(x) = p(x \given y) p(y)$$
 
 . . .
 
-Puis en divisant chaque côté par $p(x)$ :
+Puis, en divisant chaque côté par $p(x)$ :
 
 $$p(y \given x) = \dfrac{p(x \given y) p(y)}{p(x)}$$
 
@@ -410,7 +440,6 @@ Si on remplace $x$ par $\text{hypothèse}$ et $y$ par $\text{données}$ :
 $$
 \Pr(\text{hypothèse} \given \text{données}) = \frac{\Pr(\text{données} \given \text{hypothèse}) \times \Pr(\text{hypothèse})}{\text{somme des produits}}
 $$
-
 
 ## Exercice - Problème du sac de billes [@mcelreath2020b]
 
@@ -976,7 +1005,7 @@ data.frame(x = c(0, 200) ) %>%
 integrate(dnorm, -Inf, Inf, mean = 100, sd = 15)
 ```
 
-## Aparté, qu'est-ce qu'une intégrale ?
+## Qu'est-ce qu'une intégrale ?
 
 Une intégrale correspond à la **surface** (aire géométrique) délimitée par la représentation graphique d'une fonction, *l'aire sous la courbe*. Une distribution est dite **impropre** si son intégrale n'est pas égale à un nombre fini (e.g., $+ \infty$) et **normalisée** si son intégrale est égale à 1.
 
@@ -1292,5 +1321,11 @@ knitr::include_graphics("figures/monty2.png")
 ## Take-home message
 
 Nos intuitions probabilistes sont, dans la grande majorité des cas, très mauvaises. Au lieu de compter sur elles, il est plus sage de se reposer sur des règles logiques (e.g., modus ponens et modus tollens) et probabilistes simples (e.g., règle du produit, règle de la somme, théorème de Bayes), nous assurant de réaliser l'inférence logique la plus juste. Autrement dit, "don't be clever" [@mcelreath2020b].
+
+Retenir les définitions des probabilités conjointes, marginales, et conditionnelles, ainsi que la règle du produit et l'utilisation du théorème de Bayes (qui en découle) pour mettre à jour des connaissances :
+
+$$
+\color{purple}{p(\theta \given x)} = \dfrac{\color{orangered}{p(x \given \theta)} \color{steelblue}{p(\theta)}}{\color{green}{p(x)}} = \dfrac{\color{orangered}{p(x \given \theta)} \color{steelblue}{p(\theta)}}{\color{green}{\sum\limits_{\theta}p(x \given \theta)p(\theta)}} = \dfrac{\color{orangered}{p(x \given \theta)} \color{steelblue}{p(\theta)}}{\color{green}{\int\limits_{\theta}p(x \given \theta)p(\theta)\mathrm{d}x}} \propto \color{orangered}{p(x \given \theta)} \color{steelblue}{p(\theta)}
+$$
 
 ## Références {.refs}

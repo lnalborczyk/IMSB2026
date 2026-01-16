@@ -75,7 +75,7 @@
     "href": "content/cours07.html#pour-aller-plus-loin",
     "title": "Cours n°07",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nBurnham, K. P., & Anderson, D. R. (2004). Multimodel inference: Understanding AIC and BIC in model selection. Sociological Methods & Research, 33(2), 261–304. https://doi.org/10.1177/0049124104268644\nStefan, A., & Schönbrodt, F. (2017). Two meanings of priors, part I: The plausibility of models. Blogpost available at: https://www.nicebread.de/two-meanings-of-priors-1/.\nStefan, A., & Schönbrodt, F. (2017). Two meanings of priors, part II: Quantifying uncertainty about model parameters. Blogpot available at: https://www.nicebread.de/two-meanings-of-priors-2/.",
+    "text": "Pour aller plus loin\n\nBurnham, K. P., & Anderson, D. R. (2004). Multimodel inference: Understanding AIC and BIC in model selection. Sociological Methods & Research, 33(2), 261–304. https://doi.org/10.1177/0049124104268644\nLüdecke et al. (2021). performance: An R Package for Assessment, Comparison and Testing of Statistical Models. Journal of Open Source Software, 6(60), 3139. https://doi.org/10.21105/joss.03139. See package documentation at https://easystats.github.io/performance/index.html.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -238,7 +238,7 @@
     "href": "content/cours08.html#pour-aller-plus-loin",
     "title": "Cours n°08",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nBürkner, P.-C., & Vuorre, M. (2019). Ordinal Regression Models in Psychology: A Tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77–101. https://doi.org/10.1177/2515245918823199\nGelman, A., Vehtari, A., Simpson, D., Margossian, C. C., Carpenter, B., Yao, Y., Kennedy, L., Gabry, J., Bürkner, P.-C., & Modrák, M. (2020). Bayesian Workflow. ArXiv:2011.01808 [Stat]. https://arxiv.org/abs/2011.01808\nNalborczyk, L., Batailler, C., Lœvenbruck, H., Vilain, A., & Bürkner, P.-C. (2019). An introduction to Bayesian multilevel models using brms: A case study of gender effects on vowel variability in standard indonesian. Journal of Speech Language and Hearing Research, 62(5), 1225–1242. https://doi.org/10.1044/2018_JSLHR-S-18-0006. Preprint: https://psyarxiv.com/guhsa/.\nWinter, B., & Bürkner, P. (2021). Poisson regression for linguists: A tutorial introduction to modelling count data with brms. Language and Linguistics Compass, 15(11). https://doi.org/10.1111/lnc3.12439",
+    "text": "Pour aller plus loin\n\nBürkner, P.-C., & Vuorre, M. (2019). Ordinal Regression Models in Psychology: A Tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77–101. https://doi.org/10.1177/2515245918823199\nGelman, A., Vehtari, A., Simpson, D., Margossian, C. C., Carpenter, B., Yao, Y., Kennedy, L., Gabry, J., Bürkner, P.-C., & Modrák, M. (2020). Bayesian Workflow. ArXiv:2011.01808 [Stat]. https://arxiv.org/abs/2011.01808\nNalborczyk, L., Batailler, C., Lœvenbruck, H., Vilain, A., & Bürkner, P.-C. (2019). An introduction to Bayesian multilevel models using brms: A case study of gender effects on vowel variability in standard indonesian. Journal of Speech Language and Hearing Research, 62(5), 1225–1242. https://doi.org/10.1044/2018_JSLHR-S-18-0006\nNalborczyk, L., & Bürkner, P. (2025). Precise temporal localisation of M/EEG effects with Bayesian generalised additive multilevel models. https://doi.org/10.1101/2025.08.29.672336\nWinter, B., & Bürkner, P. (2021). Poisson regression for linguists: A tutorial introduction to modelling count data with brms. Language and Linguistics Compass, 15(11). https://doi.org/10.1111/lnc3.12439",
     "crumbs": [
       "Contenu",
       "Planning détaillé",
@@ -430,7 +430,7 @@
     "href": "content/cours06.html#pour-aller-plus-loin",
     "title": "Cours n°06",
     "section": "Pour aller plus loin",
-    "text": "Pour aller plus loin\n\nNalborczyk, L. (2018). Using R to make sense of the generalised linear model. Blogpost available at https://www.barelysignificant.com/post/glm/.",
+    "text": "Pour aller plus loin\n\nNalborczyk, L. (2018). Using R to make sense of the generalised linear model. Blogpost available at https://lnalborczyk.github.io/blog/2018-01-20-glm.",
     "crumbs": [
       "Contenu",
       "Planning détaillé",

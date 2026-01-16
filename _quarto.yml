@@ -16,6 +16,7 @@ website:
   favicon: "files/cover.png"
   
   page-navigation: true
+  bread-crumbs: false
   
   navbar:
     pinned: true

@@ -26,5 +26,4 @@ Voir toutes les commandes de `revealjs` en appuyant sur <kbd>m</kbd> puis <kbd>h
 ## Pour aller plus loin
 
 - Burnham, K. P., & Anderson, D. R. (2004). Multimodel inference: Understanding AIC and BIC in model selection. *Sociological Methods & Research, 33*(2), 261–304. <https://doi.org/10.1177/0049124104268644>
-- Stefan, A., & Schönbrodt, F. (2017). Two meanings of priors, part I: The plausibility of models. Blogpost available at: <https://www.nicebread.de/two-meanings-of-priors-1/>.
-- Stefan, A., & Schönbrodt, F. (2017). Two meanings of priors, part II: Quantifying uncertainty about model parameters. Blogpot available at: <https://www.nicebread.de/two-meanings-of-priors-2/>.
+- Lüdecke et al. (2021). performance: An R Package for Assessment, Comparison and Testing of Statistical Models. Journal of Open Source Software, 6(60), 3139. <https://doi.org/10.21105/joss.03139>. See package documentation at <https://easystats.github.io/performance/index.html>.

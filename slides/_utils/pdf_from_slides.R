@@ -3,14 +3,14 @@
 # ------------------------------------------------------------------ #
 # Written by Ladislas Nalborczyk                                     #
 # E-mail: ladislas.nalborczyk@cnrs.fr                                #
-# Last updated on November 13, 2025                                  #
+# Last updated on January 13, 2026                                   #
 ######################################################################
 
 library(renderthis)
 library(pagedown)
 library(stringr)
 
-# listing extant .html slides in the /html/ folder
+# listing .html files in the /html/ folder
 slides <- list.files(
     path = "html", pattern = ".html",
     recursive = TRUE, full.names = TRUE

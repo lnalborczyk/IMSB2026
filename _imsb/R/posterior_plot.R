@@ -147,6 +147,33 @@ posterior_plot <- function (
     samples |>
         data.frame() |>
         ggplot2::ggplot(ggplot2::aes(x = .data$samples, y = ggplot2::after_stat(.data$..density..) ) ) +
+        {if (!is.null(compval) ) ggplot2::annotate(
+            geom = "segment",
+            x = compval,
+            xend = compval,
+            y = 0,
+            yend = 0.75 * max(densCurve$y),
+            linetype = 2,
+            colour = compvalcolour
+            )} +
+        {if (!is.null(rope) ) ggplot2::annotate(
+            geom = "segment",
+            x = min(rope),
+            xend = min(rope),
+            y = 0,
+            yend = 0.6 * max(densCurve$y),
+            linetype = 2,
+            colour = ROPEcolour
+            )} +
+        {if (!is.null(rope) ) ggplot2::annotate(
+            geom = "segment",
+            x = max(rope),
+            xend = max(rope),
+            y = 0,
+            yend = 0.6 * max(densCurve$y),
+            linetype = 2,
+            colour = ROPEcolour
+            )} +
         {if (!showcurve) ggplot2::geom_histogram(
             bins = nbins,
             alpha = 0.4,
@@ -192,39 +219,12 @@ posterior_plot <- function (
             size = textsize * 1.1
             ) +
         {if (!is.null(compval) ) ggplot2::annotate(
-            geom = "segment",
-            x = compval,
-            xend = compval,
-            y = 0,
-            yend = 0.75 * max(densCurve$y),
-            linetype = 2,
-            colour = compvalcolour
-            )} +
-        {if (!is.null(compval) ) ggplot2::annotate(
             geom = "label",
             x = compval,
             y = 0.75 * max(densCurve$y),
             label = compval_text,
             colour = compvalcolour,
             size = textsize
-            )} +
-        {if (!is.null(rope) ) ggplot2::annotate(
-            geom = "segment",
-            x = min(rope),
-            xend = min(rope),
-            y = 0,
-            yend = 0.6 * max(densCurve$y),
-            linetype = 2,
-            colour = ROPEcolour
-            )} +
-        {if (!is.null(rope) ) ggplot2::annotate(
-            geom = "segment",
-            x = max(rope),
-            xend = max(rope),
-            y = 0,
-            yend = 0.6 * max(densCurve$y),
-            linetype = 2,
-            colour = ROPEcolour
             )} +
         {if (!is.null(rope) ) ggplot2::annotate(
             geom = "label",

@@ -377,6 +377,7 @@ mod1.1 <- brm(
   family = binomial(),
   prior = prior(normal(0, 10), class = Intercept),
   data = df1,
+  chains = 4, cores = 4,
   # on veut récupérer les échantillons issus du prior
   sample_prior = "yes"
   )
@@ -402,6 +403,7 @@ mod1.2 <- brm(
   family = binomial,
   prior = prior(normal(0, 1), class = Intercept),
   data = df1,
+  chains = 4, cores = 4,
   sample_prior = "yes"
   )
 
@@ -475,6 +477,7 @@ mod2.1 <- brm(
   family = binomial,
   prior = priors,
   data = df1,
+  chains = 4, cores = 4,
   sample_prior = "yes"
   )
 ```
@@ -508,6 +511,7 @@ mod2.2 <- brm(
   family = binomial,
   prior = priors,
   data = df1,
+  chains = 4, cores = 4,
   sample_prior = "yes"
   )
 ```
@@ -683,6 +687,7 @@ mod3 <- brm(
   family = binomial(link = "logit"),
   prior = priors,
   data = df2,
+  chains = 4, cores = 4,
   sample_prior = "yes"
   )
 ```
@@ -703,6 +708,7 @@ mod4 <- brm(
   family = binomial(link = "logit"),
   prior = priors,
   data = df2,
+  chains = 4, cores = 4,
   sample_prior = "yes"
   )
 ```
@@ -729,14 +735,9 @@ posterior_plot(samples = diff.admit, compval = 0)
 
 ## Visualiser les prédictions du modèle
 
-On examine les prédictions du modèle par département.
+On examine les prédictions du modèle (en noir) par département.
 
 ```{r eval = TRUE, echo = FALSE, fig.width = 12, fig.height = 6, out.width = "75%"}
-# pp_check(mod4, type = "intervals", nsamples = 1e2, prob = 0.5, prob_outer = 0.95) +
-#   scale_x_continuous(breaks = 1:12, limits = c(1, 12) ) +
-#   theme_bw(base_size = 20) +
-#   labs(x = "Sexe / Département", y = "Nombre d'admissions")
-
 df2 <- df2 %>% mutate(case = factor(1:12) )
 
 p <- 
@@ -823,6 +824,7 @@ mod5 <- brm(
   admit | trials(applications) ~ 0 + dept,
   family = binomial(link = "logit"),
   prior = prior(normal(0, 1), class = b),
+  chains = 4, cores = 4,
   data = df2
   )
 
@@ -831,6 +833,7 @@ mod6 <- brm(
   admit | trials(applications) ~ 0 + dept + male,
   family = binomial(link = "logit"),
   prior = prior(normal(0, 1), class = b),
+  chains = 4, cores = 4,
   data = df2
   )
 ```
@@ -862,7 +865,7 @@ predict(mod6) %>%
       ymin = Q2.5 / applications,
       ymax = Q97.5 / applications
       ),
-    color = "steelblue",
+    # color = "steelblue",
     shape = 1, alpha = 0.5
     ) +
   geom_point(color = "steelblue") +
@@ -941,8 +944,7 @@ mod7 <- brm(
     family = binomial(link = "logit"),
     prior = prior(normal(0, 1), class = Intercept),
     data = df3,
-    # utilise tous les coeurs disponibles de la machine...
-    cores = parallel::detectCores()
+    chains = 4, cores = 4
     )
 ```
 
@@ -1003,7 +1005,7 @@ mod8 <- brm(
     family = binomial(link = "logit"),
     prior = priors,
     data = df3,
-    cores = parallel::detectCores()
+    chains = 4, cores = 4
     )
 ```
 
@@ -1083,7 +1085,7 @@ mod9 <- brm(
     family = binomial(link = "logit"),
     prior = priors,
     data = df3,
-    cores = parallel::detectCores()
+    chains = 4, cores = 4
     )
 ```
 
@@ -1133,7 +1135,7 @@ mod10 <- brm(
     family = binomial(link = "logit"),
     prior = priors,
     data = df3,
-    cores = parallel::detectCores()
+    chains = 4, cores = 4
     )
 ```
 
@@ -1145,12 +1147,12 @@ summary(mod10)
 
 ## Travaux pratiques
 
-Le mail de rappel semble avoir moins d'effet dans le modèle complet que dans le modèle simple... pourquoi ?
+Le mail de rappel semble avoir moins d'effet dans le modèle complet que dans le modèle simple... Pourquoi ?
 
 ```{r eval = TRUE, echo = TRUE}
-fixef(mod8) %>% exp() # calcul du "odds ratio"
-fixef(mod9) %>% exp() # calcul du "odds ratio"
-fixef(mod10) %>% exp() # calcul du "odds ratio"
+fixef(mod8) %>% exp() # calcul du "odds ratio" (i.e., exp(beta))
+fixef(mod9) %>% exp()
+fixef(mod10) %>% exp()
 ```
 
 ## Travaux pratiques

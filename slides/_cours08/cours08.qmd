@@ -73,7 +73,7 @@ l'exemple suivant tout au long de ce cours.
 Imaginons que nous ayons construit un robot visiteur de cafés, et que
 celui-ci s'amuse à mesurer le temps d'attente après avoir commandé. Ce
 robot visite 20 cafés différents, 5 fois le matin et 5 fois
-l'après-midi, et mesure le temps (en minutes) de service d'un café.
+l'après-midi, et mesure le temps (en minutes) de service d'un [cappuccino](https://fr.wikipedia.org/wiki/Cappuccino_(café)).
 
 ```{r echo = FALSE, out.width = "300px"}
 knitr::include_graphics("figures/robot.png")
@@ -106,7 +106,7 @@ df %>%
 ## Robot et café, premier modèle
 
 On peut construire un premier modèle, qui estime le temps moyen (sur
-tous les bistrots confondus) pour être servi.
+tous les cafés confondus) pour être servi.
 
 $$
 \begin{align}
@@ -143,8 +143,7 @@ mod1 <- brm(
     prior(cauchy(0, 2), class = sigma)
     ),
   data = df,
-  # on utilise tous les coeurs disponibles
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -185,7 +184,7 @@ mod2 <- brm(
     prior(cauchy(0, 2), class = sigma)
     ),
   data = df,
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -278,7 +277,7 @@ mod3 <- brm(
     ),
   data = df,
   warmup = 1000, iter = 5000,
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -417,7 +416,7 @@ mod4 <- brm(
     ),
   data = df2,
   warmup = 1000, iter = 5000,
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -472,10 +471,10 @@ serait égale à $0$.
 
 ## Régularisation et terminologie
 
-Le fait de faire varier les intercepts de chaque café est simplement une
+Le fait de faire varier les intercepts par café est simplement une
 autre manière de régulariser (de manière adaptative), c'est à dire de
 diminuer le poids accordé aux données dans l'estimation. Le modèle
-devient à même d'estimer à quel point les groupes (ici les cafés) sont
+devient à même d'estimer à quel point les groupes (ici, les cafés) sont
 différents, tout en estimant les caractéristiques de chaque café...
 
 . . .
@@ -796,7 +795,7 @@ mod5 <- brm(
     ),
   data = df,
   warmup = 1000, iter = 5000,
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -1050,7 +1049,7 @@ cotes).
 fixef(mod6)[2, c(1, 3, 4)] %>% exp()
 ```
 
-Envoyer un mail de rappel multiplie par environ 18 la cote (i.e., le rapport $\frac{\Pr(\text{présent})}{\Pr(\text{absent})}$).
+Envoyer un mail de rappel multiplie par environ 18 le rapport des cotes.
 
 ## Représenter les prédictions du modèle
 
@@ -1081,9 +1080,7 @@ absence_data %>%
 absence_data %>%
     group_by(researcher, total) %>%
     data_grid(reminder = seq_range(reminder, n = 1e2) ) %>%
-    # add_fitted_samples(mod6, newdata = ., n = 100, scale = "linear") %>%
     add_linpred_draws(object = mod6, newdata = ., ndraws = 200) %>%
-    # head()
     mutate(estimate = plogis(.linpred) ) %>%
     ggplot(aes(x = reminder, y = estimate, group = .draw) ) +
     geom_hline(yintercept = 0.5, lty = 2) +
@@ -1148,8 +1145,6 @@ modèle avec l'effet d'intérêt et un modèle sans l'effet d'intérêt.
 ```{r eval = TRUE, echo = TRUE, results = "hide"}
 prior7 <- c(
     prior(normal(0, 10), class = Intercept, coef = ""),
-    # prior(normal(0, 5), class = b)
-    # prior(cauchy(0, 10), class = sd),
     prior(exponential(1), class = sd),
     prior(lkj(2), class = cor)
     )
@@ -1158,7 +1153,6 @@ mod7 <- brm(
     presence | trials(total) ~ 1 + reminder + (1 + reminder | researcher), 
     family = binomial(link = "logit"),
     prior = prior7,
-    # prior = prior(normal(0, 5), class = Intercept, coef = ""),
     data = absence_data,
     # this line is important for bridgesampling
     save_pars = save_pars(all = TRUE),
@@ -1168,7 +1162,6 @@ mod7 <- brm(
 mod8 <- brm(
     presence | trials(total) ~ 1 + (1 + reminder | researcher), 
     family = binomial(link = "logit"),
-    # prior = c(prior(normal(0, 5), class = Intercept, coef = ""), prior(normal(0, 5), class = b) ),
     prior = prior7,
     data = absence_data,
     save_pars = save_pars(all = TRUE),
@@ -1263,7 +1256,7 @@ mod9 <- brm(
     family = binomial(link = "logit"),
     data = absence_data,
     warmup = 2000, iter = 1e4,
-    cores = parallel::detectCores(), # using all available cores
+    chains = 4, cores = 4,
     control = list(adapt_delta = 0.95) # adjusting the delta step size
     )
 ```
@@ -1288,7 +1281,7 @@ Un tutoriel sur les modèles de régression logistique ordinale
 Notre article tutoriel d'introduction aux modèles multi-niveaux avec
 `brms` [@nalborczyk2019].
 
-Application des modèles généralisés additifs multi-niveaux aux séries temporelles (e.g., M/EEG, iEEG, pupillometry, mouse-tracking) [@nalborczyk_precise_2025], voir le package `neurogam` (interface à `brms`): <https://lnalborczyk.github.io/neurogam/>.
+Application des modèles généralisés additifs multi-niveaux (GAMMs) aux séries temporelles (e.g., M/EEG, iEEG, pupillometry, finger- or mouse-tracking) [@nalborczyk_precise_2025], voir le package `neurogam` (interface à `brms`): <https://lnalborczyk.github.io/neurogam/>.
 
 ## Bayesian workflow [@gelman2020]
 
@@ -1409,7 +1402,7 @@ mod10 <- brm(
     ),
   data = sleepstudy,
   warmup = 1000, iter = 5000,
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -1430,7 +1423,7 @@ mod11 <- brm(
     ),
   data = sleepstudy,
   warmup = 1000, iter = 5000,
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -1451,7 +1444,7 @@ mod12 <- brm(
     ),
   data = sleepstudy,
   warmup = 1000, iter = 5000,
-  cores = parallel::detectCores()
+  chains = 4, cores = 4
   )
 ```
 
@@ -1624,7 +1617,7 @@ left_join(model_comparison_table, weights, by = "model")
 ## Proposition de solution
 
 Les prédictions du modèle ne coïncident pas exactement avec les données
-car ces dernières sont discrètes Les élèves étaient notés sur une
+car ces dernières sont discrètes. Les élèves étaient notés sur une
 échelle discrète allant de 1 à 10 (un élève ne pouvait pas avoir
 une note de 3.456). Ce type de données peut-être approximée par une
 distribution normale (comme nous l'avons fait) mais ce choix n'est pas
@@ -1638,7 +1631,7 @@ pp_check(object = mod16, ndraws = 1e2)
 
 On pourrait choisir un modèle qui se rapproche du processus de
 génération des données. C'est le cas du modèle de régression logistique
-ordinale (ordered categorical model). Ce modèle est une sorte de
+ordinale. Ce modèle est une sorte de
 généralisation à plus de 2 catégories du modèle de régression logistique
 vu au Cours n°06 (voir ce
 [blogpost](https://kevinstadler.github.io/blog/bayesian-ordinal-regression-with-random-effects-using-brms/)

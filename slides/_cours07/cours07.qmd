@@ -34,6 +34,8 @@ format:
 title-slide-attributes:
     data-background-color: "#1c5253"
 bibliography: ../../files/bib/references.bib
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Planning
@@ -124,7 +126,7 @@ for (i in 1:nsims) {
     
     men2 <- rnorm(100, 170, 10) # 100 tailles d'hommes
     women2 <- rnorm(100, 170, 10) # 100 tailles de femmes (de même distribution)
-    t[i] <- t.test(men2, women2)$statistic # on conserve la t-valeur
+    t[i] <- t.test(men2, women2)$statistic # on stocke la t-valeur dans t[i]
     
 }
 ```
@@ -242,10 +244,7 @@ df <- t.test(men, women)$parameter
 
 ## Intervalles de confiance
 
-Les intervalles de confiance peuvent être interprétés comme des régions
-de significativité (ou des régions de **compatibilité** avec l'hypothèse
-nulle). Par conséquent, un intervalle de confiance contient la même
-information qu'une p-valeur et s'interprète de manière similaire.
+Les intervalles de confiance peuvent être interprétés comme des régions de *compatibilité* avec l'hypothèse nulle. Par conséquent, un intervalle de confiance contient la même information qu'une p-valeur et s'interprète de manière similaire.
 
 . . .
 
@@ -264,10 +263,10 @@ paramètre $\theta$. Autrement dit, sur le long-terme, 95% des
 intervalles de confiance à 95% que l'on pourrait calculer (dans une
 réplication exacte de notre expérience) contiendraient la valeur du
 paramètre dans la population (i.e., la "vraie" valeur de $\theta$).
-Cependant, nous ne pouvons pas dire qu'un intervalle de confiance en
+Cependant, **nous ne pouvons pas conclure** qu'un intervalle de confiance en
 particulier a une probabilité de 95% de contenir la "vraie" valeur de
 $\theta$... soit ce dernier contient la vraie valeur de $\theta$, soit
-il ne la contient pas.
+il ne la contient pas [e.g., @nalborczyk_pragmatism_2019].
 
 <!--
 
@@ -294,11 +293,7 @@ $$\text{evidence}\ = p(D \given \mathcal{H}) = \int p(\theta \given \mathcal{H})
 
 . . .
 
-L'évidence en faveur d'un modèle correspond à la **vraisemblance
-marginale** d'un modèle (le dénominateur du théorème de Bayes), c'est à
-dire à la vraisemblance moyennée sur le prior... Ce qui fait du facteur
-de Bayes un ratio de vraisemblances, pondéré par (ou moyenné sur) le
-prior.
+L'évidence en faveur d'un modèle correspond à la **vraisemblance marginale**, c'est à dire à la vraisemblance moyennée sur le prior (c'est le dénominateur du théorème de Bayes, la constante de normalisation)... Ce qui fait du facteur de Bayes un ratio de vraisemblances, pondéré par (ou moyenné sur) le prior.
 
 ## Facteur de Bayes, exemple d'application
 
@@ -386,37 +381,7 @@ $$
 \underbrace{\dfrac{p(\mathcal{H}_{1} \given D)}{p(\mathcal{H}_{0} \given D)}}_{\text{posterior odds}} = \underbrace{\dfrac{27}{1}}_{\text{Bayes factor}} \times \underbrace{\dfrac{1}{1000}}_{\text{prior odds}} = \dfrac{27}{1000} = 0.027
 $$
 
-<!--
-
-## Facteur de Bayes - Test d'hypothèse nulle
-
-```{r eval = TRUE, echo = TRUE}
-library(BayesFactor)
-ttestBF(men, women)
-```
-
-Prior "JZS", en référence à Jeffreys (1961), et Zellner & Siow (1980).
-
-## Prior JZS
-
-```{r eval = TRUE, echo = TRUE, fig.width = 6, fig.height = 6}
-data.frame(x = c(-10, 10) ) %>%
-    ggplot(aes(x = x) ) +
-    stat_function(
-        fun = dcauchy, args = list(location = 0, scale = sqrt(2) / 2), size = 1.5
-        ) +
-    labs(x = expression(delta), y = "Densité de probabilité")
-```
-
-## Facteur de Bayes
-
-```{r echo = FALSE, out.width = "800px"}
-knitr::include_graphics("figures/bayes_factor.png")
-```
-
--->
-
-## Double sens
+## Polysémie
 
 Dans le cadre bayésien, le terme de **prior** peut faire référence soit :
 
@@ -430,13 +395,13 @@ Dans le cadre bayésien, le terme de **prior** peut faire référence soit :
 
 . . .
 
-```{r eval = TRUE, echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
+```{r multiple-priors, eval = TRUE, echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5}
 data.frame(x = c(-20, 20) ) %>%
     ggplot(aes(x = x) ) +
-    stat_function(fun = dnorm, args = list(mean = 0, sd = 1), size = 1.5) +
-    stat_function(fun = dnorm, args = list(mean = 0, sd = 2), size = 1.5) +
-    stat_function(fun = dnorm, args = list(mean = 0, sd = 5), size = 1.5) +
-    stat_function(fun = dnorm, args = list(mean = 0, sd = 10), size = 1.5) +
+    stat_function(fun = dnorm, args = list(mean = 0, sd = 1), size = 1.25) +
+    stat_function(fun = dnorm, args = list(mean = 0, sd = 2), size = 1.25) +
+    stat_function(fun = dnorm, args = list(mean = 0, sd = 5), size = 1.25) +
+    stat_function(fun = dnorm, args = list(mean = 0, sd = 10), size = 1.25) +
     labs(x = expression(theta), y = "Densité de probabilité")
 ```
 
@@ -650,12 +615,12 @@ d %>%
 Il nous faut une autre mesure des capacités de prédiction pour évaluer
 nos modèles. Idéalement, on voudrait pouvoir mesurer la "distance" entre
 notre modèle et le "full model" (i.e., la "réalité", la nature)... mais
-on ne sait (encore) pas faire cela.
+on ne sait pas (encore) faire cela.
 
 . . .
 
 Par contre, on peut mesurer de combien notre incertitude est réduite en
-découvrant un outcome (une observation) supplémentaire. Cette
+découvrant une observation supplémentaire. Cette
 réduction est la définition de l'**information**.
 
 . . .
@@ -665,7 +630,9 @@ si on l'a réduite, ou pas)... S'il existe $n$ évènements possibles, et
 que chaque évènement $i$ a pour probabilité $p_{i}$, alors une mesure de
 l'incertitude est donnée par l'entropie (de Shannon) $H$ :
 
-$$H(p) = - \mathbb{E} [\log(p_{i})] = \sum_{i=1}^{n}p_{i} \log\left(\frac{1}{p_{i}}\right) = - \sum_{i=1}^{n}p_{i} \log(p_{i})$$
+$$
+H(p) = - \mathbb{E} [\log(p_{i})] = \sum_{i=1}^{n}p_{i} \log\left(\frac{1}{p_{i}}\right) = - \sum_{i=1}^{n}p_{i} \log(p_{i})
+$$
 
 . . .
 
@@ -689,8 +656,7 @@ p <- c(0.3, 0.7) # distribution des probabilités de pluie et soleil à Grenoble
 
 . . .
 
-Imaginons que nous habitions à Abu Dhabi et que la probabilité qu'il y
-pleuve ou qu'il y fasse beau soit de $p_{1} = 0.01$ et $p_{2} = 0.99$.
+Imaginons que nous habitions à Abu Dhabi et que la probabilité qu'il y pleuve ou qu'il y fasse beau soit de $p_{1} = 0.01$ et $p_{2} = 0.99$. L'entropie (l'incertitude) concernant la prédiction météorologique y est plus faible qu'à Grenoble.
 
 . . .
 
@@ -738,24 +704,13 @@ $q_{2} = 0.75$, quelle quantité d'incertitude avons-nous ajoutée ?
 p <- c(0.3, 0.7)
 q <- c(0.25, 0.75)
 
-sum(p * log(p / q) )
+sum(p * log(p / q) ) # équivalent à sum(p * (log(p) - log(q) ) )
 ```
 
 . . .
 
 ```{r eval = TRUE, echo = TRUE}
-# NB : La divergence n'est pas symétrique...
-sum(q * log(q / p) ) 
-```
-
-## Divergence
-
-[La divergence n'est pas
-symétrique](https://twitter.com/ari_seff/status/1303741288911638530?s=20)
-(ce n'est pas une distance)...
-
-```{r echo = FALSE, out.width = "75%"}
-knitr::include_graphics("figures/divergence.gif")
+sum(q * log(q / p) ) # équivalent à sum(q * (log(q) - log(p) ) )
 ```
 
 ## Entropie croisée et divergence
@@ -782,6 +737,14 @@ $$
 ```{r eval = TRUE, echo = TRUE}
 - sum(p * (log(q) - log(p) ) )
 sum(p * log(p / q) )
+```
+
+## Ce n'est pas une distance
+
+La divergence n'est pas symétrique (ce n'est pas une distance)...
+
+```{r echo = FALSE, out.width = "75%"}
+knitr::include_graphics("figures/divergence.gif")
 ```
 
 ## Vers la déviance...
@@ -815,14 +778,14 @@ knitr::include_graphics("figures/KL_distance.png")
 
 ## Vers la déviance (exemple d'application)
 
-Exemple d'une distribution cible uniforme $p$, et 4 modèles $q1, q2, q3, q4$ (exemple tiré de [cet article](https://en.wikipedia.org/wiki/Kullback–Leibler_divergence#Basic_example)).
+Exemple d'une distribution cible uniforme $p$, et 4 modèles $q1, q2, q3, q4$ (exemple tiré de [Wikipedia](https://en.wikipedia.org/wiki/Kullback–Leibler_divergence#Basic_example)).
 
 ```{r eval = TRUE, echo = TRUE}
 p <- c(1/3, 1/3, 1/3) # distribution cible (distribution uniforme avec p = 1/3)
 q1 <- c(0.36, 0.48, 0.16) # modèle q1
-q2 <- c(0.2, 0.6, 0.2) # modèle q2
-q3 <- c(0.1, 0.8, 0.1) # modèle q3
-q4 <- c(0.3, 0.4, 0.3) # modèle q4
+q2 <- c(0.20, 0.60, 0.20) # modèle q2
+q3 <- c(0.10, 0.80, 0.10) # modèle q3
+q4 <- c(0.30, 0.40, 0.30) # modèle q4
 ```
 
 ```{r eval = TRUE, echo = FALSE}
@@ -844,10 +807,7 @@ divergence_q2 <- sum(p * log(p / q2) ) # divergence du modèle q2
 divergence_q3 <- sum(p * log(p / q3) ) # divergence du modèle q3
 divergence_q4 <- sum(p * log(p / q4) ) # divergence du modèle q4
 
-# vecteur de divergences
 divergences <- c(divergence_q1, divergence_q2, divergence_q3, divergence_q4)
-
-# vecteur de negative log-scores
 neg_log_scores <- c(-sum(log(q1) ), -sum(log(q2) ), -sum(log(q3) ), -sum(log(q4) ) )
 ```
 
@@ -891,11 +851,14 @@ mod1.8 <- lm(formula = brain ~ mass.s, data = d)
 alpha <- coef(mod1.8)[1]
 beta <- coef(mod1.8)[2]
 
+# calcul de sigma à partir des résidus du modèle
+sigma_est <- sqrt(sum(residuals(mod1.8)^2) / nobs(mod1.8) )
+
 # calcul de la log-vraisemblance
 ll <- sum(dnorm(
     x = d$brain,
     mean = alpha + beta * d$mass.s,
-    sd = sigma(mod1.8),
+    sd = sigma_est,
     log = TRUE
     ) )
 
@@ -926,17 +889,11 @@ postérieure.
 
 ## In-sample and out-of-sample
 
-La déviance a le même problème que le $R^{2}$, lorsqu'elle est calculée
-sur l'échantillon observé. Dans ce cas, on l'appelle déviance
-**in-sample**.
+La déviance a le même problème que le $R^{2}$, lorsqu'elle est calculée sur l'échantillon observé (i.e., l'échantillon d'entraînement). Dans ce cas, on l'appelle déviance **in-sample**.
 
 . . .
 
-Si on est intéressé par les capacités de prédiction de notre modèle,
-nous pouvons calculer la déviance du modèle sur de nouvelles données...
-qu'on appellera dans ce cas déviance **out-of-sample**. Cela revient à
-se demander si notre modèle est performant pour prédire de nouvelles
-données (non observées).
+Si on est intéressé par les capacités de prédiction de notre modèle, nous pouvons calculer la déviance du modèle sur de nouvelles données (données de test)... qu'on appellera dans ce cas déviance **out-of-sample**. Cela revient à se demander si notre modèle est performant pour prédire de nouvelles données (non observées).
 
 . . .
 
@@ -949,7 +906,7 @@ issu du même processus de génération de données (que nous appellerons
 échantillon, en utilisant les paramètres estimés avec l'échantillon
 d'entraînement (que nous appellerons $D_{\text{test}}$ ou $D_{\text{out}}$).
 
-## In sample and out of sample deviance
+## In-sample and out-of-sample deviance
 
 $$
 \begin{align}
@@ -1027,7 +984,7 @@ knitr::include_graphics("figures/mind_blowing2.gif")
 
 ## Deviance information criterion
 
-Une condition d’application de l'AIC est que les priors soient plats
+Une condition d'application de l'AIC est que les priors soient plats
 ou dépassés par la vraisemblance (e.g., lorsqu'on a beaucoup de
 données). Le DIC est un indice qui ne requiert pas cette condition, en
 s'accommodant de priors informatifs.
@@ -1049,27 +1006,19 @@ dans le calcul de l'AIC (en cas de prior plat, cette différence revient
 
 ## Widely applicable information criterion
 
-Une condition d'application de l'AIC et du DIC est que la distribution a
-posteriori soit une distribution gaussienne multivariée. Le WAIC relâche
-cette condition et il est souvent plus précis que le DIC.
+Une condition d'application de l'AIC et du DIC est que la distribution a posteriori soit une distribution gaussienne multivariée. Le WAIC relâche cette condition et donne généralement des estimations plus précises de la déviance *ouf-of-sample*.
 
 . . .
 
-Un aspect important du WAIC est qu'il est dit "pointwise", c'est à dire
-qu'il considère l'imprécision de prédiction point par point (donnée par
-donnée), indépendamment pour chaque observation.
+Un aspect important du WAIC est qu'il est dit "pointwise", c'est à dire qu'il considère l'imprécision de prédiction point par point (donnée par donnée), pour chaque observation.
 
 . . .
 
-On va commencer par calculer la **log-pointwise-predictive-density**
-(lppd), définie de la manière suivante :
+On va commencer par calculer la **log-pointwise-predictive-density** (lppd), définie de la manière suivante :
 
 $$\text{lppd}(y, \Theta) = \sum_{i} \log \frac{1}{S} \sum_{s} p(y_{i} \given \Theta_{s})$$
 
-En Français : la log-densité prédictive point par point est **la somme du
-log de la vraisemblance moyenne de chaque observation**. Il s'agit de
-l'analogue point par point de la déviance, moyennée sur toute la
-distribution postérieure.
+En Français : la log-densité prédictive point par point est **la somme du log de la vraisemblance moyenne de chaque observation**. Il s'agit de l'analogue point par point de la déviance, moyennée sur toute la distribution postérieure.
 
 ## Widely applicable information criterion
 
@@ -1095,7 +1044,7 @@ mod1 <- brm(
 $$\text{lppd}(y, \Theta) = \sum_{i} \log \frac{1}{S} \sum_{s} p(y_{i} \given \Theta_{s})$$
 
 ```{r eval = TRUE, echo = TRUE}
-# pointwise log-likelihood (S samples * N observations)
+# pointwise log-likelihood (S posterior samples * N observations)
 ll <- log_lik(mod1) %>% data.frame()
 
 (lppd <-

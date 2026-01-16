@@ -99,14 +99,12 @@ knitr::include_graphics("figures/greek.jpeg")
 rnorm(n = 1e4, mean = 100, sd = 10) |> hist(breaks = "FD")
 
 # on tire 10.000 échantillons issus du prior Gaussien pour mu (i.e., p(mu))
-# ce prior représente ce qu'on sait de mu avant de voir les données...
 mu_prior <- rnorm(n = 1e4, mean = 100, sd = 10)
 
 # 10.000 observations issues d'une distribution Gaussienne avec incertitude sur mu
 rnorm(n = 1e4, mean = mu_prior, sd = 10) |> hist(breaks = "FD")
 
 # on tire 10.000 échantillons issus du prior Exponentiel pour sigma (i.e., p(sigma))
-# ce prior représente ce qu'on sait de sigma avant de voir les données...
 sigma_prior <- rexp(n = 1e4, rate = 0.1)
 
 # 10.000 observations issues d'une distribution Gaussienne avec incertitude sur mu ET sigma
@@ -131,7 +129,11 @@ nsamples <- 1e4
 
 # simulating data from a normal distribution without (epistemic) uncertainty
 rnorm(n = nsamples, mean = 100, sd = 10) |>
-    hist(breaks = "FD", xlim = c(-50, 250) )
+    hist(
+        breaks = "FD", xlim = c(-50, 250),
+        main = "Fixed mu and sigma",
+        ylab = "", yaxt = "n", cex.main = 1.5, cex.axis = 1.5, cex.lab = 1.5
+        )
 
 # drawing samples from the normal prior for mu (i.e., p(mu))
 # what we know about mu before seeing the data
@@ -139,7 +141,11 @@ mu_prior <- rnorm(n = nsamples, mean = 100, sd = 10)
 
 # simulating data from a normal distribution with uncertainty on mu
 rnorm(n = nsamples, mean = mu_prior, sd = 10) |>
-    hist(breaks = "FD", xlim = c(-50, 250) )
+    hist(
+        breaks = "FD", xlim = c(-50, 250),
+        main = "Uncertainty on mu",
+        ylab = "", yaxt = "n", cex.main = 1.5, cex.axis = 1.5, cex.lab = 1.5
+        )
 
 # drawing samples from the exponential prior for sigma (i.e., p(sigma))
 # what we know about sigma before seeing the data
@@ -148,7 +154,11 @@ sigma_prior <- rexp(n = nsamples, rate = 0.1)
 # simulating data from a normal distribution with uncertainty on both mu and sigma
 # what we (the model) assume(s) about y according to our priors for mu and sigma
 rnorm(n = nsamples, mean = mu_prior, sd = sigma_prior) |>
-    hist(breaks = "FD", xlim = c(-50, 250) )
+    hist(
+        breaks = "FD", xlim = c(-50, 250),
+        main = "Uncertainty on mu and sigma",
+        ylab = "", yaxt = "n", cex.main = 1.5, cex.axis = 1.5, cex.lab = 1.5
+        )
 ```
 
 ## Le problème avec la distribution postérieure
@@ -1452,9 +1462,9 @@ knitr::include_graphics("figures/Verif_representativité2.png")
 ## Évaluation des MCMC - Représentativité
 
 Vérification numérique des chaînes : Le **shrink factor** (aussi connu
-comme $\hat{R}$ ou `Rhat`) est le rapport entre la variance
+comme $\widehat{R}$ ou `Rhat`) est le rapport entre la variance
 inter-chaînes et intra-chaîne. Cette valeur devrait idéalement tendre
-vers 1 (on la considère comme acceptable jusqu'à 1.01).
+vers 1 (on la considère comme acceptable jusqu'à 1.1).
 
 ```{r repres3, echo = FALSE, out.width = "50%"}
 knitr::include_graphics("figures/Verif_representativité3.png")
@@ -1638,8 +1648,7 @@ str(df1)
 
 Écrire le modèle qui prédit `log_gdp` en fonction de la rudesse du
 terrain, du continent, et de l'interaction de ces deux variables avec
-`brms::brm()`, en spécifiant vos propres priors. Examinez ensuite les
-estimations de ce modèle (interprétation des paramètres, diagnostiques des MCMCs).
+`brms::brm()`, en spécifiant vos propres priors.
 
 $$
 \begin{aligned}
@@ -1649,6 +1658,8 @@ $$
 \beta_{1}, \beta_{2}, \beta_{3} &\sim \ldots \\
 \end{aligned}
 $$
+
+Examinez ensuite les estimations de ce modèle (interprétation des paramètres, diagnostiques des MCMCs). Puis, essayez de complexifier le modèle, voire de le rendre incohérent, afin d'identifier des problèmes liés aux MCMCs.
 
 ## Proposition de réponse
 
@@ -1664,9 +1675,10 @@ mod2 <- brm(
   prior = priors2,
   family = gaussian(),
   data = df1,
-  chains = 4, # nombre de MCMCs
-  iter = 2000, # nombre total d'itérations (par chaîne)
-  warmup = 1000 # nombre d'itérations pour le warm-up
+  chains = 4, # nombre de chaînes
+  cores = 4, # nombre de coeurs parallèles
+  warmup = 1000, # nombre d'itérations pour le warm-up
+  iter = 2000 # nombre total d'itérations (par chaîne)
   )
 ```
 
@@ -1678,12 +1690,33 @@ summary(mod2)
 
 ## Proposition de réponse
 
-```{r mod2-diagnostics, eval = TRUE, echo = TRUE, fig.width = 12, fig.height = 6}
+```{r mod2-diagnostics, eval = TRUE, echo = TRUE, fig.width = 12, fig.height = 9}
 plot(x = mod2, combo = c("dens_overlay", "trace"), pars = "^b_")
 ```
 
 ## Proposition de réponse
 
-```{r mod2-pairs, eval = TRUE, echo = TRUE, fig.width = 9, fig.height = 6}
+```{r mod2-pairs, eval = TRUE, echo = TRUE, fig.width = 12, fig.height = 9}
 pairs(x = mod2, np = nuts_params(mod2) ) # voir ?nuts_params
+```
+
+## Proposition de réponse
+
+```{r mod3, eval = TRUE, echo = TRUE, results = "hide"}
+mod3 <- brm(
+  # modèle incohérent, interaction entre deux variables redondantes
+  formula = log_gdp ~ 1 + log_gdp * rgdppc_2000,
+  family = gaussian(),
+  data = df1,
+  chains = 2, # nombre de chaînes
+  cores = 2, # nombre de coeurs parallèles
+  warmup = 1000, # nombre d'itérations pour le warm-up
+  iter = 2000 # nombre total d'itérations (par chaîne)
+  )
+```
+
+## Proposition de réponse
+
+```{r mod3-diagnostics, eval = TRUE, echo = TRUE, fig.width = 12, fig.height = 9}
+plot(x = mod3, combo = c("dens_overlay", "trace"), pars = "^b_")
 ```

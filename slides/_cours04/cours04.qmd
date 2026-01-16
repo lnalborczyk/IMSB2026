@@ -61,7 +61,7 @@ $$\newcommand\given[1][]{\:#1\vert\:}$$
 
 ## Rappels 
 
-On considère un modèle de régression linéaire gaussien avec un prédicteur continu. Ce modèle contient trois paramètres à estimer : l'intercept $\alpha$, la pente $\beta$, et l'écart-type des "résidus" $\sigma$.
+On considère un modèle de régression linéaire gaussien avec un prédicteur continu $x$. Ce modèle contient trois paramètres à estimer : l'intercept $\alpha$, la pente $\beta$, et l'écart-type des "résidus" $\sigma$.
 
 $$
 \begin{aligned}
@@ -537,7 +537,7 @@ post %>%
 
 ## Multicolinéarité
 
-Lorsqu'on inclut deux prédicteurs qui contiennent presque exactement la même information dans un modèle, c'est comme si on incluait deux fois le même prédicteur $x_{i}$. Du point de vue du modèle, les deux pentes ne sont pas dissociables, elles agissent sur le même prédicteur. C'est comme si on avait fitté le modèle suivant :
+Lorsqu'on inclut deux prédicteurs qui contiennent presque exactement la même information dans un modèle, c'est comme si on incluait deux fois le même prédicteur $x$. Du point de vue du modèle, les deux pentes ne sont pas dissociables, elles agissent sur le même prédicteur. C'est comme si on avait fitté le modèle suivant :
 
 $$
 \begin{aligned}
@@ -808,7 +808,7 @@ posterior_plot(samples = (post$b_male - post$b_female) / post$sigma) +
 
 ## Prédicteurs catégoriels
 
-Nombre de catégories $\geq 3$.
+Nombre de catégories $> 2$.
 
 ```{r milk-data, eval = TRUE, echo = TRUE}
 df5 <- open_data(milk)
@@ -1132,7 +1132,7 @@ Nous avons étendu le modèle de régression à plusieurs prédicteurs. Ce modè
 
 . . .
 
-Nous avons étendu le modèle de régression aux prédicteurs catégoriels, et introduit le concept d'interaction entre différentes variables prédictrices.
+Nous avons également étendu le modèle de régression aux prédicteurs catégoriels, et introduit le concept d'interaction entre différents prédicteurs.
 
 . . .
 
