@@ -481,7 +481,7 @@
 </g>
 <path fill-rule="nonzero" fill="rgb(97.254902%, 46.27451%, 42.745098%)" fill-opacity="1" stroke-width="1.090909" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 541.964844 130.640625 C 541.964844 136.039062 533.867188 136.039062 533.867188 130.640625 C 533.867188 125.242188 541.964844 125.242188 541.964844 130.640625 "/>
 <g clip-path="url(#clip-30)">
-<path fill="none" stroke-width="1.551969" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-dasharray="1.551969 4.655906" stroke-miterlimit="10" d="M 42.128906 182.984375 L 553.09375 182.984375 "/>
+<path fill="none" stroke-width="1.551969" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-dasharray="6.207874 6.207874" stroke-miterlimit="10" d="M 42.128906 182.984375 L 553.09375 182.984375 "/>
 </g>
 <g clip-path="url(#clip-31)">
 <path fill="none" stroke-width="1.551969" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(20%, 20%, 20%)" stroke-opacity="1" stroke-miterlimit="10" d="M 42.128906 310.871094 L 553.09375 310.871094 L 553.09375 34.722656 L 42.128906 34.722656 Z M 42.128906 310.871094 "/>
@@ -671,7 +671,7 @@
 <path fill-rule="nonzero" fill="rgb(0%, 74.901961%, 76.862745%)" fill-opacity="1" stroke-width="1.090909" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 1064.949219 177.773438 C 1064.949219 183.171875 1056.851562 183.171875 1056.851562 177.773438 C 1056.851562 172.375 1064.949219 172.375 1064.949219 177.773438 "/>
 <path fill-rule="nonzero" fill="rgb(0%, 74.901961%, 76.862745%)" fill-opacity="1" stroke-width="1.090909" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 1060.902344 161.828125 C 1060.902344 167.230469 1052.804688 167.230469 1052.804688 161.828125 C 1052.804688 156.429688 1060.902344 156.429688 1060.902344 161.828125 "/>
 <g clip-path="url(#clip-60)">
-<path fill="none" stroke-width="1.551969" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-dasharray="1.551969 4.655906" stroke-miterlimit="10" d="M 561.0625 182.984375 L 1072.03125 182.984375 "/>
+<path fill="none" stroke-width="1.551969" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-dasharray="6.207874 6.207874" stroke-miterlimit="10" d="M 561.0625 182.984375 L 1072.03125 182.984375 "/>
 </g>
 <g clip-path="url(#clip-61)">
 <path fill="none" stroke-width="1.551969" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(20%, 20%, 20%)" stroke-opacity="1" stroke-miterlimit="10" d="M 561.0625 310.871094 L 1072.027344 310.871094 L 1072.027344 34.722656 L 561.0625 34.722656 Z M 561.0625 310.871094 "/>

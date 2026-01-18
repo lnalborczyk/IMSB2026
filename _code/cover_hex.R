@@ -1,3 +1,11 @@
+######################################################################
+# Generating cover figures (logo and hex)                            #
+# ------------------------------------------------------------------ #
+# Written by Ladislas Nalborczyk                                     #
+# E-mail: ladislas.nalborczyk@cnrs.fr                                #
+# Last updated on January 16, 2026                                   #
+######################################################################
+
 library(hexSticker)
 library(tidyverse)
 
@@ -17,10 +25,10 @@ N <- 40
 z <- 24
 
 p <- tibble(
-    theta = seq(from = 0, to = 1, length.out = thetaSize),
-    prior = dbeta(theta, a, b),
-    likelihood = (theta^(z) ) * (1 - theta)^(N - z)
-    ) %>%
+        theta = seq(from = 0, to = 1, length.out = thetaSize),
+        prior = dbeta(theta, a, b),
+        likelihood = (theta^(z) ) * (1 - theta)^(N - z)
+        ) %>%
     mutate(prior = prior / sum(prior) ) %>%
     mutate(likelihood = likelihood / sum(likelihood) ) %>%
     mutate(posterior = prior * likelihood / sum(prior * likelihood) ) %>%
@@ -44,6 +52,10 @@ p <- tibble(
     # geom_line(aes(y = likelihood, color = "likelihood"), show.legend = FALSE) +
     # geom_line(aes(y = posterior, color = "posterior"), show.legend = FALSE) +
     scale_fill_manual(values = c("orangered", "magenta4","steelblue") )
+
+p
+
+ggsave(filename = "../files/cover.png", width = 9, height = 9, dpi = 300, bg = "transparent")
 
 p <- p + theme_void(base_family = "Open Sans") + theme_transparent()
 

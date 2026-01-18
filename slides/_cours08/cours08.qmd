@@ -33,6 +33,7 @@ format:
     progress: false
 title-slide-attributes:
     data-background-color: "#1c5253"
+    data-state: no-logo
 bibliography: ../../files/bib/references.bib
 editor_options: 
   chunk_output_type: console
@@ -73,7 +74,7 @@ l'exemple suivant tout au long de ce cours.
 Imaginons que nous ayons construit un robot visiteur de cafés, et que
 celui-ci s'amuse à mesurer le temps d'attente après avoir commandé. Ce
 robot visite 20 cafés différents, 5 fois le matin et 5 fois
-l'après-midi, et mesure le temps (en minutes) de service d'un [cappuccino](https://fr.wikipedia.org/wiki/Cappuccino_(café)).
+l'après-midi, et mesure le temps de service après avoir commandé un cappuccino.
 
 ```{r echo = FALSE, out.width = "300px"}
 knitr::include_graphics("figures/robot.png")
@@ -86,21 +87,21 @@ library(tidyverse)
 library(imsb)
 
 df <- open_data(robot)
-head(x = df, n = 15)
+slice_sample(df, n = 15) %>% arrange(cafe, afternoon)
 ```
 
 ## Robot et café
 
 ```{r eval = TRUE, echo = TRUE, fig.width = 15, fig.height = 5}
 df %>%
-  ggplot(aes(x = factor(cafe), y = wait, fill = factor(afternoon) ) ) +
-  geom_dotplot(
-    stackdir = "center", binaxis = "y",
-    dotsize = 1, show.legend = FALSE
-    ) +
-  geom_hline(yintercept = mean(df$wait), linetype = 3) +
-  facet_wrap(~afternoon, ncol = 2) +
-  labs(x = "Café", y = "Temps d'attente (en minutes)")
+    ggplot(aes(x = factor(cafe), y = wait, fill = factor(afternoon) ) ) +
+    geom_dotplot(
+        stackdir = "center", binaxis = "y",
+        dotsize = 1, show.legend = FALSE
+        ) +
+    geom_hline(yintercept = mean(df$wait), linetype = 2) +
+    facet_wrap(~afternoon, ncol = 2) +
+    labs(x = "Café", y = "Temps d'attente (en minutes)")
 ```
 
 ## Robot et café, premier modèle

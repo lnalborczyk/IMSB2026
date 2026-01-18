@@ -5,6 +5,7 @@ author: Ladislas Nalborczyk (CNRS, LPL, Aix-Marseille Univ)
 from: markdown+emoji
 format:
   revealjs:
+    # html-math-method: mathjax
     incremental: true
     theme: [default, ../custom.scss]
     transition: none # fade
@@ -33,6 +34,7 @@ format:
     progress: false
 title-slide-attributes:
     data-background-color: "#1c5253"
+    data-state: no-logo
 bibliography: ../../files/bib/references.bib
 editor: 
   markdown: 

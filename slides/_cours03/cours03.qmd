@@ -33,6 +33,7 @@ format:
     progress: false
 title-slide-attributes:
     data-background-color: "#1c5253"
+    data-state: no-logo
 bibliography: ../../files/bib/references.bib
 editor_options: 
   chunk_output_type: console

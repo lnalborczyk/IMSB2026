@@ -56,6 +56,19 @@ $presentation-h3-font-size: 1.5em !default;
   //transform: translate(-50%, -50%);
 }
 
+// hide the logo ONLY on the title slide
+// .reveal #title-slide .slide-logo,
+// .reveal section.title-slide .slide-logo {
+//   display: none !important;
+// }
+.reveal.no-logo img.slide-logo {
+  display: none !important;
+}
+body.no-logo img.slide-logo {
+  display: none !important;
+}
+
+// modify subtitles
 .reveal p.subtitle {
   font-size: 150%;
   text-align: center;
@@ -161,6 +174,14 @@ $presentation-h3-font-size: 1.5em !default;
   border-radius: 0px;
   margin-top: 5px !important;
   margin-bottom: 5px !important;
+}
+
+// Quarto/Reveals: increase max height for *output* blocks (not source)
+// New change on January 16, 2026
+.reveal .cell-output pre,
+.reveal .cell-output pre code {
+  max-height: 75vh;
+  overflow: auto;
 }
 
 // changing the colour of inline R code

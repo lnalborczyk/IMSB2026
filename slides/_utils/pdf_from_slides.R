@@ -3,21 +3,18 @@
 # ------------------------------------------------------------------ #
 # Written by Ladislas Nalborczyk                                     #
 # E-mail: ladislas.nalborczyk@cnrs.fr                                #
-# Last updated on January 13, 2026                                   #
+# Last updated on January 18, 2026                                   #
 ######################################################################
 
 library(renderthis)
 library(pagedown)
 library(stringr)
 
-# listing .html files in the /html/ folder
+# listing html files in the html/ folder
 slides <- list.files(
     path = "html", pattern = ".html",
     recursive = TRUE, full.names = TRUE
     )
-
-# some example
-# input <- slides[10]
 
 for (input in slides) { # for each course
 
@@ -54,8 +51,10 @@ for (input in slides) { # for each course
     pagedown::chrome_print(
         input = input,
         output = output,
+        wait = 2,
         format = "pdf",
-        timeout = 60
+        timeout = 120,
+        verbose = 1
         )
     
     # extracting the R code from slides

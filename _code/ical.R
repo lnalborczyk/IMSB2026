@@ -5,7 +5,6 @@ library(purrr)
 
 # defining the planning table
 year <- 2026
-
 planning <- tibble::tribble(
     ~summary,                                              ~wday,     ~day, ~start_hm, ~end_hm,
     "IMSB cours n°01 : Introduction à l'inférence bayésienne",  "Lundi",     19, "14:00",   "17:00",
@@ -39,7 +38,7 @@ ics_df <- pmap_dfr(
     ~ic_event(start_time = ..1, end_time = ..2, summary = ..3)
     )
 
-# optional: adding a course-wide DESCRIPTION or LOCATION
+# adding a course-wide DESCRIPTION or LOCATION
 ics_df$DESCRIPTION <- "Formation interdisciplinaire de modélisation statistique bayésienne, M2R, Université Grenoble-Alpes"
 ics_df$LOCATION <- "Université Grenoble Alpes"
 

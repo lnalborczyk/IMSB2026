@@ -5,6 +5,19 @@ author: Ladislas Nalborczyk (CNRS, LPL, Aix-Marseille Univ)
 from: markdown+emoji
 format:
   revealjs:
+    # html-math-method: # see https://github.com/quarto-dev/quarto-examples/tree/main/html-math
+    #   - method: mathjax
+    #   - url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    # html-math-method: katex
+    # html-math-method: webtex
+    # include-in-header:
+    #   - text: |
+    #       <script>
+    #       window.MathJax = {
+    #         tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    #         svg: { fontCache: 'global' }
+    #       };
+    #       </script>
     theme: [default, ../custom.scss]
     transition: none # fade
     background-transition: none # fade
@@ -33,6 +46,7 @@ format:
     progress: false
 title-slide-attributes:
     data-background-color: "#1c5253"
+    data-state: no-logo
 bibliography: ../../files/bib/references.bib
 editor_options: 
   chunk_output_type: console
@@ -136,11 +150,11 @@ $$\Pr(\text{pluie}) = \frac{\text{pluie}}{ \{ \text{pluie, non-pluie} \} } = \fr
 
 $$\Pr(x) = \lim_{n_{t} \to \infty}\frac{n_{x}}{n_{t}}$$
 
-Où $n_{x}$ est le nombre d'occurrences de l'événement $x$ et $n_{t}$ le nombre total d'essais. L'interprétation **fréquentiste** postule que, à long-terme (i.e., quand le nombre d'essais s'approche de l'infini), la fréquence relative va converger *exactement* vers ce qu'on appelle "probabilité".
+Où $n_{x}$ est le nombre d'occurrences de l'évènement $x$ et $n_{t}$ le nombre total d'essais. L'interprétation **fréquentiste** postule que, à long-terme (i.e., quand le nombre d'essais s'approche de l'infini), la fréquence relative va converger *exactement* vers ce qu'on appelle "probabilité".
 
 . . .
 
-Conséquence : le concept de probabilité s'applique uniquement aux **collectifs**, et non aux événements singuliers.
+Conséquence : le concept de probabilité s'applique uniquement à des ensembles d'évènements, et non à des évènements individuels.
 
 ## Interprétation fréquentiste (ou empirique)
 
@@ -163,11 +177,11 @@ Quelle classe de référence ? *Quelle est la probabilité que je vive jusqu'à 
 
 . . .
 
-Quid des événements qui ne peuvent pas se répéter ? *Quelle est la probabilité que j'apprenne quelque chose pendant cette formation ?*
+Quid des évènements qui ne peuvent pas se répéter ? *Quelle est la probabilité que j'apprenne quelque chose pendant cette formation ?*
 
 . . .
 
-À partir de combien de lancers (d'une pièce par exemple) a-t-on une bonne approximation de la probabilité ? Une classe finie d'événements de taille $n$ ne peut produire que des fréquences relatives de précision $1/n$...
+À partir de combien de lancers (d'une pièce par exemple) a-t-on une bonne approximation de la probabilité ? Une classe finie d'évènements de taille $n$ ne peut produire que des fréquences relatives de précision $1/n$...
 
 ## Interprétation propensionniste
 
@@ -175,7 +189,7 @@ Les propriétés fréquentistes (i.e., à long terme) des objets (e.g., une piè
 
 . . .
 
-Conséquence : ces propriétés sont les propriétés d'événements individuels... et non de séquences ! L'interprétation propensionniste nous permet donc de parler de la probabilité d'événements uniques.
+Conséquence : ces propriétés sont les propriétés d'évènements individuels... et non de séquences ! L'interprétation propensionniste nous permet donc de parler de la probabilité d'évènements uniques.
 
 ## Interprétation logique
 
@@ -217,7 +231,7 @@ Conséquence : toute probabilité est **conditionnelle**.
 
 ## Interprétation bayésienne
 
-La probabilité est **une mesure du degré d'incertitude**. Un événement *certain* aura donc une probabilité de 1 et un événement *impossible* une probabilité de 0.
+La probabilité est **une mesure du degré d'incertitude**. Un évènement *certain* aura donc une probabilité de 1 et un évènement *impossible* une probabilité de 0.
 
 . . .
 
@@ -225,7 +239,7 @@ La probabilité est **une mesure du degré d'incertitude**. Un événement *cert
 
 . . .
 
-Pour parler de probabilités, dans ce cadre, nous n'avons plus besoin de nous référer à la limite d'occurrence d'un événement (fréquence).
+Pour parler de probabilités, dans ce cadre, nous n'avons plus besoin de nous référer à la limite d'occurrence d'un évènement (fréquence).
 
 ## Interprétations probabilistes
 
@@ -267,7 +281,7 @@ Les probabilités dépendent d'un état du monde, de caractéristiques physiques
 
 ## Axiomes des probabilités [@kolmogorov1933]
 
-Une probabilité est une valeur numérique assignée à un événement $A$, compris comme une possibilité appartenant à l'univers $\Omega$ (l'ensemble de toutes les issues possibles).
+Une probabilité est une valeur numérique assignée à un évènement $A$, compris comme une possibilité appartenant à l'univers $\Omega$ (l'ensemble de toutes les issues possibles).
 
 . . .
 
@@ -275,21 +289,21 @@ Les probabilités se conforment aux axiomes suivants :
 
 -   Non-négativité : $\Pr(A) \geq 0$
 -   Normalisation : $\Pr(\Omega) = 1$
--   Additivité (pour des événements incompatibles) : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2})$
+-   Additivité (pour des évènements incompatibles) : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2})$
 
 . . .
 
-Le dernier axiome est également connu comme la **règle de la somme**, et peut se généraliser à des événements non mutuellement exclusifs : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})$.
+Le dernier axiome est également connu comme la **règle de la somme**, et peut se généraliser à des évènements non mutuellement exclusifs : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})$.
 
 ## Règle de la somme et règle du produit
 
-**Règle de la somme** (pour deux événements mutuellement exclusifs) : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})$.
+**Règle de la somme** (pour deux évènements mutuellement exclusifs) : $\Pr(A_{1} \cup A_{2}) = \Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})$.
 
 Pensez à la probabilité d'obtenir un nombre impair lors d'un lancer de dé. Nous pouvons l'écrire sous la forme $\Pr(x = 1) + \Pr(x = 3) + \Pr(x = 5) = \frac{3}{6}$.
 
 . . .
 
-**Règle du produit** (pour deux événements indépendants) : $\Pr(A_{1} \cap A_{2}) = \Pr(A_{1}) \times \Pr(A_{2})$.
+**Règle du produit** (pour deux évènements indépendants) : $\Pr(A_{1} \cap A_{2}) = \Pr(A_{1}) \times \Pr(A_{2})$.
 
 Pensez à la probabilité d'obtenir deux 6 consécutifs lors de deux lancers de dé. On peut l'écrire sous la forme $\Pr(x = 6, y = 6) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}$.
 
@@ -299,7 +313,7 @@ Si vous comprenez et retenez ces deux règles, vous maîtrisez déjà la statist
 
 ## Probabilité conjointe
 
-Lords du lancer de 2 dés, la probabilité que le dé $x$ soit égal à 2 et que le dé $y$ soit égal à 3 est : $\Pr(x = 2, y = 3) = \Pr(y = 3, x = 2) = \frac{1}{36}$.
+Lors du lancer de 2 dés, la probabilité que le dé $x$ soit égal à 2 et que le dé $y$ soit égal à 3 est : $\Pr(x = 2, y = 3) = \Pr(y = 3, x = 2) = \frac{1}{36}$.
 
 ```{r joint-prob-plot}
 #| echo: FALSE
@@ -353,7 +367,7 @@ crossing(X = 1:6, Y = 1:6) %>%
 
 ## Probabilité conditionnelle
 
-Quelle est la probabilité que le dé $x$ ait une certaine valeur **sachant que** le total est égal à 4 ? Par exemple, la probabilité que le dé $x$ soit égal à 2 (sachant que le total est 4) : $\Pr(x = 2 \given x + y = 4) = \frac{1}{3}$.
+Quelle est la probabilité que le dé $x$ ait une certaine valeur **sachant que** le total est égal à 4 ? Par exemple, la probabilité que le dé $x$ soit égal à 2 (sachant que le total est 4) : $\Pr(x = 2 \given x + y = 4) = \frac{1}{3}$. Cette probabilité conditionnelle peut être réécrite : $\Pr(x = 2 \given x + y = 4) = \frac{\Pr(x = 2, x + y = 4) }{\Pr(x + y = 4) } = \frac{1/36}{3/36} = \frac{1}{3}$.
 
 ```{r marginalisation-plot3}
 #| echo: FALSE
@@ -375,13 +389,9 @@ crossing(X = 1:6, Y = 1:6) %>%
     labs(x = "x", y = "y")
 ```
 
-## Probabilité conditionnelle
+## Confusion of the inverse
 
-Cette probabilité conditionnelle peut être réécrite : $\Pr(x = 2 \given x + y = 4) = \frac{\Pr(x = 2, x + y = 4) }{\Pr(x + y = 4) } = \frac{1/36}{3/36} = \frac{1}{3}$. Notez que $\Pr(x \given y)$ **n'est pas nécessairement égal** (et n'est généralement pas égal) à $\Pr(y \given x)$.
-
-. . .
-
-Par exemple : la probabilité de mourir en sachant que vous avez été attaqué par un requin n'est pas la même que la probabilité d'avoir été attaqué par un requin en sachant que vous êtes mort ([confusion de l'inverse](https://en.wikipedia.org/wiki/Confusion_of_the_inverse)). De la même manière, $p(\text{données} \given \mathcal{H}_{0}) \neq p(\mathcal{H}_{0} \given \text{données})$.
+Notez que $\Pr(x \given y)$ n'est pas nécessairement égal -- et n'est **généralement pas égal** -- à $\Pr(y \given x)$. Par exemple : la probabilité de mourir en sachant que vous avez été attaqué par un requin n'est pas la même que la probabilité d'avoir été attaqué par un requin en sachant que vous êtes mort (cf. [confusion of the inverse](https://en.wikipedia.org/wiki/Confusion_of_the_inverse)). De la même manière, $p(\text{données} \given \mathcal{H}_{0}) \neq p(\mathcal{H}_{0} \given \text{données})$.
 
 ## Dérivation du théorème de Bayes
 
@@ -393,7 +403,7 @@ $$p(y \given x) p(x) = p(x \given y) p(y)$$
 
 . . .
 
-Par exemple, $\Pr(x = 2, y = \text{pair}) = \dfrac{\frac{3}{36}}{\frac{18}{36}} \times \frac{18}{36} = \dfrac{\frac{3}{36}}{\frac{3}{36}} \times \frac{3}{36} = \frac{3}{36} \approx  0.0833$.
+Par exemple, $\Pr(x = 2, y = \text{pair}) = \dfrac{\frac{3}{36}}{\frac{18}{36}} \times \frac{18}{36} = \dfrac{\frac{3}{36}}{\frac{3}{36}} \times \frac{3}{36} = \frac{3}{18} \times \frac{18}{36} = \frac{3}{6} \times \frac{6}{36} = \frac{3}{36} \approx 0.0833$.
 
 ```{r marginalisation-plot4, out.width = "35%"}
 #| echo: FALSE
@@ -854,7 +864,11 @@ Or cet argument est invalide, le modus tollens ne s'applique pas au monde probab
 
 . . .
 
-Par exemple : *Si un individu est un homme (man), alors il est peu probable qu'il soit pape. François est pape. François n'est donc certainement pas un homme...*
+Par exemple :
+
+- Si un individu est un homme ("man"), alors il est peu probable qu'il soit pape.
+- François est pape.
+- François n'est donc certainement pas un homme...
 
 ## L'échec de la falsification
 
@@ -957,17 +971,17 @@ Nous avons besoin d'outils qui prennent en compte le rapport *qualité de la des
 
 ## Notre stratégie
 
-Besoin d'un cadre pour développer des modèles cohérents. Nos outils :
+Nous avons nesoin d'un cadre pour développer des modèles cohérents. Nos outils :
 
--   **Bayesian data analysis** : utiliser les probabilités pour décrire l'incertitude.
-
-. . .
-
--   **Multilevel modelling** : des modèles à multiples niveaux d'incertitude.
+- **Modélisation bayésienne** : utiliser les probabilités pour décrire l'incertitude.
 
 . . .
 
--   Approche par **comparaison de modèles** : au lieu d'essayer de falsifier un "null model", on va comparer des modèles intéressants (AIC, WAIC).
+- **Modélisation multi-niveaux** : des modèles à multiples niveaux d'incertitude.
+
+. . .
+
+-   Approche par **comparaison de modèles** : au lieu d'essayer de falsifier un "null model", on va comparer des modèles intéressants (par exemple via des critères d'information comme l'AIC ou WAIC).
 
 # Rappels : Théorie des probabilités
 
@@ -1052,6 +1066,8 @@ L'intégrale de $f(x)$ sur l'intervalle \[90 ; 96\] vaut : $p(90 < x < 96) = \in
 integrate(dnorm, 90, 96, mean = 100, sd = 15)
 ```
 
+<!--
+
 ## Probabilité conjointe
 
 ```{r, message = FALSE, echo = TRUE}
@@ -1074,7 +1090,7 @@ rownames(cont2) <- row.names(cont)
 cont2
 ```
 
-On peut aussi s'intéresser à la probabilité d'avoir des yeux bleus, de manière générale. Il s'agit de la probabilité **marginale** de l'événement *yeux bleus*, qui s'obtient par la somme de toutes les probabilités jointes impliquant l'événement *yeux bleus*. Elle s'écrit $p(y)$.
+On peut aussi s'intéresser à la probabilité d'avoir des yeux bleus, de manière générale. Il s'agit de la probabilité **marginale** de l'évènement *yeux bleus*, qui s'obtient par la somme de toutes les probabilités jointes impliquant l'évènement *yeux bleus*. Elle s'écrit $p(y)$.
 
 ## Probabilité marginale
 
@@ -1105,8 +1121,6 @@ cont3["Blue", "Blond"] / cont3["Blue", "marginal_eye"]
 . . .
 
 On remarque à nouveau que $\Pr(\text{cheveux = blonds} \given \text{yeux = bleus})$ **n'est pas nécessairement égal** (et n'est généralement pas égal) à $\Pr(\text{yeux = bleus} \given \text{cheveux = blonds})$.
-
-<!--
 
 ## Probabilité conditionnelle
 
@@ -1158,18 +1172,12 @@ Autre exemple : la probabilité de mourir sachant qu'on a été attaqué par un 
 
 ## Diagnostique médical, maximum likelihood
 
-::: incremental
--   Une femme passe une mammographie, le résultat est positif...
-    -   $\Pr(\text{Mam=+} \given \text{Cancer=+}) = 0.90$
-    -   $\Pr(\text{Mam=+} \given \text{Cancer=-}) = 0.07$
--   Maximum de vraisemblance : quelle est la valeur de $\text{Cancer}$ qui **maximise** $\text{Mam=+}$ ?
-    -   $\Pr(\text{Mam=+} \given \text{Cancer=+}) = 0.90$
-    -   $\Pr(\text{Mam=+} \given \text{Cancer=-}) = 0.07$
-:::
+Si le test est positif, la logique du maximum de vraisemblance consiste à se demander quelle est la valeur de $\text{Cancer}$ qui **maximise** $\text{Mam=+}$ ?
 
-. . .
+- $\Pr(\text{Mam=+} \given \text{Cancer=+}) = 0.90$
+- $\Pr(\text{Mam=+} \given \text{Cancer=-}) = 0.07$
 
-En suivant cette approche, on conclut donc à la présence d'un cancer (car cela maximise la probabilité d'apparition d'un mammogramme positif)...
+En suivant cette approche, on conclut à la présence d'un cancer (car cela maximise la probabilité d'apparition d'un mammogramme positif)...
 
 ## Wait a minute...
 
@@ -1288,7 +1296,7 @@ Avant de passer le mammogramme, la probabilité qu'une femme tirée au sort ait 
 
 ## Monty Hall
 
-Il s'agit d'un problème de probabilités conditionnelles... Définissons les événements suivants :
+Il s'agit d'un problème de probabilités conditionnelles... Définissons les évènements suivants :
 
 P1 : l'animateur ouvre la porte 1 <br> P2 : l'animateur ouvre la porte 2 <br> P3 : l'animateur ouvre la porte 3 <br>
 
@@ -1320,7 +1328,7 @@ knitr::include_graphics("figures/monty2.png")
 
 ## Take-home message
 
-Nos intuitions probabilistes sont, dans la grande majorité des cas, très mauvaises. Au lieu de compter sur elles, il est plus sage de se reposer sur des règles logiques (e.g., modus ponens et modus tollens) et probabilistes simples (e.g., règle du produit, règle de la somme, théorème de Bayes), nous assurant de réaliser l'inférence logique la plus juste. Autrement dit, "don't be clever" [@mcelreath2020b].
+Nos intuitions probabilistes sont généralement très mauvaises. Au lieu de compter sur elles, il est plus sage de se reposer sur des règles logiques (e.g., modus ponens et modus tollens) et probabilistes (e.g., règle du produit, règle de la somme, théorème de Bayes) simples, nous assurant de réaliser l'inférence la plus juste. Autrement dit, "don't be clever" [@mcelreath2020b].
 
 Retenir les définitions des probabilités conjointes, marginales, et conditionnelles, ainsi que la règle du produit et l'utilisation du théorème de Bayes (qui en découle) pour mettre à jour des connaissances :
 
