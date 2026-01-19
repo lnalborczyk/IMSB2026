@@ -418,7 +418,7 @@ tirer aléatoirement un grand nombre de points "au hasard" parmi ces 28
 cases (comme pour le calcul de $\pi$) !
 
 ```{r distribution_theta2, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/DistribCarré1-7.png")
+knitr::include_graphics("figures/distrib_carre.png")
 ```
 
 ## Méthodes Monte Carlo : Exemple
@@ -1446,7 +1446,7 @@ Ces méthodes produisent des chaînes de valeurs de paramètres
 :::
 
 ```{r repres1, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/Verif_representativité1.png")
+knitr::include_graphics("figures/verif_representativite1.png")
 ```
 
 ## Évaluation des MCMC - Représentativité
@@ -1457,7 +1457,7 @@ est également affectée. En pratique on supprime ces premières itérations
 (période de "burn-in" ou de "warm-up").
 
 ```{r repres2, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/Verif_representativité2.png")
+knitr::include_graphics("figures/verif_representativite2.png")
 ```
 
 ## Évaluation des MCMC - Représentativité
@@ -1468,7 +1468,7 @@ inter-chaînes et intra-chaîne. Cette valeur devrait idéalement tendre
 vers 1 (on la considère comme acceptable jusqu'à 1.1).
 
 ```{r repres3, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/Verif_representativité3.png")
+knitr::include_graphics("figures/verif_representativite3.png")
 ```
 
 ## Évaluation des MCMC - Stabilité et précicion
@@ -1495,7 +1495,7 @@ Pour une précision raisonnable du HDI, il est recommandé d'avoir un ESS
 supérieur à 1000.
 
 ```{r repres4, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/Verif_representativité4.png")
+knitr::include_graphics("figures/verif_representativite4.png")
 ```
 
 ## Évaluation des MCMC - Stabilité et précicion
@@ -1507,7 +1507,7 @@ $MCSE = SD / \sqrt{ESS}$. Pour une précision raisonnable de la tendance
 centrale, il faut que cette valeur soit faible.
 
 ```{r repres5, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("figures/Verif_representativité5.png")
+knitr::include_graphics("figures/verif_representativite5.png")
 ```
 
 ## Évaluation des MCMC - Implémentation via brms

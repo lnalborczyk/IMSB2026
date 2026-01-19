@@ -97,7 +97,7 @@ $$
 Objectif de l'analyse de données bayésienne : Faire évoluer une
 connaissance a priori sur les paramètres $\color{steelblue}{p(\theta)}$
 en une connaissance a posteriori $\color{purple}{p(\theta \given y)}$,
-intégrant l'information contenue dans les nouvelles données via
+intégrant l'information contenue dans les données via
 $\color{orangered}{p(y \given \theta)}$.
 
 ## Rappels
