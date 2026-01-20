@@ -655,7 +655,7 @@ mod6 <- brm(
 
 ## Post-treatment bias
 
-On remarque que l'effet du traitement est négligeable. La présence des champignons (`fungus`) est une conséquence de l'application du `treatment`. On demande au modèle si le traitement a une influence sachant que la plante a (ou n'a pas) développé de champignons...
+On remarque que l'effet du traitement est négligeable. Mais la présence des champignons (`fungus`) est une conséquence de l'application du `treatment`. On demande au modèle si le traitement a une influence sachant que la plante a (ou n'a pas) développé de champignons...
 
 ```{r summary-mo6, eval = TRUE, echo = TRUE}
 posterior_summary(mod6)

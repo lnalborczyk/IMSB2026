@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------ #
 # Written by Ladislas Nalborczyk                                     #
 # E-mail: ladislas.nalborczyk@cnrs.fr                                #
-# Last updated on January 18, 2026                                   #
+# Last updated on January 19, 2026                                   #
 ######################################################################
 
 library(renderthis)
@@ -16,7 +16,7 @@ slides <- list.files(
     recursive = TRUE, full.names = TRUE
     )
 
-for (input in slides) { # for each course
+for (input in slides[3]) { # for each course
 
     # printing progress
     print(paste0("Printing '", input, "'...") )
@@ -51,7 +51,7 @@ for (input in slides) { # for each course
     pagedown::chrome_print(
         input = input,
         output = output,
-        wait = 2,
+        wait = 4,
         format = "pdf",
         timeout = 120,
         verbose = 1

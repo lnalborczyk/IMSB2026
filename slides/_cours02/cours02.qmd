@@ -5,7 +5,6 @@ author: Ladislas Nalborczyk (CNRS, LPL, Aix-Marseille Univ)
 from: markdown+emoji
 format:
   revealjs:
-    # html-math-method: mathjax
     incremental: true
     theme: [default, ../custom.scss]
     transition: none # fade
@@ -1223,7 +1222,7 @@ median_posterior <- median(samples)
 ```{r tendance-centrale3, echo = FALSE, fig.width = 18, fig.height = 6}
 data.frame(samples = samples) %>%
   ggplot(aes(x = samples) ) +
-  geom_histogram(aes(y = ..density..), fill = "purple", alpha = 0.25, bins = 50) +
+  geom_histogram(aes(y = after_stat(density) ), fill = "purple", alpha = 0.25, bins = 50) +
   geom_vline(aes(xintercept = mode_posterior), size = 1, color = "steelblue") +
   annotate(
     geom = "text",
@@ -1293,13 +1292,15 @@ sum(samples > 0.2 & samples < 0.4) / length(samples)
 df <- data.frame(theta = p_grid, posterior = posterior)
 
 ggplot(df, aes(x = theta, y = posterior, colour = NULL) ) +
-    geom_area(
+  geom_area(
     position = "identity", fill = "purple", alpha = 0.5
     ) +
   geom_area(
     data = subset(df, theta > 0.4),
     position = "identity", fill = "purple", alpha = 0.5
     ) +
+  geom_vline(xintercept = 0.2, color = "white") +
+    geom_vline(xintercept = 0.4, color = "white") +
   geom_area(
     data = subset(df, 0.2 > theta),
     position = "identity", fill = "purple", alpha = 0.5
@@ -1319,10 +1320,10 @@ Highest density interval (HDI) :
 . . .
 
 > Définition : les valeurs du paramètre $\theta$ contenues dans un HDI à
-> 89% sont telles que $p(\theta) > W$ où $W$ satisfait la condition
-> suivante :
+> $100(1 - \alpha)$% sont telles que $p(\theta) > S$ où $S$ est un "seuil" qui
+> satisfait la condition suivante :
 >
-> $$\int_{\theta \ : \ p(\theta) > W} p(\theta) \, \mathrm{d} \theta = 0.89.$$
+> $$\int_{\theta \ : \ p(\theta) > S} p(\theta) \, \mathrm{d} \theta = 1 - \alpha.$$
 
 ## Highest density interval (HDI)
 
@@ -1337,9 +1338,8 @@ library(imsb)
 
 set.seed(666)
 p_grid <- seq(from = 0, to = 1, length.out = 1e3)
-pTheta <- dbeta(p_grid, 3, 10)
-massVec <- pTheta / sum(pTheta)
-samples <- sample(x = p_grid, size = 1e4, replace = TRUE, prob = pTheta)
+p_theta <- dbeta(x = p_grid, shape1 = 3, shape2 = 10)
+samples <- sample(x = p_grid, size = 1e4, replace = TRUE, prob = p_theta)
 
 posterior_plot(samples = samples, credmass = 0.89)
 ```
@@ -1367,9 +1367,8 @@ le HDI et la ROPE se chevauchent, on ne peut pas conclure...
 ```{r eval = TRUE, echo = FALSE}
 set.seed(666)
 p_grid <- seq(from = 0, to = 1, length.out = 1e3)
-pTheta <- dbeta(p_grid, 3, 10)
-massVec <- pTheta / sum(pTheta)
-samples <- sample(p_grid, size = 1e4, replace = TRUE, prob = pTheta)
+p_theta <- dbeta(x = p_grid, shape1 = 3, shape2 = 10)
+samples <- sample(x = p_grid, size = 1e4, replace = TRUE, prob = p_theta)
 ```
 
 ```{r eval = TRUE, echo = TRUE, fig.width = 7.5, fig.height = 5, dev = "png", dpi = 200}
@@ -1392,13 +1391,6 @@ lequel rend le mieux compte des données.
 \end{eqnarray*}
 ```
 . . .
-
-Le facteur de Bayes (Bayes factor) fait le rapport des vraisemblances
-(marginales) des deux modèles.
-
-$$\frac{p(\mathcal{M}_{0} \given \text{data})}{p(\mathcal{M}_{1} \given \text{data})} = \color{green}{\frac{p(\text{data} \given \mathcal{M}_{0})}{p(\text{data} \given \mathcal{M}_{1})}} \times \frac{p(\mathcal{M}_{0})}{p(\mathcal{M}_{1})}$$
-
-## Comparaison de modèles
 
 Le facteur de Bayes (Bayes factor) fait le rapport des vraisemblances
 (marginales) des deux modèles.
@@ -1596,24 +1588,28 @@ La tartine n'ayant que deux faces, le résultat s'apparente à un tirage
 sur une loi binomiale de paramètre $\theta$ inconnu. Quelle est la
 distribution postérieure du paramètre $\theta$ ?
 
+```{r tartine-seed, echo = FALSE}
+set.seed(42)
+```
+
 ```{r eval = TRUE, echo = TRUE, fig.width = 6, fig.height = 4}
 # nombre d'essais
-nbTrial <- length(data$trial)
+nb_trial <- length(data$trial)
 
 # nombre de "succès" (i.e., la tartine tombe du côté du beurre)
-nbSuccess <- sum(data$side)
+nb_success <- sum(data$side)
 
-# taile de la grille
-grid_size <- 1e3
+# taille de la grille
+grid_size <- 1e4
 
 # génère la grille
 p_grid <- seq(from = 0, to = 1, length.out = grid_size)
 
 # prior uniforme
-prior <- rep(1, grid_size)
+prior <- rep(x = 1, times = grid_size)
 
 # calcul de la vraisemblance
-likelihood <- dbinom(x = nbSuccess, size = nbTrial, prob = p_grid)
+likelihood <- dbinom(x = nb_success, size = nb_trial, prob = p_grid)
 
 # calcul du posterior
 posterior <- likelihood * prior / sum(likelihood * prior)
@@ -1638,7 +1634,6 @@ posterior_plot(
   samples = samples, credmass = 0.95,
   compval = 0.5, rope = c(0.49, 0.51)
   ) + labs(x = expression(theta) )
-
 ```
 
 ## Proposition de solution - Question 4
@@ -1649,8 +1644,8 @@ série d'observations afin d'affiner ses résultats.
 ```{r eval = TRUE, echo = TRUE}
 data2 <- open_data(tartine2)
 str(data2)
-nbTrial2 <- length(data2$trial) # nombre d'essais
-nbSucces2 <- sum(data2$side) # nombre de succès
+nb_trial2 <- length(data2$trial) # nombre d'essais
+nb_success2 <- sum(data2$side) # nombre de succès
 ```
 
 ## Proposition de solution - Question 4
@@ -1659,7 +1654,7 @@ On utilise le posterior précédent comme prior de ce nouveau modèle.
 
 ```{r eval = TRUE, echo = TRUE, fig.width = 10, fig.height = 5}
 mode1 <- find_mode(samples)
-prior2 <- dbeta(p_grid, mode1 * (nbTrial - 2) + 1, (1 - mode1) * (nbTrial - 2) + 1)
+prior2 <- dbeta(x = p_grid, shape1 = mode1 * (nb_trial - 2) + 1, shape2 = (1 - mode1) * (nb_trial - 2) + 1)
 
 data.frame(x = p_grid, y = prior2) %>%
   ggplot(aes(x = x, y = y) ) +
@@ -1671,7 +1666,7 @@ data.frame(x = p_grid, y = prior2) %>%
 ## Proposition de solution - Question 4 (suite)
 
 ```{r eval = TRUE, echo = TRUE, fig.width = 10, fig.height = 6, dev = "png", dpi = 200}
-likelihood2 <- dbinom(x = nbSucces2, size = nbTrial2, prob = p_grid)
+likelihood2 <- dbinom(x = nb_success2, size = nb_trial2, prob = p_grid)
 posterior2 <- likelihood2 * prior2 / sum(likelihood2 * prior2)
 samples2 <- sample(p_grid, prob = posterior2, size = 1e4, replace = TRUE)
 

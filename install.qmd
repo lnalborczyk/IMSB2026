@@ -21,7 +21,7 @@ Le reste des paquets ainsi que les données utilisées dans les exercices, et qu
 
 ```{r, eval = FALSE, echo = TRUE}
 install.packages(pkgs = c("remotes", "tidyverse") )
-options(timeout = 240) # on laisse un peu plus de temps à R pour installer imsb
+options(timeout = 300) # on laisse un peu plus de temps à R pour installer imsb
 remotes::install_github(repo = "lnalborczyk/IMSB2026/_imsb", dependencies = TRUE)
 ```
 

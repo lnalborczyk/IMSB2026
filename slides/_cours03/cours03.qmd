@@ -388,7 +388,7 @@ data.frame(x = rnorm(1000, sample_mu, sample_sigma) ) %>%
 mu_exemple <- 151.23
 sigma_exemple <- 23.42
 
-d2$height[34] # une observation de taille (pour exemple)
+d2$height[34] # une observation de taille (pour l'exemple)
 ```
 
 ```{r eval = TRUE, echo = FALSE, fig.width = 6, fig.height = 6}
