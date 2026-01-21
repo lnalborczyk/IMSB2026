@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------ #
 # Written by Ladislas Nalborczyk                                     #
 # E-mail: ladislas.nalborczyk@cnrs.fr                                #
-# Last updated on January 19, 2026                                   #
+# Last updated on January 21, 2026                                   #
 ######################################################################
 
 library(renderthis)
@@ -14,9 +14,9 @@ library(stringr)
 slides <- list.files(
     path = "html", pattern = ".html",
     recursive = TRUE, full.names = TRUE
-    )
+    ) # %>% str_detect(pattern = "cours")
 
-for (input in slides[3]) { # for each course
+for (input in slides[5]) { # for each course
 
     # printing progress
     print(paste0("Printing '", input, "'...") )
@@ -51,7 +51,7 @@ for (input in slides[3]) { # for each course
     pagedown::chrome_print(
         input = input,
         output = output,
-        wait = 4,
+        wait = 5,
         format = "pdf",
         timeout = 120,
         verbose = 1
