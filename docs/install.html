@@ -197,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="installer-brms-et-rstan" class="level2">
 <h2 class="anchored" data-anchor-id="installer-brms-et-rstan">Installer <code>brms</code> et <code>rstan</code></h2>
-<p>Nous utiliserons également <code>Stan</code> via les paquets <code>brms</code> et <code>rstan</code>. Vous trouverez toutes les infos pour installer <code>brms</code> selon votre plateforme ici : <a href="https://learnb4ss.github.io/learnB4SS/articles/install-brms.html" class="uri">https://learnb4ss.github.io/learnB4SS/articles/install-brms.html</a>. En cas de problème, voir aussi : <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started" class="uri">https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started</a>.</p>
+<p>Nous utiliserons également <code>Stan</code> via les paquets <code>brms</code> et <code>rstan</code>. Vous trouverez toutes les informations pour installer <code>brms</code> selon votre plateforme ici : <a href="https://learnb4ss.github.io/learnB4SS/articles/install-brms.html" class="uri">https://learnb4ss.github.io/learnB4SS/articles/install-brms.html</a>. En cas de problème, voir aussi : <a href="https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started" class="uri">https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started</a>.</p>
 <p>Attention, cette étape peut être assez longue complexe selon votre plateforme (surtout sur Windows). Il faudra veiller à ne pas la réaliser au dernier moment, afin que tout fonctionne au début de la formation.</p>
 </section>
 <section id="installer-imsb" class="level2">
@@ -208,14 +208,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">timeout =</span> <span class="dv">300</span>) <span class="co"># on laisse un peu plus de temps à R pour installer imsb</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="at">repo =</span> <span class="st">"lnalborczyk/IMSB2026/_imsb"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Au cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours <code>01</code> au cours <code>08</code>) en ligne via la fonction <code>open_slides()</code>.</p>
+<p>Vous pouvez vérifier que l’installation fonctionne bien en exécutant la fonction <code>check_install()</code> du package <code>imsb</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(imsb)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">open_slides</span>(<span class="dv">01</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_install</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Au cours de la formation, ce paquet pourra être utilisé pour lire les slides des différents cours (du cours <code>01</code> au cours <code>08</code>) en ligne via la fonction <code>open_slides()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">open_slides</span>(<span class="dv">01</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Les jeux de données utilisés dans les différents exercices sont également contenus dans ce paquet. Vous pouvez les importer via la fonction <code>open_data()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">open_data</span>(robot)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">open_data</span>(robot)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="rappel-concernant-les-pré-requis" class="level2">
