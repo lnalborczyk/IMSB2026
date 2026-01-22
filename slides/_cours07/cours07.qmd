@@ -777,6 +777,74 @@ qui nous intéresse c'est $\mathbb{E} [\log(q_{i})] - \mathbb{E} [\log(r_{i})]$ 
 knitr::include_graphics("figures/KL_distance.png")
 ```
 
+## Précisions concernant la différence de divergences
+
+Soit $p$ la "vraie distribution" et $q, r$ deux modèles candidats. La divergence de Kullback–Leibler s'écrit de la manière suivante :
+
+$$
+D_{\mathrm{KL}}(p \,\|\, q) = \sum_{i} p_{i} \log \left(\frac{p_{i}}{q_{i}}\right) = H(p, q) - H(p)
+$$
+
+avec :
+
+- $H(p,q) = -\sum_{i} p_{i} \log (q_{i})$ : entropie croisée (i.e., à quel point le modèle $q$ est "surpris" par les données générées par $p$).
+- $H(p) = -\sum_{i} p_{i} \log (p_{i})$ : entropie de la "vraie distribution".
+
+## Différence entre deux modèles
+
+$$
+\begin{aligned}
+D_{\mathrm{KL}}(p \,\|\, q) - D_{\mathrm{KL}}(p \,\|\, r)
+&= [H(p, q) - H(p)] - [H(p, r) - H(p)] \\
+&= H(p, q) - H(p, r)
+\end{aligned}
+$$
+
+Le terme $H(p)$, indépendant du modèle, **s'annule**. Comparer deux modèles via la KL **ne dépend que des termes impliquant les modèles** ($q, r$), pas de la "vraie distribution" $p$.
+
+Mais l'entropie croisée dépend encore de $p$...
+
+$$
+H(p,q) = -\mathbb{E}_{p}[\log (q_{i})]
+$$
+
+## On remplace $p$ par les données
+
+On observe un échantillon :
+
+$$
+x_{1}, \dots, x_{n} \sim p
+$$
+
+Par la loi des grands nombres :
+
+$$
+\mathbb{E}_{p}[\log (q_{i})]
+\;\approx\;
+\frac{1}{n}\sum_{i=1}^n \log q(x_{i})
+$$
+
+Autrement dit, l'échantillon joue le rôle de $p$ !
+
+## Estimation empirique de l'entropie croisée
+
+$$
+H(p,q)
+\;\approx\;
+-\frac{1}{n}\sum_{i=1}^n \log q(x_i)
+$$
+
+Ce terme est entièrement calculable, ne dépend uniquement du modèle $q$, et est évalué sur les données observées. Lorsqu'on compare deux modèles, on peut donc faire une "simple" différence de **log-vraisemblances moyennes**.
+
+$$
+\begin{aligned}
+H(p, q) - H(p, r)
+&\approx
+-\frac{1}{n}\sum_{i=1}^n \log q(x_{i})
++ \frac{1}{n}\sum_{i=1}^n \log r(x_{i})
+\end{aligned}
+$$
+
 ## Vers la déviance (exemple d'application)
 
 Exemple d'une distribution cible uniforme $p$, et 4 modèles $q1, q2, q3, q4$ (exemple tiré de [Wikipedia](https://en.wikipedia.org/wiki/Kullback–Leibler_divergence#Basic_example)).
@@ -814,10 +882,15 @@ neg_log_scores <- c(-sum(log(q1) ), -sum(log(q2) ), -sum(log(q3) ), -sum(log(q4)
 
 ```{r eval = TRUE, echo = FALSE}
 # relation entre les deux
-data.frame(divergences = divergences, neglogscore = neg_log_scores) %>%
+data.frame(
+    model = c("q1", "q2", "q3", "q4"),
+    divergences = divergences,
+    neglogscore = neg_log_scores
+    ) %>%
     ggplot(aes(x = divergences, y = neglogscore) ) +
     geom_line() +
     geom_point() +
+    ggrepel::geom_label_repel(aes(label = model) ) +
     labs(x = "KL Divergence", y = "Negative log-score")
 ```
 

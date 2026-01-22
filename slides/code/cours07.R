@@ -1,4 +1,4 @@
-## ----setup, eval = TRUE, include = FALSE, cache = FALSE-----------------------------------------------------------------
+## ----setup, eval = TRUE, include = FALSE, cache = FALSE--------------------------------------------------------
 library(tidyverse)
 library(patchwork)
 library(brms)
@@ -15,18 +15,18 @@ knitr::opts_chunk$set(
 theme_set(theme_bw(base_size = 16, base_family = "Open Sans") )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 set.seed(19) # pour reproduire les résultats
 men <- rnorm(100, 175, 10) # 100 tailles d'hommes
 women <- rnorm(100, 170, 10) # 100 tailles de femmes
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 #| output-location: fragment
 t.test(men, women) # test de student pour différence de moyenne
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 nsims <- 1e4 # nombre de simulations
 t <- rep(NA, nsims) # initialisation d'un vecteur vide
 
@@ -39,31 +39,31 @@ for (i in 1:nsims) {
 }
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # une autre manière de réaliser la même opération, sans boucle for
 t <- replicate(nsims, t.test(rnorm(100, 170, 10), rnorm(100, 170, 10) )$statistic)
 
 
-## ----eval = TRUE, echo = TRUE, message = FALSE, fig.width = 6, fig.height = 6-------------------------------------------
+## ----eval = TRUE, echo = TRUE, message = FALSE, fig.width = 6, fig.height = 6----------------------------------
 data.frame(t = t) %>%
     ggplot(aes(x = t) ) +
     geom_histogram() +
     labs(x = "Valeur de t", y = "Nombre d'échantillons")
 
 
-## ----eval = TRUE, echo = TRUE, fig.width = 6, fig.height = 6------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, fig.width = 6, fig.height = 6---------------------------------------------------
 data.frame(x = c(-5, 5) ) %>%
     ggplot(aes(x = x) ) +
     stat_function(fun = dt, args = list(df = t.test(men, women)$parameter), size = 1.5) +
     labs(x = "Valeur de t", y = "Densité de probabilité")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 alpha <- 0.05 # seuil de significativité
 abs(qt(p = alpha / 2, df = t.test(men, women)$parameter) ) # valeur de t critique
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 7, fig.height = 7-----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 7, fig.height = 7--------------------------------------------------
 data.frame(t = c(-5, 5) ) %>%
     ggplot(aes(x = t) ) +
     stat_function(fun = dt, args = list(df = t.test(men, women)$parameter), size = 1.5) +
@@ -80,12 +80,12 @@ data.frame(t = c(-5, 5) ) %>%
     labs(x = "Valeur de t", y = "Densité de probabilité")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 tobs <- t.test(men, women)$statistic # valeur de t observée
 tobs %>% as.numeric
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 7, fig.height = 7-----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 7, fig.height = 7--------------------------------------------------
 data.frame(t = c(-5, 5) ) %>%
     ggplot(aes(x = t) ) +
     stat_function(fun = dt, args = list(df = t.test(men, women)$parameter), size = 1.5) +
@@ -110,24 +110,24 @@ data.frame(t = c(-5, 5) ) %>%
     labs(x = "Valeur de t", y = "Densité de probabilité")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 #| output-location: fragment
 t.test(men, women)$p.value
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 #| output-location: fragment
 tvalue <- abs(t.test(men, women)$statistic)
 df <- t.test(men, women)$parameter
 2 * integrate(dt, tvalue, Inf, df = df)$value
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 #| output-location: fragment
 2 * (1 - pt(abs(t.test(men, women)$statistic), t.test(men, women)$parameter) )
 
 
-## ----echo = FALSE, fig.width = 10, fig.height = 5-----------------------------------------------------------------------
+## ----echo = FALSE, fig.width = 10, fig.height = 5--------------------------------------------------------------
 data.frame(x = seq(from = 0, to = 1, length.out = 1e2) ) %>%
     mutate(M1 = dbeta(x, 6, 10), M2 = dbeta(x, 20, 12) ) %>%
     gather(prior, value, M1:M2) %>%
@@ -138,11 +138,11 @@ data.frame(x = seq(from = 0, to = 1, length.out = 1e2) ) %>%
     ylab("Densité de probabilité")
 
 
-## ----echo = FALSE, out.width = "800px"----------------------------------------------------------------------------------
+## ----echo = FALSE, out.width = "800px"-------------------------------------------------------------------------
 knitr::include_graphics("figures/bf.gif")
 
 
-## ----multiple-priors, eval = TRUE, echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5------------------
+## ----multiple-priors, eval = TRUE, echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5---------
 data.frame(x = c(-20, 20) ) %>%
     ggplot(aes(x = x) ) +
     stat_function(fun = dnorm, args = list(mean = 0, sd = 1), size = 1.25) +
@@ -152,7 +152,7 @@ data.frame(x = c(-20, 20) ) %>%
     labs(x = expression(theta), y = "Densité de probabilité")
 
 
-## ----eval = TRUE, echo = TRUE, fig.align = "center", fig.width = 7.5, fig.height = 5------------------------------------
+## ----eval = TRUE, echo = TRUE, fig.align = "center", fig.width = 7.5, fig.height = 5---------------------------
 ppnames <- c("afarensis", "africanus", "habilis", "boisei",
         "rudolfensis", "ergaster", "sapiens")
 brainvolcc <- c(438, 452, 612, 521, 752, 871, 1350)
@@ -167,39 +167,39 @@ d %>%
     xlim(30, 70)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 mod1.1 <- lm(brain ~ mass, data = d)
 (var(d$brain) - var(residuals(mod1.1) ) ) / var(d$brain)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 mod1.2 <- lm(brain ~ mass + I(mass^2), data = d)
 (var(d$brain) - var(residuals(mod1.2) ) ) / var(d$brain)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 mod1.3 <- lm(brain ~ mass + I(mass^2) + I(mass^3), data = d)
 (var(d$brain) - var(residuals(mod1.3) ) ) / var(d$brain)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 mod1.4 <- lm(brain ~ mass + I(mass^2) + I(mass^3) + I(mass^4), data = d)
 (var(d$brain) - var(residuals(mod1.4) ) ) / var(d$brain)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 mod1.5 <- lm(brain ~ mass + I(mass^2) + I(mass^3) + I(mass^4) +
     I(mass^5), data = d)
 (var(d$brain) - var(residuals(mod1.5) ) ) / var(d$brain)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 mod1.6 <- lm( brain ~ mass + I(mass^2) + I(mass^3) + I(mass^4) +
     I(mass^5) + I(mass^6), data = d)
 (var(d$brain) - var(residuals(mod1.6) ) ) / var(d$brain)
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 18, fig.height = 9----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 18, fig.height = 9-------------------------------------------------
 library(patchwork)
 library(gridExtra)
 library(ggplot2)
@@ -246,7 +246,7 @@ p2 <-
 p1 + p2
 
 
-## ----eval = TRUE, echo = FALSE, fig.align = "center", fig.width = 18, fig.height = 9------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.align = "center", fig.width = 18, fig.height = 9---------------------------
 p3 <- 
   ggplot(data = d, aes(x = mass, y = brain) ) +
   geom_point() +
@@ -270,7 +270,7 @@ p4 <-
 p3 + p4
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 18, fig.height = 9----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 18, fig.height = 9-------------------------------------------------
 p5 <- 
   ggplot(data = d, aes(x = mass, y = brain) ) +
   geom_point() +
@@ -294,11 +294,11 @@ p6 <-
 p5 + p6
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 mod1.7 <- lm(brain ~ 1, data = d)
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 6, fig.height = 6-----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 6, fig.height = 6--------------------------------------------------
 d %>%
   ggplot(aes(x = mass, y = brain) ) +
   geom_point() +
@@ -310,49 +310,49 @@ d %>%
   geom_hline(yintercept = 0, linetype = 2)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 p <- c(0.3, 0.7) # distribution des probabilités de pluie et soleil à Grenoble
 - sum(p * log(p) ) # équivalent à sum(p * log(1 / p) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 p <- c(0.01, 0.99) # distribution des probabilités de pluie et soleil à Abu Dhabi
 - sum(p * log(p) ) # toujours équivalent à sum(p * log(1 / p) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 p <- c(0.3, 0.7)
 q <- c(0.25, 0.75)
 
 sum(p * log(p / q) ) # équivalent à sum(p * (log(p) - log(q) ) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 sum(q * log(q / p) ) # équivalent à sum(q * (log(q) - log(p) ) )
 
 
-## ----eval = FALSE, echo = TRUE------------------------------------------------------------------------------------------
+## ----eval = FALSE, echo = TRUE---------------------------------------------------------------------------------
 # sum(p * (log(q) ) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 - sum(p * (log(q) - log(p) ) )
 sum(p * log(p / q) )
 
 
-## ----echo = FALSE, out.width = "75%"------------------------------------------------------------------------------------
+## ----echo = FALSE, out.width = "75%"---------------------------------------------------------------------------
 knitr::include_graphics("figures/divergence.gif")
 
 
-## ----eval = TRUE, echo = FALSE, out.width = "50%"-----------------------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, out.width = "50%"--------------------------------------------------------------
 knitr::include_graphics("figures/mind_blowing.jpg")
 
 
-## ----eval = TRUE, echo = FALSE------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = FALSE---------------------------------------------------------------------------------
 knitr::include_graphics("figures/KL_distance.png")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 p <- c(1/3, 1/3, 1/3) # distribution cible (distribution uniforme avec p = 1/3)
 q1 <- c(0.36, 0.48, 0.16) # modèle q1
 q2 <- c(0.20, 0.60, 0.20) # modèle q2
@@ -360,7 +360,7 @@ q3 <- c(0.10, 0.80, 0.10) # modèle q3
 q4 <- c(0.30, 0.40, 0.30) # modèle q4
 
 
-## ----eval = TRUE, echo = FALSE------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = FALSE---------------------------------------------------------------------------------
 # plotting the distributions
 data.frame(p, q1, q2, q3, q4) %>%
     mutate(x = c(0, 1, 2) ) %>%
@@ -371,7 +371,7 @@ data.frame(p, q1, q2, q3, q4) %>%
     labs(x = expression(theta), y = "")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 divergence_q1 <- sum(p * log(p / q1) ) # divergence du modèle q1
 divergence_q2 <- sum(p * log(p / q2) ) # divergence du modèle q2
 divergence_q3 <- sum(p * log(p / q3) ) # divergence du modèle q3
@@ -381,16 +381,21 @@ divergences <- c(divergence_q1, divergence_q2, divergence_q3, divergence_q4)
 neg_log_scores <- c(-sum(log(q1) ), -sum(log(q2) ), -sum(log(q3) ), -sum(log(q4) ) )
 
 
-## ----eval = TRUE, echo = FALSE------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = FALSE---------------------------------------------------------------------------------
 # relation entre les deux
-data.frame(divergences = divergences, neglogscore = neg_log_scores) %>%
+data.frame(
+    model = c("q1", "q2", "q3", "q4"),
+    divergences = divergences,
+    neglogscore = neg_log_scores
+    ) %>%
     ggplot(aes(x = divergences, y = neglogscore) ) +
     geom_line() +
     geom_point() +
+    ggrepel::geom_label_repel(aes(label = model) ) +
     labs(x = "KL Divergence", y = "Negative log-score")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # on standardise la variable "mass"
 d$mass.s <- scale(d$mass)
 
@@ -401,7 +406,7 @@ mod1.8 <- lm(formula = brain ~ mass.s, data = d)
 -2 * logLik(mod1.8)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # on récupère les paramètres estimés via MLE (intercept et pente)
 alpha <- coef(mod1.8)[1]
 beta <- coef(mod1.8)[2]
@@ -421,11 +426,11 @@ ll <- sum(dnorm(
 (-2) * ll
 
 
-## ----eval = TRUE, echo = FALSE, out.width = "60%"-----------------------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, out.width = "60%"--------------------------------------------------------------
 knitr::include_graphics("figures/inout1.png")
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 10, fig.height = 6----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 10, fig.height = 6-------------------------------------------------
 data.frame(x = c(-3, 3) ) %>%
     ggplot(aes(x = x) ) +
     stat_function(
@@ -440,19 +445,19 @@ data.frame(x = c(-3, 3) ) %>%
     labs(x = expression(theta), y = "Densité de probabilité")
 
 
-## ----eval = TRUE, echo = FALSE, out.width = "60%"-----------------------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, out.width = "60%"--------------------------------------------------------------
 knitr::include_graphics("figures/inout2.png")
 
 
-## ----eval = TRUE, echo = FALSE, out.width = "60%"-----------------------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, out.width = "60%"--------------------------------------------------------------
 knitr::include_graphics("figures/inout3.png")
 
 
-## ----echo = FALSE, fig.align = "center", out.width = "400px"------------------------------------------------------------
+## ----echo = FALSE, fig.align = "center", out.width = "400px"---------------------------------------------------
 knitr::include_graphics("figures/mind_blowing2.gif")
 
 
-## ----eval = TRUE, echo = TRUE, results = "hide"-------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, results = "hide"----------------------------------------------------------------
 library(brms)
 data(cars)
 
@@ -469,7 +474,7 @@ mod1 <- brm(
   )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # pointwise log-likelihood (S posterior samples * N observations)
 ll <- log_lik(object = mod1) %>% data.frame()
 
@@ -492,7 +497,7 @@ ll <- log_lik(object = mod1) %>% data.frame()
   pull(lppd) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 (pwaic <-
   ll %>% 
   pivot_longer(
@@ -510,19 +515,19 @@ ll <- log_lik(object = mod1) %>% data.frame()
   pull(pwaic) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 (WAIC <- -2 * (lppd - pwaic) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 waic(mod1)
 
 
-## ----echo = FALSE, out.width = "25%"------------------------------------------------------------------------------------
+## ----echo = FALSE, out.width = "25%"---------------------------------------------------------------------------
 knitr::include_graphics("figures/combining.png")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 library(imsb)
 d <- open_data(milk)
 d <- milk[complete.cases(milk), ] # removing NAs
@@ -530,7 +535,7 @@ d$neocortex <- d$neocortex.perc / 100 # rescaling explanatory variable
 head(d)
 
 
-## ----eval = TRUE, echo = TRUE, results = "hide"-------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, results = "hide"----------------------------------------------------------------
 mod2.1 <- brm(
   formula = kcal.per.g ~ 1,
   family = gaussian,
@@ -557,7 +562,7 @@ mod2.2 <- brm(
   )
 
 
-## ----eval = TRUE, echo = TRUE, results = "hide"-------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, results = "hide"----------------------------------------------------------------
 mod2.3 <- brm(
   formula = kcal.per.g ~ 1 + log(mass),
   family = gaussian,
@@ -584,7 +589,7 @@ mod2.4 <- brm(
   )
 
 
-## ----eval = FALSE, echo = TRUE, results = "hide"------------------------------------------------------------------------
+## ----eval = FALSE, echo = TRUE, results = "hide"---------------------------------------------------------------
 # mod2.3 <- update(
 #   object = mod2.2,
 #   newdata = d,
@@ -598,7 +603,7 @@ mod2.4 <- brm(
 #   )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # calcul du WAIC et ajout du WAIC à chaque modèle
 
 mod2.1 <- add_criterion(mod2.1, "waic")
@@ -612,11 +617,11 @@ w <- loo_compare(mod2.1, mod2.2, mod2.3, mod2.4, criterion = "waic")
 print(w, simplify = FALSE)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 model_weights(mod2.1, mod2.2, mod2.3, mod2.4, weights = "waic") %>% round(digits = 3)
 
 
-## ----eval = TRUE, echo = TRUE, results = "hide"-------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, results = "hide"----------------------------------------------------------------
 # grille de valeurs pour lesquelles on va générer des prédictions
 new_data <- data.frame(
   neocortex = seq(from = 0.5, to = 0.8, length.out = 30),
@@ -639,7 +644,7 @@ averaged_predictions <- pp_average(
   bind_cols(new_data)
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 9, fig.height = 6-----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 9, fig.height = 6--------------------------------------------------
 averaged_predictions %>%
   ggplot(aes(x = neocortex, y = Estimate) ) +
   geom_ribbon(
@@ -669,15 +674,15 @@ averaged_predictions %>%
   coord_cartesian(xlim = range(d$neocortex), ylim = range(d$kcal.per.g) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 bayes_R2(mod2.4) %>% round(digits = 3)
 
 
-## ----eval = TRUE, echo = TRUE, fig.width = 8, fig.height = 4, dev = "png", dpi = 200------------------------------------
+## ----eval = TRUE, echo = TRUE, fig.width = 8, fig.height = 4, dev = "png", dpi = 200---------------------------
 posterior_plot(samples = bayes_R2(mod2.4, summary = FALSE)[, 1])
 
 
-## ----eval = TRUE, echo = TRUE, dev = "png", dpi = 200-------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, dev = "png", dpi = 200----------------------------------------------------------
 posterior_plot(
     samples = bayes_R2(mod2.4, summary = FALSE)[, 1] -
         bayes_R2(mod2.3, summary = FALSE)[, 1],
@@ -685,7 +690,7 @@ posterior_plot(
     ) + labs(x = "Différence de R2")
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # import des données "howell"
 d <- open_data(howell) %>% mutate(age = scale(age) )
 
@@ -702,7 +707,7 @@ d1 <- d[i, ]
 d2 <- d[-i, ]
 
 
-## ----eval = TRUE, echo = TRUE, results = "hide"-------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, results = "hide"----------------------------------------------------------------
 mod3.1 <- brm(
   formula = height ~ 1 + age,
   family = gaussian(),
@@ -727,7 +732,7 @@ mod3.3 <- update(
   )
 
 
-## ----eval = TRUE, echo = TRUE, results = "hide"-------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, results = "hide"----------------------------------------------------------------
 mod3.4 <- update(
   mod3.1,
   newdata = d1,
@@ -747,7 +752,7 @@ mod3.6 <- update(
   )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # calcul du WAIC et ajout du WAIC à chaque modèle
 
 mod3.1 <- add_criterion(mod3.1, "waic")
@@ -763,7 +768,7 @@ mod_comp <- loo_compare(mod3.1, mod3.2, mod3.3, mod3.4, mod3.5, mod3.6, criterio
 print(mod_comp, digits = 2, simplify = FALSE)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # on crée un vecteur de valeurs possibles pour "age"
 age_seq <- data.frame(age = seq(from = -2, to = 3, length.out = 1e2) )
 
@@ -777,7 +782,7 @@ pred_age <- data.frame(predict(mod3.1, newdata = age_seq) ) %>% bind_cols(age_se
 head(pred_age, 10)
 
 
-## ----eval = TRUE, echo = TRUE, fig.width = 10, fig.height = 5-----------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, fig.width = 10, fig.height = 5--------------------------------------------------
 d1 %>%
   ggplot(aes(x = age, y = height) ) +
   geom_ribbon(
@@ -792,7 +797,7 @@ d1 %>%
   labs(x = "Age", y = "Height")
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 16, fig.height = 8----------------------------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 16, fig.height = 8-------------------------------------------------
 # on crée un vecteur de valeurs possibles pour "age"
 age_seq <- data.frame(age = seq(from = -2, to = 3, length.out = 1e2) )
 
@@ -913,7 +918,7 @@ p6 <- d1 %>%
 (p1 + p2 + p3) / (p4 + p5 + p6)
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 # prédictions moyennées sur les 4 modèles
 averaged_predictions_mu <- pp_average(
   mod3.1, mod3.2, mod3.3, mod3.4, mod3.5, mod3.6,
@@ -935,7 +940,7 @@ averaged_predictions_age <- pp_average(
   bind_cols(age_seq)
 
 
-## ----eval = TRUE, echo = TRUE, fig.width = 10, fig.height = 5-----------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, fig.width = 10, fig.height = 5--------------------------------------------------
 d1 %>%
   ggplot(aes(x = age, y = height) ) +
   geom_ribbon(
@@ -950,7 +955,7 @@ d1 %>%
   labs(x = "Age", y = "Height", title = "Model-averaged predictions")
 
 
-## ----eval = TRUE, echo = TRUE, results = "hide"-------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE, results = "hide"----------------------------------------------------------------
 # calcul de la log-vraisemblance (log-likelihood) du modèle mod3.1
 # chaque ligne est une itération et chaque colonne une observation
 log_lik_mod3.1 <- log_lik(mod3.1)
@@ -974,13 +979,13 @@ dev.mod3.5 <- mean(-2 * rowSums(log_lik(mod3.5) ) )
 dev.mod3.6 <- mean(-2 * rowSums(log_lik(mod3.6) ) )
 
 
-## ----eval = TRUE, echo = TRUE-------------------------------------------------------------------------------------------
+## ----eval = TRUE, echo = TRUE----------------------------------------------------------------------------------
 deviances <- c(dev.mod3.1, dev.mod3.2, dev.mod3.3, dev.mod3.4, dev.mod3.5, dev.mod3.6)
 comparison <- mod_comp %>% data.frame %>% select(waic) %>% rownames_to_column()
 waics <- comparison %>% arrange(rowname) %>% pull(waic)
 
 
-## ----eval = TRUE, echo = FALSE, fig.width = 12, fig.height = 6, out.width = "75%"---------------------------------------
+## ----eval = TRUE, echo = FALSE, fig.width = 12, fig.height = 6, out.width = "75%"------------------------------
 data.frame(deviance = deviances, waic = waics) %>%
     gather(type, value) %>%
     mutate(x = rep(1:6, 2) ) %>%

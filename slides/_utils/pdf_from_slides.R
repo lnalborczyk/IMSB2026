@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------ #
 # Written by Ladislas Nalborczyk                                     #
 # E-mail: ladislas.nalborczyk@cnrs.fr                                #
-# Last updated on January 21, 2026                                   #
+# Last updated on January 22, 2026                                   #
 ######################################################################
 
 library(renderthis)
@@ -16,7 +16,7 @@ slides <- list.files(
     recursive = TRUE, full.names = TRUE
     ) # %>% str_detect(pattern = "cours")
 
-for (input in slides[6]) { # for each course
+for (input in slides[7:8]) { # for each course
 
     # printing progress
     print(paste0("Printing '", input, "'...") )
