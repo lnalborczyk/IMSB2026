@@ -1046,7 +1046,7 @@ $$\text{lppd}(y, \Theta) = \sum_{i} \log \frac{1}{S} \sum_{s} p(y_{i} \given \Th
 
 ```{r eval = TRUE, echo = TRUE}
 # pointwise log-likelihood (S posterior samples * N observations)
-ll <- log_lik(mod1) %>% data.frame()
+ll <- log_lik(object = mod1) %>% data.frame()
 
 (lppd <-
   ll %>% 
@@ -1137,7 +1137,7 @@ estimés par ce meilleur modèle.
 . . .
 
 **Comparaison de modèles** : On utilise la validation croisée ou des
-critères d'informations mais aussi les outils de **posterior predictive
+critères d'information mais aussi les outils de **posterior predictive
 checking** discutés précédemment, pour chaque modèle, afin d'étudier
 leurs forces et faiblesses.
 
@@ -1390,7 +1390,7 @@ sur-apprentissage (overfitting).
 Pour contraindre l'apprentissage réalisé par le modèle sur les données
 observées (et ainsi éviter que le modèle accorde trop de poids à ces
 données), on peut utiliser des priors dits **régularisateurs** et/ou des
-outils comme la validation croisée ou les critères d'informations
+outils comme la validation croisée ou les critères d'information
 permettant d'estimer les capacités de prédiction du modèle sur de
 nouvelles données.
 

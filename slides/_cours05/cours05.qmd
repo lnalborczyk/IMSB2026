@@ -238,8 +238,7 @@ Trois méthodes pour résoudre (contourner) ce problème :
 
 ## Objectifs du cours
 
-$\longrightarrow~$ Présenter le principe de base de l'échantillonnage :
-Markov Chain Monte Carlo
+$\longrightarrow~$ Présenter le principe de base de l'échantillonnage via Markov Chain Monte Carlo
 
 $\longrightarrow~$ Présenter deux algorithmes (Metropolis-Hastings et HMC)
 

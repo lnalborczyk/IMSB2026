@@ -16,7 +16,7 @@ slides <- list.files(
     recursive = TRUE, full.names = TRUE
     ) # %>% str_detect(pattern = "cours")
 
-for (input in slides[5]) { # for each course
+for (input in slides[6]) { # for each course
 
     # printing progress
     print(paste0("Printing '", input, "'...") )
@@ -51,7 +51,7 @@ for (input in slides[5]) { # for each course
     pagedown::chrome_print(
         input = input,
         output = output,
-        wait = 5,
+        wait = 10,
         format = "pdf",
         timeout = 120,
         verbose = 1
