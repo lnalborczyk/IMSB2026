@@ -782,8 +782,7 @@ brm(formula = Reaction ~ 1 + Days + (1 + Days | Subject), family = lognormal() )
 
 ## Modèle brms
 
-On spécifie un intercept et une pente (pour l'effet d'`afternoon`) qui
-varient par `cafe`.
+On spécifie un intercept et une pente (pour l'effet d'`afternoon`) qui varient par `cafe`.
 
 ```{r eval = TRUE, echo = TRUE, results = "hide"}
 mod5 <- brm(
@@ -876,6 +875,23 @@ shrinkage %>%
         linetype = "dashed", color = "grey40", alpha = 0.8
         ) +
     labs(x = "Intercept", y = "Slope")
+```
+
+## Prédictions par catégorie
+
+```{r eval = TRUE, echo = TRUE}
+# ensemble de packages utiles (cf. documentation: https://easystats.github.io/easystats/)
+library(easystats)
+
+# calcul de la moyenne (temps d'attente) pour matin et après-midi
+estimate_means(model = mod5, by = "afternoon")
+```
+
+## Prédictions par catégorie
+
+```{r eval = TRUE, echo = TRUE}
+# représentation visuelle de l'effet de "afternoon"
+conditional_effects(mod5)
 ```
 
 ## Comparaison de modèles

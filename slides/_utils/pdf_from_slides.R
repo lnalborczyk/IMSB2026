@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------ #
 # Written by Ladislas Nalborczyk                                     #
 # E-mail: ladislas.nalborczyk@cnrs.fr                                #
-# Last updated on January 22, 2026                                   #
+# Last updated on January 23, 2026                                   #
 ######################################################################
 
 library(renderthis)

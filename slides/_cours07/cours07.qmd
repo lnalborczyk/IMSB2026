@@ -850,7 +850,7 @@ $$
 Exemple d'une distribution cible uniforme $p$, et 4 modèles $q1, q2, q3, q4$ (exemple tiré de [Wikipedia](https://en.wikipedia.org/wiki/Kullback–Leibler_divergence#Basic_example)).
 
 ```{r eval = TRUE, echo = TRUE}
-# p <- c(1/3, 1/3, 1/3) # distribution cible (distribution uniforme avec p = 1/3)
+p <- c(1/3, 1/3, 1/3) # distribution cible (distribution uniforme avec p = 1/3)
 q1 <- c(0.36, 0.48, 0.16) # modèle q1
 q2 <- c(0.20, 0.60, 0.20) # modèle q2
 q3 <- c(0.10, 0.80, 0.10) # modèle q3
