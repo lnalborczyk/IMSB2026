@@ -810,16 +810,16 @@ $$
 
 ## On remplace $p$ par les données
 
-On observe un échantillon :
+On observe un ensemble d'observations indépendantes et identiquement distribuées :
 
 $$
 x_{1}, \dots, x_{n} \sim p
 $$
 
-Par la loi des grands nombres :
+Par la loi des grands nombres (i.e., la fréquence empirique approxime l'espérance) :
 
 $$
-\mathbb{E}_{p}[\log (q_{i})]
+\mathbb{E}_{p}[\log (q(X))]
 \;\approx\;
 \frac{1}{n}\sum_{i=1}^n \log q(x_{i})
 $$
@@ -845,12 +845,12 @@ H(p, q) - H(p, r)
 \end{aligned}
 $$
 
-## Vers la déviance (exemple d'application)
+## Vers la déviance (exemple d'application #1)
 
 Exemple d'une distribution cible uniforme $p$, et 4 modèles $q1, q2, q3, q4$ (exemple tiré de [Wikipedia](https://en.wikipedia.org/wiki/Kullback–Leibler_divergence#Basic_example)).
 
 ```{r eval = TRUE, echo = TRUE}
-p <- c(1/3, 1/3, 1/3) # distribution cible (distribution uniforme avec p = 1/3)
+# p <- c(1/3, 1/3, 1/3) # distribution cible (distribution uniforme avec p = 1/3)
 q1 <- c(0.36, 0.48, 0.16) # modèle q1
 q2 <- c(0.20, 0.60, 0.20) # modèle q2
 q3 <- c(0.10, 0.80, 0.10) # modèle q3
@@ -868,7 +868,7 @@ data.frame(p, q1, q2, q3, q4) %>%
     labs(x = expression(theta), y = "")
 ```
 
-## Vers la déviance (exemple d'application)
+## Vers la déviance (exemple d'application #1)
 
 ```{r eval = TRUE, echo = TRUE}
 divergence_q1 <- sum(p * log(p / q1) ) # divergence du modèle q1
@@ -892,6 +892,121 @@ data.frame(
     geom_point() +
     ggrepel::geom_label_repel(aes(label = model) ) +
     labs(x = "KL Divergence", y = "Negative log-score")
+```
+
+## Vers la déviance (exemple d'application #2)
+
+Deuxième exemple, distribution cible et modèles Gaussiens, on utilise les données comme approximation de $p$.
+
+```{r eval = TRUE, echo = TRUE}
+# nombre d'observations
+n <- 1000
+
+# "vraie distribution" p : Normal(0, 1)
+true_mu <- 0
+true_sd <- 1
+x <- rnorm(n = n, mean = true_mu, sd = true_sd)
+
+# modèles candidats q_k = Normal(mu_k, sd_k)
+models <- data.frame(
+    model = c("q1", "q2", "q3", "q4"),
+    mu = c(0, 0, 2, 0),
+    sd = c(1, 1.2, 1, 0.7)
+    )
+```
+
+```{r eval = TRUE, echo = FALSE}
+all_models <- bind_rows(
+    data.frame(model = "p", mu = 0, sd = 1),
+    models
+    )
+
+x_min <- min(all_models$mu - 4 * all_models$sd)
+x_max <- max(all_models$mu + 4 * all_models$sd)
+
+grid <- tidyr::expand_grid(
+    model = all_models$model,
+    x = seq(x_min, x_max, length.out = 500)
+    ) %>%
+    left_join(all_models, by = "model") %>%
+    mutate(y = dnorm(x, mean = mu, sd = sd) )
+
+# niveaux dans l'ordre souhaité
+levels_all <- c("p", "q1", "q2", "q3", "q4")
+
+# palette ggplot par défaut pour 5 catégories (hue)
+pal_all <- setNames(scales::hue_pal()(length(levels_all)), levels_all)
+
+grid %>%
+    ggplot(aes(x = x, y = y, color = model, fill = model) ) +
+    geom_area(alpha = 0.5, linewidth = 1, show.legend = FALSE) +
+    labs(x = "x", y = "Density", color = "Model") +
+    scale_color_manual(values = pal_all) +
+    scale_fill_manual(values = pal_all) +
+    facet_wrap(~model, ncol = 5) +
+    labs(x = expression(mu), y = "")
+```
+
+## Vers la déviance (exemple d'application #2)
+
+```{r eval = TRUE, echo = FALSE}
+# KL exacte entre deux normales: N(m0,s0) et N(m1,s1)
+# KL(p||q) = log(s1/s0) + (s0^2 + (m0-m1)^2)/(2*s1^2) - 1/2
+KL_normal <- function (m0, s0, m1, s1) {
+    
+    kl <- log(s1 / s0) + (s0^2 + (m0 - m1)^2) / (2 * s1^2) - 0.5
+    
+    return (kl)
+    
+}
+
+# Entropie croisée "exacte" H(p,q) pour deux normales
+# Entropie d'une normale, voir https://gregorygundersen.com/blog/2020/09/01/gaussian-entropy/
+# H(p,q) = -E_p[log q(X)] = 0.5*log(2π s1^2) + (s0^2 + (m0-m1)^2)/(2 s1^2)
+H_cross_normal <- function (m0, s0, m1, s1) {
+    
+    h_cross <- 0.5 * log(2 * pi * s1^2) + (s0^2 + (m0 - m1)^2) / (2 * s1^2)
+    
+    return (h_cross)
+    
+}
+```
+
+```{r eval = TRUE, echo = TRUE}
+# On sait calculer l'entropie exacte d'une distribution Gaussienne
+# (e.g., https://gregorygundersen.com/blog/2020/09/01/gaussian-entropy/),
+# et l'entropie croisée de deux distributions Gaussiennes.
+res <- models %>%
+    mutate(
+        # KL exacte
+        KL_exact = mapply(KL_normal, true_mu, true_sd, mu, sd),
+        # H(p,q) exacte
+        H_exact = mapply(H_cross_normal, true_mu, true_sd, mu, sd),
+        # Estimation empirique de H(p,q)
+        H_est = sapply(seq_along(mu), function (i) {
+            -mean(dnorm(x, mean = mu[i], sd = sd[i], log = TRUE) )
+            })
+        )
+```
+
+```{r eval = TRUE, echo = FALSE}
+res %>%
+    ggplot(aes(x = KL_exact, y = H_est, label = model) ) +
+    geom_point(size = 3) +
+    geom_line() +
+    geom_label(
+        aes(fill = model),
+        colour = "white",
+        nudge_y = 0.05 * diff(range(res$H_est) ),
+        show.legend = FALSE
+        ) +
+    labs(
+        x = "KL Divergence (exacte)",
+        y = "Negative log-score (entropie croisée estimée)"
+        ) +
+    scale_color_manual(values = pal_all) +
+    scale_fill_manual(values = pal_all) +
+    theme_bw(base_size = 12)
 ```
 
 ## Déviance
